@@ -17,6 +17,12 @@ public abstract class UiCombobox extends JComboBox<String> implements ItemListen
 		this.frame = frame;
 		addActionListener(this);
 	}
+	
+	public UiCombobox(ViewerFrame frame, String[] items) {
+		super(items);
+		this.frame = frame;
+		addActionListener(this);
+	}
 
 	public ViewerFrame getFrame() {
 		return frame;

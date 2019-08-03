@@ -37,26 +37,31 @@ public class Constants {
 	//******************* Middle panel ************************
 	
 	//******************* Lower panel *************************
+	//********* play Button ********
 	public static final int LOWER_BTN_PLAY_LOC_X = 10;
 	public static final int LOWER_BTN_PLAY_LOC_Y = 10;
 	public static final int LOWER_BTN_PLAY_SIZE_X = 100;
 	public static final int LOWER_BTN_PLAY_SIZE_Y = 25;
 	
+	//******** combobox speed list *********
 	public static final int LOWER_CMB_SPEED_LOC_X = 120;
 	public static final int LOWER_CMB_SPEED_LOC_Y = 10;
 	public static final int LOWER_CMB_SPEED_SIZE_X = 100;
 	public static final int LOWER_CMB_SPEED_SIZE_Y = 25;
 	
+	//******* process bar **********
 	public static final int LOWER_PROC_LOC_X = 230;
 	public static final int LOWER_PROC_LOC_Y = 10;
 	public static final int LOWER_PROC_SIZE_X = 700;
 	public static final int LOWER_PROC_SIZE_Y = 25;
 	
+	//****** label ***********
 	public static final int LOWER_LABEL_LOC_X = 960;
 	public static final int LOWER_LABEL_LOC_Y = 10;
 	public static final int LOWER_LABEL_SIZE_X = 50;
 	public static final int LOWER_LABEL_SIZE_Y = 25;
 	
+	//***** scale bar *********
 	public static final int LOWER_SCALE_BAR_LOC_X = 1000;
 	public static final int LOWER_SCALE_BAR_LOC_Y = 10;
 	public static final int LOWER_SCALE_BAR_SIZE_X = 250;
@@ -78,11 +83,18 @@ public class Constants {
 	
 	
 	
-	//******************* File chooser *******************
+	//******************* File chooser fliter *******************
 	public static final String[] FILE_CHOOSER_FILTER = {"csv"};
+	//******************* process speed contents ************
+	public static final String[] PROCE_BAR_CONTENYS = {" x 0.5", " x 0.8", " x 1.0", " x 1.5"};
 	
-	//******************* Color **************************
-	public static final Color BORDER_COLOR = Color.ORANGE;
+	//******************* Theme **************************
+	public static final Color COLOR_0 = new Color(105,113,83);
+	public static final Color COLOR_1 = new Color(168,139,76);
+	public static final Color COLOR_2 = new Color(160,165,132);
+	public static final Color COLOR_3 = new Color(200,178,114);
+//	public static final Color COLOR_4 = new Color(#A88B4C);
+//	public static final Color COLOR_5 = new Color(#A88B4C);
 	
 	
 }

@@ -1,5 +1,9 @@
 package au.edu.griffithuni.ui;
 
+import static au.edu.griffithuni.tools.Constants.COLOR_0;
+import static au.edu.griffithuni.tools.Constants.COLOR_1;
+import static au.edu.griffithuni.tools.Constants.COLOR_2;
+import static au.edu.griffithuni.tools.Constants.COLOR_3;
 import static au.edu.griffithuni.tools.Constants.CONTROL_PANEL_HEIGHT;
 import static au.edu.griffithuni.tools.Constants.MARGIN;
 import static au.edu.griffithuni.tools.Constants.PANEL_TITLE;
@@ -61,12 +65,14 @@ public class ViewerFrame extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EtchedBorder(EtchedBorder.RAISED));
 		setContentPane(contentPane);
+//		contentPane.setBackground(COLOR_0);
 		contentPane.setLayout(null);
 		
 		//------------------------------
 		int position = MARGIN;
 		JPanel upper = new JPanel();
 		upper.setLayout(null);
+//		upper.setBackground(COLOR_1);
 		upper.setBorder(new EtchedBorder(EtchedBorder.RAISED));
 		upper.setBounds(MARGIN, position, PANEL_WIDTH, CONTROL_PANEL_HEIGHT);
 		contentPane.add(upper);
@@ -78,6 +84,7 @@ public class ViewerFrame extends JFrame {
 		
 		//-------------------------------
 		JPanel middle = new JPanel();
+//		middle.setBackground(COLOR_2);
 		middle.setBounds(MARGIN, position, PANEL_WIDTH, SCREEN_PANEL_HEIGHT);
 		middle.setBorder(new TitledBorder(null, PANEL_TITLE, TitledBorder.LEADING, TitledBorder.TOP, null));
 		contentPane.add(middle);
@@ -86,6 +93,7 @@ public class ViewerFrame extends JFrame {
 		//---------------------------------
 		JPanel bottom = new JPanel();
 		bottom.setLayout(null);
+//		bottom.setBackground(COLOR_3);
 		bottom.setBorder(new EtchedBorder(EtchedBorder.RAISED));
 		bottom.setBounds(MARGIN, position, PANEL_WIDTH, CONTROL_PANEL_HEIGHT);
 		contentPane.add(bottom);
