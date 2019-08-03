@@ -4,6 +4,8 @@ import au.edu.griffithuni.ui.UiCombobox;
 import au.edu.griffithuni.ui.ViewerFrame;
 import static au.edu.griffithuni.tools.Constants.*;
 
+import java.awt.event.ItemEvent;
+
 public class CmbSpeedCtrl extends UiCombobox {
 
 	/**
@@ -14,6 +16,12 @@ public class CmbSpeedCtrl extends UiCombobox {
 	public CmbSpeedCtrl(ViewerFrame frame) {
 		super(frame);
 		setBounds(LOWER_CMB_SPEED_LOC_X, LOWER_CMB_SPEED_LOC_Y, LOWER_CMB_SPEED_SIZE_X, LOWER_CMB_SPEED_SIZE_Y);
+		
+	}
+
+	@Override
+	public void itemStateChanged(ItemEvent e) {
+		// TODO Auto-generated method stub
 		
 	}
 	

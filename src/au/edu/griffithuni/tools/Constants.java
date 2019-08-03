@@ -18,10 +18,10 @@ public class Constants {
 	
 	//******************* Upper panel *************************
 	//********* Combobox ********
-	public static final String COMBOBOX_DEFAULT = "  ---- EXISTING FILE LIST ----";
+	public static final String COMBOBOX_DEFAULT = "---------- EXISTING FILE LIST ----------";
 	public static final int UPPER_COMBOX_LOC_X = 10;
 	public static final int UPPER_COMBOX_LOC_Y = 10;
-	public static final int UPPER_COMBOX_SIZE_X = 180;
+	public static final int UPPER_COMBOX_SIZE_X = 250;
 	public static final int UPPER_COMBOX_SIZE_Y = 25;
 	//********* Text field ********
 	public static final int UPPER_TEXT_LOC_X = 340;

@@ -1,8 +1,10 @@
 package au.edu.griffithuni.ui;
 
+import java.awt.event.ItemListener;
+
 import javax.swing.JComboBox;
 
-public class UiCombobox extends JComboBox<String> {
+public abstract class UiCombobox extends JComboBox<String> implements ItemListener{
 	
 	/**
 	 * 
@@ -13,6 +15,11 @@ public class UiCombobox extends JComboBox<String> {
 	
 	public UiCombobox(ViewerFrame frame) {
 		this.frame = frame;
+		addActionListener(this);
+	}
+
+	public ViewerFrame getFrame() {
+		return frame;
 	}
 
 }

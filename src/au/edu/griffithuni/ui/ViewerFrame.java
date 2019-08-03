@@ -31,7 +31,6 @@ public class ViewerFrame extends JFrame {
 	private UiCombobox flieList;
 	private UiTextField addressFileld;
 	private UiButton btnFile;
-	private UiFileChooser fileChooser;
 	
 	private UiButton playCtrl;
 	private UiCombobox speedCtrl;
@@ -48,7 +47,6 @@ public class ViewerFrame extends JFrame {
 		flieList = new CmbFlieList(this);
 		addressFileld = new UiTextField();
 		btnFile = new BtnFileChooser(this);
-		fileChooser = new UiFileChooser();
 		
 		playCtrl = new PlayControl(this);
 		speedCtrl = new CmbSpeedCtrl(this);
@@ -98,6 +96,48 @@ public class ViewerFrame extends JFrame {
 		bottom.add(scaleLab);
 		bottom.add(scaleBar);
 
+	}
+
+//	public void openFile()
+	
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+
+	public DropMenu getMenu() {
+		return menu;
+	}
+
+	public UiCombobox getFlieList() {
+		return flieList;
+	}
+
+	public UiTextField getAddressFileld() {
+		return addressFileld;
+	}
+
+	public UiButton getBtnFile() {
+		return btnFile;
+	}
+
+	public UiButton getPlayCtrl() {
+		return playCtrl;
+	}
+
+	public UiCombobox getSpeedCtrl() {
+		return speedCtrl;
+	}
+
+	public UiSlider getProceBar() {
+		return proceBar;
+	}
+
+	public UiLabel getScaleLab() {
+		return scaleLab;
+	}
+
+	public UiSlider getScaleBar() {
+		return scaleBar;
 	}
 	
 }

@@ -14,4 +14,7 @@ public class UiTextField extends JTextField {
 		setBounds(UPPER_TEXT_LOC_X, UPPER_TEXT_LOC_Y,UPPER_TEXT_SIZE_X,UPPER_TEXT_SIZE_Y);
 	}
 
+	public void setAddr(String addr) {
+		setText(addr);
+	}
 }

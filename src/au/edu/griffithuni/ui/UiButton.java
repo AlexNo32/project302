@@ -1,8 +1,10 @@
 package au.edu.griffithuni.ui;
 
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 
-public class UiButton extends JButton {
+public abstract class UiButton extends JButton implements ActionListener{
 	
 	/**
 	 * 
@@ -13,6 +15,11 @@ public class UiButton extends JButton {
 	
 	public UiButton(ViewerFrame frame) {
 		this.frame = frame;
+		addActionListener(this);
+	}
+
+	public ViewerFrame getFrame() {
+		return frame;
 	}
 
 }
