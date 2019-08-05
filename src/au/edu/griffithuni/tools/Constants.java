@@ -89,10 +89,10 @@ public class Constants {
 	public static final String[] PROCE_BAR_CONTENYS = {" x 0.5", " x 0.8", " x 1.0", " x 1.5"};
 	
 	//******************* Theme **************************
-	public static final Color COLOR_0 = new Color(105,113,83);
-	public static final Color COLOR_1 = new Color(168,139,76);
-	public static final Color COLOR_2 = new Color(160,165,132);
-	public static final Color COLOR_3 = new Color(200,178,114);
+	public static final Color COLOR_0 = new Color(228,231,234);
+	public static final Color COLOR_1 = new Color(186,200,206);
+	public static final Color COLOR_2 = new Color(235,243,246);
+	public static final Color COLOR_3 = new Color(179,213,214);
 //	public static final Color COLOR_4 = new Color(#A88B4C);
 //	public static final Color COLOR_5 = new Color(#A88B4C);
 	

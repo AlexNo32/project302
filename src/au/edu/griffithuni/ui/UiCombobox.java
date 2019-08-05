@@ -4,7 +4,7 @@ import java.awt.event.ItemListener;
 
 import javax.swing.JComboBox;
 
-public abstract class UiCombobox extends JComboBox<String> implements ItemListener{
+public abstract class UiCombobox extends JComboBox<String> implements ItemListener {
 	
 	/**
 	 * 
@@ -15,13 +15,13 @@ public abstract class UiCombobox extends JComboBox<String> implements ItemListen
 	
 	public UiCombobox(ViewerFrame frame) {
 		this.frame = frame;
-		addActionListener(this);
+		addItemListener(this);
 	}
 	
 	public UiCombobox(ViewerFrame frame, String[] items) {
 		super(items);
 		this.frame = frame;
-		addActionListener(this);
+		addItemListener(this);
 	}
 
 	public ViewerFrame getFrame() {

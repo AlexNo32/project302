@@ -19,6 +19,7 @@ import au.edu.griffithuni.ui.bottom.CmbSpeedCtrl;
 import au.edu.griffithuni.ui.bottom.PlayControl;
 import au.edu.griffithuni.ui.bottom.ProgressBar;
 import au.edu.griffithuni.ui.bottom.ScaleBar;
+import au.edu.griffithuni.ui.middle.UiCanvas;
 import au.edu.griffithuni.ui.upper.BtnFileChooser;
 import au.edu.griffithuni.ui.upper.CmbFlieList;
 
@@ -36,6 +37,8 @@ public class ViewerFrame extends JFrame {
 	private UiTextField addressFileld;
 	private UiButton btnFile;
 	
+	private UiCanvas canvas;
+	
 	private UiButton playCtrl;
 	private UiCombobox speedCtrl;
 	private UiSlider proceBar;
@@ -52,6 +55,8 @@ public class ViewerFrame extends JFrame {
 		addressFileld = new UiTextField();
 		btnFile = new BtnFileChooser(this);
 		
+		canvas = new UiCanvas();
+		
 		playCtrl = new PlayControl(this);
 		speedCtrl = new CmbSpeedCtrl(this);
 		proceBar = new ProgressBar();
@@ -65,14 +70,14 @@ public class ViewerFrame extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EtchedBorder(EtchedBorder.RAISED));
 		setContentPane(contentPane);
-//		contentPane.setBackground(COLOR_0);
+		contentPane.setBackground(COLOR_0);
 		contentPane.setLayout(null);
 		
 		//------------------------------
 		int position = MARGIN;
 		JPanel upper = new JPanel();
 		upper.setLayout(null);
-//		upper.setBackground(COLOR_1);
+		upper.setBackground(COLOR_1);
 		upper.setBorder(new EtchedBorder(EtchedBorder.RAISED));
 		upper.setBounds(MARGIN, position, PANEL_WIDTH, CONTROL_PANEL_HEIGHT);
 		contentPane.add(upper);
@@ -83,17 +88,16 @@ public class ViewerFrame extends JFrame {
 		upper.add(btnFile);
 		
 		//-------------------------------
-		JPanel middle = new JPanel();
-//		middle.setBackground(COLOR_2);
-		middle.setBounds(MARGIN, position, PANEL_WIDTH, SCREEN_PANEL_HEIGHT);
-		middle.setBorder(new TitledBorder(null, PANEL_TITLE, TitledBorder.LEADING, TitledBorder.TOP, null));
-		contentPane.add(middle);
+		canvas.setBackground(COLOR_2);
+		canvas.setBounds(MARGIN, position, PANEL_WIDTH, SCREEN_PANEL_HEIGHT);
+		canvas.setBorder(new TitledBorder(null, PANEL_TITLE, TitledBorder.LEADING, TitledBorder.TOP, null));
+		contentPane.add(canvas);
 		position += (SCREEN_PANEL_HEIGHT + MARGIN);
 		
 		//---------------------------------
 		JPanel bottom = new JPanel();
 		bottom.setLayout(null);
-//		bottom.setBackground(COLOR_3);
+		bottom.setBackground(COLOR_3);
 		bottom.setBorder(new EtchedBorder(EtchedBorder.RAISED));
 		bottom.setBounds(MARGIN, position, PANEL_WIDTH, CONTROL_PANEL_HEIGHT);
 		contentPane.add(bottom);

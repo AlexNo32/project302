@@ -48,9 +48,8 @@ public class CmbFlieList extends UiCombobox {
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		// TODO Auto-generated method stub
+		System.out.println("Changed!!!");
 		
 	}
-
 
 }
