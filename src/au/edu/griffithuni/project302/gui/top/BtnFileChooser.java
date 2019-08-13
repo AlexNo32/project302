@@ -1,11 +1,11 @@
-package au.edu.griffithuni.ui.upper;
+package au.edu.griffithuni.project302.gui.top;
 
-import static au.edu.griffithuni.tools.Constants.BTN_FILE;
-import static au.edu.griffithuni.tools.Constants.FILE_CHOOSER_FILTER;
-import static au.edu.griffithuni.tools.Constants.UPPER_BTN_FILE_LOC_X;
-import static au.edu.griffithuni.tools.Constants.UPPER_BTN_FILE_LOC_Y;
-import static au.edu.griffithuni.tools.Constants.UPPER_BTN_FILE_SIZE_X;
-import static au.edu.griffithuni.tools.Constants.UPPER_BTN_FILE_SIZE_Y;
+import static au.edu.griffithuni.project302.tools.Constants.BTN_FILE;
+import static au.edu.griffithuni.project302.tools.Constants.FILE_CHOOSER_FILTER;
+import static au.edu.griffithuni.project302.tools.Constants.UPPER_BTN_FILE_LOC_X;
+import static au.edu.griffithuni.project302.tools.Constants.UPPER_BTN_FILE_LOC_Y;
+import static au.edu.griffithuni.project302.tools.Constants.UPPER_BTN_FILE_SIZE_X;
+import static au.edu.griffithuni.project302.tools.Constants.UPPER_BTN_FILE_SIZE_Y;
 
 import java.awt.Component;
 import java.awt.event.ActionEvent;
@@ -14,9 +14,9 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import au.edu.griffithuni.tools.FileLoadingWorker;
-import au.edu.griffithuni.ui.UiButton;
-import au.edu.griffithuni.ui.ViewerFrame;
+import au.edu.griffithuni.project302.gui.UiButton;
+import au.edu.griffithuni.project302.gui.ViewerFrame;
+import au.edu.griffithuni.project302.tools.FileLoadingWorker;
 
 public class BtnFileChooser extends UiButton{
 
@@ -53,7 +53,7 @@ public class BtnFileChooser extends UiButton{
             
             getFrame().getAddressFileld().setAddr(files[0].getAbsolutePath());
             
-            new FileLoadingWorker((CmbFlieList) getFrame().getFlieList(), files).execute();
+            //new FileLoadingWorker((CmbFlieList) getFrame().getFlieList(), files).execute();
         }
 	}
 }

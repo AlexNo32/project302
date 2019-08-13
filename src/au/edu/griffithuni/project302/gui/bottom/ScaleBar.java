@@ -1,9 +1,10 @@
-package au.edu.griffithuni.ui.bottom;
+package au.edu.griffithuni.project302.gui.bottom;
 
-import au.edu.griffithuni.ui.UiSlider;
-import static au.edu.griffithuni.tools.Constants.*;
+import static au.edu.griffithuni.project302.tools.Constants.*;
 
 import javax.swing.event.ChangeEvent;
+
+import au.edu.griffithuni.project302.gui.UiSlider;
 
 public class ScaleBar extends UiSlider{
 

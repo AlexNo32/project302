@@ -1,27 +1,27 @@
-package au.edu.griffithuni.ui;
+package au.edu.griffithuni.project302.gui;
 
-import static au.edu.griffithuni.tools.Constants.COLOR_0;
-import static au.edu.griffithuni.tools.Constants.COLOR_1;
-import static au.edu.griffithuni.tools.Constants.COLOR_2;
-import static au.edu.griffithuni.tools.Constants.COLOR_3;
-import static au.edu.griffithuni.tools.Constants.CONTROL_PANEL_HEIGHT;
-import static au.edu.griffithuni.tools.Constants.MARGIN;
-import static au.edu.griffithuni.tools.Constants.PANEL_TITLE;
-import static au.edu.griffithuni.tools.Constants.PANEL_WIDTH;
-import static au.edu.griffithuni.tools.Constants.SCREEN_PANEL_HEIGHT;
+import static au.edu.griffithuni.project302.tools.Constants.COLOR_0;
+import static au.edu.griffithuni.project302.tools.Constants.COLOR_1;
+import static au.edu.griffithuni.project302.tools.Constants.COLOR_2;
+import static au.edu.griffithuni.project302.tools.Constants.COLOR_3;
+import static au.edu.griffithuni.project302.tools.Constants.CONTROL_PANEL_HEIGHT;
+import static au.edu.griffithuni.project302.tools.Constants.MARGIN;
+import static au.edu.griffithuni.project302.tools.Constants.PANEL_TITLE;
+import static au.edu.griffithuni.project302.tools.Constants.PANEL_WIDTH;
+import static au.edu.griffithuni.project302.tools.Constants.SCREEN_PANEL_HEIGHT;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-import au.edu.griffithuni.ui.bottom.CmbSpeedCtrl;
-import au.edu.griffithuni.ui.bottom.PlayControl;
-import au.edu.griffithuni.ui.bottom.ProgressBar;
-import au.edu.griffithuni.ui.bottom.ScaleBar;
-import au.edu.griffithuni.ui.middle.UiCanvas;
-import au.edu.griffithuni.ui.upper.BtnFileChooser;
-import au.edu.griffithuni.ui.upper.CmbFlieList;
+import au.edu.griffithuni.project302.gui.bottom.CmbSpeedCtrl;
+import au.edu.griffithuni.project302.gui.bottom.PlayControl;
+import au.edu.griffithuni.project302.gui.bottom.ProgressBar;
+import au.edu.griffithuni.project302.gui.bottom.ScaleBar;
+import au.edu.griffithuni.project302.gui.middle.UiCanvas;
+import au.edu.griffithuni.project302.gui.top.BtnFileChooser;
+import au.edu.griffithuni.project302.gui.top.CmbFlieList;
 
 public class ViewerFrame extends JFrame {
 
@@ -150,6 +150,10 @@ public class ViewerFrame extends JFrame {
 
 	public UiSlider getScaleBar() {
 		return scaleBar;
+	}
+
+	public UiCanvas getCanvas() {
+		return canvas;
 	}
 	
 }

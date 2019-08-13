@@ -1,7 +1,8 @@
-package au.edu.griffithuni.ui;
+package au.edu.griffithuni.project302.gui;
+
+import static au.edu.griffithuni.project302.tools.Constants.*;
 
 import javax.swing.JLabel;
-import static au.edu.griffithuni.tools.Constants.*;
 
 public class UiLabel extends JLabel{
 

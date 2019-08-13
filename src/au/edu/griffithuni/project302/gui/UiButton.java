@@ -1,4 +1,4 @@
-package au.edu.griffithuni.ui;
+package au.edu.griffithuni.project302.gui;
 
 import java.awt.event.ActionListener;
 

@@ -1,4 +1,6 @@
-package au.edu.griffithuni.ui.middle;
+package au.edu.griffithuni.project302.gui.middle;
+
+import static au.edu.griffithuni.project302.tools.Constants.*;
 
 import java.awt.BasicStroke;
 import java.awt.Graphics;
@@ -8,7 +10,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
-import static au.edu.griffithuni.tools.Constants.*;
 
 public class UiCanvas extends JPanel implements ActionListener {
 

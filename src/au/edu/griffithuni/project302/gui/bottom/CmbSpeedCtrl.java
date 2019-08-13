@@ -1,10 +1,11 @@
-package au.edu.griffithuni.ui.bottom;
+package au.edu.griffithuni.project302.gui.bottom;
 
-import au.edu.griffithuni.ui.UiCombobox;
-import au.edu.griffithuni.ui.ViewerFrame;
-import static au.edu.griffithuni.tools.Constants.*;
+import static au.edu.griffithuni.project302.tools.Constants.*;
 
 import java.awt.event.ItemEvent;
+
+import au.edu.griffithuni.project302.gui.UiCombobox;
+import au.edu.griffithuni.project302.gui.ViewerFrame;
 
 public class CmbSpeedCtrl extends UiCombobox {
 

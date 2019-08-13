@@ -1,11 +1,11 @@
-package au.edu.griffithuni.ui;
+package au.edu.griffithuni.project302.gui;
 
-import static au.edu.griffithuni.tools.Constants.MENU_FILE;
-import static au.edu.griffithuni.tools.Constants.MENU_HELP;
-import static au.edu.griffithuni.tools.Constants.MENU_ITEM_ABOUT;
-import static au.edu.griffithuni.tools.Constants.MENU_ITEM_CLOSE;
-import static au.edu.griffithuni.tools.Constants.MENU_ITEM_DEC;
-import static au.edu.griffithuni.tools.Constants.MENU_ITEM_OPEN;
+import static au.edu.griffithuni.project302.tools.Constants.MENU_FILE;
+import static au.edu.griffithuni.project302.tools.Constants.MENU_HELP;
+import static au.edu.griffithuni.project302.tools.Constants.MENU_ITEM_ABOUT;
+import static au.edu.griffithuni.project302.tools.Constants.MENU_ITEM_CLOSE;
+import static au.edu.griffithuni.project302.tools.Constants.MENU_ITEM_DEC;
+import static au.edu.griffithuni.project302.tools.Constants.MENU_ITEM_OPEN;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;

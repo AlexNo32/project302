@@ -1,19 +1,19 @@
-package au.edu.griffithuni.ui.upper;
+package au.edu.griffithuni.project302.gui.top;
 
-import static au.edu.griffithuni.tools.Constants.COMBOBOX_DEFAULT;
-import static au.edu.griffithuni.tools.Constants.UPPER_COMBOX_LOC_X;
-import static au.edu.griffithuni.tools.Constants.UPPER_COMBOX_LOC_Y;
-import static au.edu.griffithuni.tools.Constants.UPPER_COMBOX_SIZE_X;
-import static au.edu.griffithuni.tools.Constants.UPPER_COMBOX_SIZE_Y;
+import static au.edu.griffithuni.project302.tools.Constants.COMBOBOX_DEFAULT;
+import static au.edu.griffithuni.project302.tools.Constants.UPPER_COMBOX_LOC_X;
+import static au.edu.griffithuni.project302.tools.Constants.UPPER_COMBOX_LOC_Y;
+import static au.edu.griffithuni.project302.tools.Constants.UPPER_COMBOX_SIZE_X;
+import static au.edu.griffithuni.project302.tools.Constants.UPPER_COMBOX_SIZE_Y;
 
 import java.awt.event.ItemEvent;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import au.edu.griffithuni.ui.UiCombobox;
-import au.edu.griffithuni.ui.ViewerFrame;
-import au.edu.griffithuni.vo.PositionVo;
+import au.edu.griffithuni.project302.gui.UiCombobox;
+import au.edu.griffithuni.project302.gui.ViewerFrame;
+import au.edu.griffithuni.project302.vo.PositionVo;
 
 public class CmbFlieList extends UiCombobox {
 
@@ -33,7 +33,6 @@ public class CmbFlieList extends UiCombobox {
 	
 	public void setItems(Map<String, List<PositionVo>> data) {
 		csvData.putAll(data);
-		
 		updateUi();
 	}
 	
@@ -48,7 +47,13 @@ public class CmbFlieList extends UiCombobox {
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {
-		System.out.println("Changed!!!");
+		
+		if(e.getStateChange()  == ItemEvent.SELECTED) {
+			String item = (String) e.getItem(); 
+			if(csvData.containsKey(item)) {
+//				getFrame().getCanvas().;
+			}
+		}
 		
 	}
 

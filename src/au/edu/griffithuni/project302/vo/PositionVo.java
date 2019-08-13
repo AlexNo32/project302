@@ -1,4 +1,4 @@
-package au.edu.griffithuni.vo;
+package au.edu.griffithuni.project302.vo;
 
 public class PositionVo {
 

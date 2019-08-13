@@ -1,4 +1,4 @@
-package au.edu.griffithuni.tools;
+package au.edu.griffithuni.project302.tools;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -10,8 +10,8 @@ import java.util.concurrent.ExecutionException;
 
 import javax.swing.SwingWorker;
 
-import au.edu.griffithuni.ui.upper.CmbFlieList;
-import au.edu.griffithuni.vo.PositionVo;
+import au.edu.griffithuni.project302.gui.top.CmbFlieList;
+import au.edu.griffithuni.project302.vo.PositionVo;
 
 public class FileLoadingWorker extends SwingWorker<Map<String, List<PositionVo>>, String> {
 
