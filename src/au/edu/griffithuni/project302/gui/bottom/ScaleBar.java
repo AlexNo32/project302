@@ -4,7 +4,6 @@ import static au.edu.griffithuni.project302.tools.Constants.LOWER_SCALE_BAR_LOC_
 import static au.edu.griffithuni.project302.tools.Constants.LOWER_SCALE_BAR_LOC_Y;
 import static au.edu.griffithuni.project302.tools.Constants.LOWER_SCALE_BAR_SIZE_X;
 import static au.edu.griffithuni.project302.tools.Constants.LOWER_SCALE_BAR_SIZE_Y;
-import static au.edu.griffithuni.project302.tools.Constants.POS_BOTTOM;
 
 import javax.swing.event.ChangeEvent;
 

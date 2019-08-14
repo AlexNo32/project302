@@ -14,7 +14,7 @@ public class Daemon {
 	
 	public Daemon() {
 		//do nothing
-	}
+	} 
 	
 	private void start() {
 		appManager = ApplicationGuiManager.getInstance();

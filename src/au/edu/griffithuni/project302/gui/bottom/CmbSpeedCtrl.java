@@ -4,7 +4,6 @@ import static au.edu.griffithuni.project302.tools.Constants.LOWER_CMB_SPEED_LOC_
 import static au.edu.griffithuni.project302.tools.Constants.LOWER_CMB_SPEED_LOC_Y;
 import static au.edu.griffithuni.project302.tools.Constants.LOWER_CMB_SPEED_SIZE_X;
 import static au.edu.griffithuni.project302.tools.Constants.LOWER_CMB_SPEED_SIZE_Y;
-import static au.edu.griffithuni.project302.tools.Constants.POS_BOTTOM;
 import static au.edu.griffithuni.project302.tools.Constants.PROCE_BAR_CONTENYS;
 
 import java.awt.event.ItemEvent;
