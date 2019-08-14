@@ -10,17 +10,17 @@ import java.util.concurrent.ExecutionException;
 
 import javax.swing.SwingWorker;
 
-import au.edu.griffithuni.project302.gui.top.CmbFlieList;
+import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.vo.PositionVo;
 
 public class FileLoadingWorker extends SwingWorker<Map<String, List<PositionVo>>, String> {
 
 	private File[] files;
-	private CmbFlieList cmb;
+	private ApplicationManager manager;
 	private Scanner scanner;
 	
-	public FileLoadingWorker(CmbFlieList cmb, File... files) {
-		this.cmb = cmb;
+	public FileLoadingWorker(ApplicationManager manager, File... files) {
+		this.manager = manager;
 		this.files = files;
 	}
 	
@@ -36,7 +36,7 @@ public class FileLoadingWorker extends SwingWorker<Map<String, List<PositionVo>>
 			while(scanner.hasNextLine()) {
 				track.add(voConvert(scanner.nextLine()));
 			}
-			trackList.put(fd.getName(), track);
+			trackList.put(fd.getAbsolutePath(), track);
 		}
 		return trackList;
 	}
@@ -44,7 +44,7 @@ public class FileLoadingWorker extends SwingWorker<Map<String, List<PositionVo>>
 	@Override
 	protected void done() {
 		try {
-			cmb.setItems(get());
+			manager.recv(get());
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (ExecutionException e) {

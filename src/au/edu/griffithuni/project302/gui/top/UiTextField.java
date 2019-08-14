@@ -7,7 +7,7 @@ import static au.edu.griffithuni.project302.tools.Constants.UPPER_TEXT_SIZE_Y;
 
 import javax.swing.JTextField;
 
-import au.edu.griffithuni.project302.ApplicationGuiManager;
+import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.gui.IComponent;
 
 public class UiTextField extends JTextField implements IComponent {
@@ -17,9 +17,9 @@ public class UiTextField extends JTextField implements IComponent {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private ApplicationGuiManager manager;
+	private ApplicationManager manager;
 	
-	public UiTextField(ApplicationGuiManager manager) {
+	public UiTextField(ApplicationManager manager) {
 		this.manager = manager;
 	}
 
@@ -36,14 +36,14 @@ public class UiTextField extends JTextField implements IComponent {
 	/**
 	 * @return the manager
 	 */
-	public ApplicationGuiManager getManager() {
+	public ApplicationManager getManager() {
 		return manager;
 	}
 
 	/**
 	 * @param manager the manager to set
 	 */
-	public void setManager(ApplicationGuiManager manager) {
+	public void setManager(ApplicationManager manager) {
 		this.manager = manager;
 	}
 

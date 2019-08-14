@@ -10,7 +10,7 @@ import static au.edu.griffithuni.project302.tools.Constants.LOWER_BTN_PLAY_SIZE_
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import au.edu.griffithuni.project302.ApplicationGuiManager;
+import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.gui.UiButton;
 
 public class PlayControl extends UiButton{
@@ -22,7 +22,7 @@ public class PlayControl extends UiButton{
 	
 	private boolean isPlay  = true;
 	
-	public PlayControl(ApplicationGuiManager manager) {
+	public PlayControl(ApplicationManager manager) {
 		super(manager);
 	}
 

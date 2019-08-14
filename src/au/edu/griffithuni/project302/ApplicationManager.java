@@ -7,7 +7,9 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
@@ -31,17 +33,27 @@ import au.edu.griffithuni.project302.gui.top.BtnFileChooser;
 import au.edu.griffithuni.project302.gui.top.CmbFlieList;
 import au.edu.griffithuni.project302.gui.top.UiTextField;
 import au.edu.griffithuni.project302.tools.FileLoadingWorker;
+import au.edu.griffithuni.project302.vo.PositionVo;
 
-public class ApplicationGuiManager {
-
+/**
+ * Application manager, which control gui and part of logic of app.
+ * @author Firklaag_ins
+ *
+ */
+public class ApplicationManager {
+	/* csv data */
+	private HashMap<String, List<PositionVo>> csvData = new HashMap<String, List<PositionVo>>();
+	private String currentFile;
+	
+	/* GUI elements list */
 	private List<IComponent> components = new ArrayList<IComponent>();
-	private UiFrame mainFrame;
-	private JPanel contentPane;
-	private DropMenu menu;
+	private UiFrame mainFrame; // main frame
+	private JPanel contentPane; // 
+	private DropMenu menu; // banner menu
 
-	private UiCombobox flieList;
-	private UiTextField addressFileld;
-	private UiButton btnFile;
+	private UiCombobox flieList; // top left, all existing files list
+	private UiTextField addressFileld; // top middle, file path, usage limited  
+	private UiButton btnFile; // top right, file selector
 
 	private UiButton playCtrl;
 	private UiCombobox speedCtrl;
@@ -49,7 +61,7 @@ public class ApplicationGuiManager {
 	private UiLabel scaleLab;
 	private UiSlider scaleBar;
 
-	private ApplicationGuiManager() {
+	private ApplicationManager() {
 		mainFrame = ApplicationGuiFactory.generator();
 		menu = new DropMenu(this);
 		
@@ -103,11 +115,15 @@ public class ApplicationGuiManager {
         int result = fileChooser.showOpenDialog(btnFile);
         
         if (result == JFileChooser.APPROVE_OPTION) {
-            File[] files = fileChooser.getSelectedFiles();
-            addressFileld.setAddr(files[0].getAbsolutePath());
-            
-            new FileLoadingWorker((CmbFlieList)flieList, files).execute();
+            File[] files = fileChooser.getSelectedFiles(); 
+            new FileLoadingWorker(this, files).execute();
         }
+	}
+	
+	public void recv(Map<String, List<PositionVo>> csv) {
+		csvData.putAll(csv);
+		flieList.update(csv.keySet().toArray());
+		// draw first frame
 	}
 	
 	public void initialize(){
@@ -124,12 +140,12 @@ public class ApplicationGuiManager {
 		mainFrame.getBottom().add(o);
 	}
 	
-	public static ApplicationGuiManager getInstance() {
+	public static ApplicationManager getInstance() {
 		return ApplicationManagerHolder.instance;
 	}
 
 	private static class ApplicationManagerHolder {
-		private static final ApplicationGuiManager instance = new ApplicationGuiManager();
+		private static final ApplicationManager instance = new ApplicationManager();
 	}
 
 	/**
@@ -152,14 +168,7 @@ public class ApplicationGuiManager {
 	public UiFrame getMainFrame() {
 		return mainFrame;
 	}
-
-	/**
-	 * @param mainFrame the mainFrame to set
-	 */
-	public void setMainFrame(UiFrame mainFrame) {
-		this.mainFrame = mainFrame;
-	}
-
+	
 	/**
 	 * @return the contentPane
 	 */
@@ -182,24 +191,10 @@ public class ApplicationGuiManager {
 	}
 
 	/**
-	 * @param menu the menu to set
-	 */
-	public void setMenu(DropMenu menu) {
-		this.menu = menu;
-	}
-
-	/**
 	 * @return the flieList
 	 */
 	public UiCombobox getFlieList() {
 		return flieList;
-	}
-
-	/**
-	 * @param flieList the flieList to set
-	 */
-	public void setFlieList(UiCombobox flieList) {
-		this.flieList = flieList;
 	}
 
 	/**
@@ -210,39 +205,11 @@ public class ApplicationGuiManager {
 	}
 
 	/**
-	 * @param addressFileld the addressFileld to set
-	 */
-	public void setAddressFileld(UiTextField addressFileld) {
-		this.addressFileld = addressFileld;
-	}
-
-	/**
 	 * @return the btnFile
 	 */
 	public UiButton getBtnFile() {
 		return btnFile;
 	}
-
-	/**
-	 * @param btnFile the btnFile to set
-	 */
-	public void setBtnFile(UiButton btnFile) {
-		this.btnFile = btnFile;
-	}
-
-//	/**
-//	 * @return the canvas
-//	 */
-//	public UiCanvas getCanvas() {
-//		return canvas;
-//	}
-//
-//	/**
-//	 * @param canvas the canvas to set
-//	 */
-//	public void setCanvas(UiCanvas canvas) {
-//		this.canvas = canvas;
-//	}
 
 	/**
 	 * @return the playCtrl
@@ -252,38 +219,17 @@ public class ApplicationGuiManager {
 	}
 
 	/**
-	 * @param playCtrl the playCtrl to set
-	 */
-	public void setPlayCtrl(UiButton playCtrl) {
-		this.playCtrl = playCtrl;
-	}
-
-	/**
 	 * @return the speedCtrl
 	 */
 	public UiCombobox getSpeedCtrl() {
 		return speedCtrl;
 	}
-
-	/**
-	 * @param speedCtrl the speedCtrl to set
-	 */
-	public void setSpeedCtrl(UiCombobox speedCtrl) {
-		this.speedCtrl = speedCtrl;
-	}
-
+	
 	/**
 	 * @return the proceBar
 	 */
 	public UiSlider getProceBar() {
 		return proceBar;
-	}
-
-	/**
-	 * @param proceBar the proceBar to set
-	 */
-	public void setProceBar(UiSlider proceBar) {
-		this.proceBar = proceBar;
 	}
 
 	/**
@@ -294,13 +240,6 @@ public class ApplicationGuiManager {
 	}
 
 	/**
-	 * @param scaleLab the scaleLab to set
-	 */
-	public void setScaleLab(UiLabel scaleLab) {
-		this.scaleLab = scaleLab;
-	}
-
-	/**
 	 * @return the scaleBar
 	 */
 	public UiSlider getScaleBar() {
@@ -308,10 +247,17 @@ public class ApplicationGuiManager {
 	}
 
 	/**
-	 * @param scaleBar the scaleBar to set
+	 * @return the currentFile
 	 */
-	public void setScaleBar(UiSlider scaleBar) {
-		this.scaleBar = scaleBar;
+	public String getCurrentFile() {
+		return currentFile;
+	}
+
+	/**
+	 * @param currentFile the currentFile to set
+	 */
+	public void setCurrentFile(String currentFile) {
+		this.currentFile = currentFile;
 	}
 
 }

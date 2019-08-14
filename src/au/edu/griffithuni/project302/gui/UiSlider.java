@@ -5,7 +5,7 @@ import static au.edu.griffithuni.project302.tools.Constants.COLOR_3;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeListener;
 
-import au.edu.griffithuni.project302.ApplicationGuiManager;
+import au.edu.griffithuni.project302.ApplicationManager;
 
 public abstract class UiSlider extends JSlider implements ChangeListener, IComponent {
 
@@ -14,9 +14,9 @@ public abstract class UiSlider extends JSlider implements ChangeListener, ICompo
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private ApplicationGuiManager manager;
+	private ApplicationManager manager;
 	
-	public UiSlider(ApplicationGuiManager manager) {
+	public UiSlider(ApplicationManager manager) {
 		this.manager = manager;
 		setBackground(COLOR_3);
 		addChangeListener(this);
@@ -25,14 +25,14 @@ public abstract class UiSlider extends JSlider implements ChangeListener, ICompo
 	/**
 	 * @return the manager
 	 */
-	public ApplicationGuiManager getManager() {
+	public ApplicationManager getManager() {
 		return manager;
 	}
 
 	/**
 	 * @param manager the manager to set
 	 */
-	public void setManager(ApplicationGuiManager manager) {
+	public void setManager(ApplicationManager manager) {
 		this.manager = manager;
 	}
 

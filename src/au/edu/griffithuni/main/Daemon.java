@@ -1,6 +1,6 @@
 package au.edu.griffithuni.main;
 
-import au.edu.griffithuni.project302.ApplicationGuiManager;
+import au.edu.griffithuni.project302.ApplicationManager;
 
 /**
  * Main entry of the application
@@ -10,14 +10,14 @@ import au.edu.griffithuni.project302.ApplicationGuiManager;
  */
 public class Daemon {
 	
-	private ApplicationGuiManager appManager;
+	private ApplicationManager appManager;
 	
 	public Daemon() {
 		//do nothing
 	} 
 	
 	private void start() {
-		appManager = ApplicationGuiManager.getInstance();
+		appManager = ApplicationManager.getInstance();
 		appManager.draw();
 	}
 	

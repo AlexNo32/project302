@@ -7,7 +7,7 @@ import static au.edu.griffithuni.project302.tools.Constants.LOWER_PROC_SIZE_Y;
 
 import javax.swing.event.ChangeEvent;
 
-import au.edu.griffithuni.project302.ApplicationGuiManager;
+import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.gui.UiSlider;
 
 public class ProgressBar extends UiSlider{
@@ -17,7 +17,7 @@ public class ProgressBar extends UiSlider{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public ProgressBar(ApplicationGuiManager manager) {
+	public ProgressBar(ApplicationManager manager) {
 		super(manager);
 	}
 

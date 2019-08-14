@@ -8,7 +8,7 @@ import static au.edu.griffithuni.project302.tools.Constants.SCALE_LABEL;
 
 import javax.swing.JLabel;
 
-import au.edu.griffithuni.project302.ApplicationGuiManager;
+import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.gui.IComponent;
 
 public class UiLabel extends JLabel implements IComponent{
@@ -18,9 +18,9 @@ public class UiLabel extends JLabel implements IComponent{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private ApplicationGuiManager manager;
+	private ApplicationManager manager;
 	
-	public UiLabel(ApplicationGuiManager manager) {
+	public UiLabel(ApplicationManager manager) {
 		this.manager = manager;
 	}
 	
@@ -35,14 +35,14 @@ public class UiLabel extends JLabel implements IComponent{
 	/**
 	 * @return the manager
 	 */
-	public ApplicationGuiManager getManager() {
+	public ApplicationManager getManager() {
 		return manager;
 	}
 
 	/**
 	 * @param manager the manager to set
 	 */
-	public void setManager(ApplicationGuiManager manager) {
+	public void setManager(ApplicationManager manager) {
 		this.manager = manager;
 	}
 

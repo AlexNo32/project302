@@ -7,7 +7,7 @@ import static au.edu.griffithuni.project302.tools.Constants.LOWER_SCALE_BAR_SIZE
 
 import javax.swing.event.ChangeEvent;
 
-import au.edu.griffithuni.project302.ApplicationGuiManager;
+import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.gui.UiSlider;
 
 public class ScaleBar extends UiSlider{
@@ -17,7 +17,7 @@ public class ScaleBar extends UiSlider{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	public ScaleBar(ApplicationGuiManager manager) {
+	public ScaleBar(ApplicationManager manager) {
 		super(manager);
 		
 	}

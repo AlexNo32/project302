@@ -12,13 +12,11 @@ public class Constants {
 	public static final int MARGIN 		= 5;
 	public static final int BORDER_FONT = 3;
 	
-	public static final int PANEL_WIDTH 			= FRAME_WIDTH - 5 * MARGIN;
 	public static final int CONTROL_PANEL_HEIGHT 	= 40;
-	public static final int SCREEN_PANEL_HEIGHT 	= 800;
 	
 	//******************* Upper panel *************************
 	//********* Combobox ********
-	public static final String[] COMBOBOX_DEFAULT = {"---------- EXISTING FILE LIST ----------"};
+	public static final String COMBOBOX_DEFAULT = "---------- EXISTING FILE LIST ----------";
 	public static final int UPPER_COMBOX_LOC_X 	= 10;
 	public static final int UPPER_COMBOX_LOC_Y 	= 10;
 	public static final int UPPER_COMBOX_SIZE_X = 250;
@@ -35,7 +33,9 @@ public class Constants {
 	public static final int UPPER_BTN_FILE_SIZE_Y 	= 30;
 	
 	//******************* Middle panel ************************
-	
+//	public static final int PANEL_WIDTH 			= FRAME_WIDTH - 5 * MARGIN;
+	public static final int PANEL_WIDTH 			= 1255;
+	public static final int SCREEN_PANEL_HEIGHT 	= 800;
 	//******************* Lower panel *************************
 	//********* play Button ********
 	public static final int LOWER_BTN_PLAY_LOC_X 	= 10;
@@ -99,6 +99,12 @@ public class Constants {
 	public static final int POS_TOP 	= 1;
 	public static final int POS_MIDDLE 	= 2;
 	public static final int POS_BOTTOM 	= 3;
+	
+	//****************** Jone Doe *************************
+	public static final float FONT_SIZE  = 6.6f;
+	public static final int DIAMETER	 = 30;
+	public static final Color HEAD_COLOR = new Color(255, 0, 0); // red
+	public static final Color HAND_COLOR = new Color(0, 0, 255); // blue
 	
 	
 }

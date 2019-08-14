@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.filechooser.FileNameExtensionFilter;
 
-import au.edu.griffithuni.project302.ApplicationGuiManager;
+import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.gui.UiButton;
 
 public class BtnFileChooser extends UiButton{
@@ -24,7 +24,7 @@ public class BtnFileChooser extends UiButton{
 	
 	private FileNameExtensionFilter filter = new FileNameExtensionFilter(null, FILE_CHOOSER_FILTER);
 	
-	public BtnFileChooser(ApplicationGuiManager manager) {
+	public BtnFileChooser(ApplicationManager manager) {
 		super(manager);
 	}
 

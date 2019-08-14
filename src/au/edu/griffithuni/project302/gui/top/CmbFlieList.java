@@ -7,13 +7,10 @@ import static au.edu.griffithuni.project302.tools.Constants.UPPER_COMBOX_SIZE_X;
 import static au.edu.griffithuni.project302.tools.Constants.UPPER_COMBOX_SIZE_Y;
 
 import java.awt.event.ItemEvent;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.awt.event.ItemListener;
 
-import au.edu.griffithuni.project302.ApplicationGuiManager;
+import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.gui.UiCombobox;
-import au.edu.griffithuni.project302.vo.PositionVo;
 
 public class CmbFlieList extends UiCombobox {
 
@@ -22,42 +19,40 @@ public class CmbFlieList extends UiCombobox {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private HashMap<String, List<PositionVo>> csvData = new HashMap<String, List<PositionVo>>();
-	
-	public CmbFlieList(ApplicationGuiManager manager) {
-		super(manager, COMBOBOX_DEFAULT);
+	public CmbFlieList(ApplicationManager manager) {
+		super(manager);
 	}
 	
-	public void setItems(Map<String, List<PositionVo>> data) {
-		csvData.putAll(data);
-		updateUi();
-	}
-	
-	private void updateUi() {
+	public void update(Object[] items) {
 		removeAllItems();
 		
-		for(String fName: csvData.keySet())
-			addItem(fName);
-		
-		setSelectedIndex(0); 
-	}
-
-	@Override
-	public void itemStateChanged(ItemEvent e) {
-		
-		if(e.getStateChange()  == ItemEvent.SELECTED) {
-			String item = (String) e.getItem(); 
-			if(csvData.containsKey(item)) {
-//				getFrame().getCanvas().;
-			}
+		for(Object abs: items) {
+			String absPath = (String) abs;
+			String fName = absPath.substring(absPath.lastIndexOf("\\") + 1);
+			addItem(new ComboxItem(fName, absPath));
 		}
-		
+		setSelectedIndex(0); 
 	}
 
 	@Override
 	public void iInitialize() {
-		setSelectedIndex(0); 
 		setBounds(UPPER_COMBOX_LOC_X, UPPER_COMBOX_LOC_Y, UPPER_COMBOX_SIZE_X, UPPER_COMBOX_SIZE_Y);
+		addItem(new ComboxItem(COMBOBOX_DEFAULT, ""));
+		
+		addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange()  == ItemEvent.SELECTED) {
+					ComboxItem item = (ComboxItem) e.getItem(); 
+					
+					getManager().getAddressFileld().setText(item.getAbsPath());
+					getManager().setCurrentFile(item.getAbsPath());
+				}
+				
+			}
+			
+		});
 		
 		getManager().addComponentUpper(this);
 	}
