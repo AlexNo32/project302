@@ -1,6 +1,7 @@
 package au.edu.griffithuni.project302.gui.middle;
 
-import static au.edu.griffithuni.project302.tools.Constants.*;
+import static au.edu.griffithuni.project302.tools.Constants.PANEL_WIDTH;
+import static au.edu.griffithuni.project302.tools.Constants.SCREEN_PANEL_HEIGHT;
 
 import java.awt.BasicStroke;
 import java.awt.Graphics;

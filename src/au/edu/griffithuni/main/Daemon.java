@@ -26,25 +26,4 @@ public class Daemon {
 		daemon.start();
 	}
 
-//	public static void main(String[] args) {
-//		SwingUtilities.invokeLater(new Runnable() {
-//
-//			@Override
-//			public void run() {
-//				ViewerFrame f = new ViewerFrame(FRAME_TITLE);
-////				f.setExtendedState(JFrame.MAXIMIZED_BOTH);
-//				
-//				Dimension screenSize =Toolkit.getDefaultToolkit().getScreenSize();
-//				f.setLocation((int)(screenSize.getWidth() - FRAME_WIDTH) / 2, (int)(screenSize.getHeight() - FRANE_HEIGHT) / 2);
-//				f.setSize(FRAME_WIDTH, FRANE_HEIGHT);
-//				f.setResizable(false);
-//				f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//				f.setVisible(true);
-//			}
-//
-//		});
-//
-//
-//	}
-
 }

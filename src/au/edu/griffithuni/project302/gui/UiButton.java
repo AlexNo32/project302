@@ -1,25 +1,34 @@
 package au.edu.griffithuni.project302.gui;
 
-import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 
-public abstract class UiButton extends JButton implements ActionListener{
+import au.edu.griffithuni.project302.ApplicationGuiManager;
+
+public abstract class UiButton extends JButton implements IComponent {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private ViewerFrame frame;
+	private ApplicationGuiManager manager;
 	
-	public UiButton(ViewerFrame frame) {
-		this.frame = frame;
-		addActionListener(this);
+	public UiButton(ApplicationGuiManager manager) {
+		this.manager = manager;
 	}
 
-	public ViewerFrame getFrame() {
-		return frame;
+	/**
+	 * @return the manager
+	 */
+	public ApplicationGuiManager getManager() {
+		return manager;
+	}
+
+	/**
+	 * @param manager the manager to set
+	 */
+	public void setManager(ApplicationGuiManager manager) {
+		this.manager = manager;
 	}
 
 }

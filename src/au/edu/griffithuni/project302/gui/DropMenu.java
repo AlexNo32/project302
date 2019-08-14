@@ -16,6 +16,8 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import au.edu.griffithuni.project302.ApplicationGuiManager;
+
 public class DropMenu extends JMenuBar {
 
 	/**
@@ -24,12 +26,12 @@ public class DropMenu extends JMenuBar {
 	private static final long serialVersionUID = 1L;
 
 	private JMenu file, help;
-	
 	private JMenuItem open, close, about;
-	
 	private JMenu decorate;
+	private ApplicationGuiManager manager;
 	
-	public DropMenu(ViewerFrame frame) {
+	public DropMenu(ApplicationGuiManager manager) {
+		this.manager = manager;
 		file = new JMenu(MENU_FILE);
 		help = new JMenu(MENU_HELP);
 		file.setMnemonic(KeyEvent.VK_F);
@@ -70,6 +72,20 @@ public class DropMenu extends JMenuBar {
 		}
 		
 	};
+
+	/**
+	 * @return the manager
+	 */
+	public ApplicationGuiManager getManager() {
+		return manager;
+	}
+
+	/**
+	 * @param manager the manager to set
+	 */
+	public void setManager(ApplicationGuiManager manager) {
+		this.manager = manager;
+	}
 	
 	
 
