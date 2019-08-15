@@ -24,8 +24,6 @@ public class UiFrame extends JFrame {
 	private JPanel upper;
 	private JPanel bottom;
 
-	private UiCanvas canvas;
-
 	public UiFrame(String title) {
 		super(title);
 		setUi();
@@ -39,7 +37,7 @@ public class UiFrame extends JFrame {
 		contentPane.setLayout(null);
 
 		setUpperPanel();
-		setScreen();
+//		setScreen();
 		setBottomPanel();
 	}
 
@@ -51,11 +49,6 @@ public class UiFrame extends JFrame {
 //		upper.setBounds(MARGIN, position, PANEL_WIDTH, CONTROL_PANEL_HEIGHT);
 		upper.setBounds(MARGIN, MARGIN, SCREEN_PANEL_WIDTH, CONTROL_PANEL_HEIGHT);
 		contentPane.add(upper);
-	}
-
-	private void setScreen() {
-		canvas = new UiCanvas();
-		contentPane.add(canvas);
 	}
 
 	private void setBottomPanel() {

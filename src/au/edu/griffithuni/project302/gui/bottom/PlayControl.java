@@ -38,16 +38,40 @@ public class PlayControl extends UiButton{
 				if(isPlay) {
 					isPlay = false;
 					setText(BTN_PAUSE);
-//					repaint();
+					getManager().play();
 				}else {
 					isPlay = true;
 					setText(BTN_PALY);
-//					repaint();
+					getManager().pause();
 				}
 			}
 		});
 		
 		getManager().addComponentBottom(this);
+	}
+
+	@Override
+	public void iPlay() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void iPause() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void iFinished() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void iWait() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

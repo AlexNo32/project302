@@ -46,6 +46,30 @@ public class UiLabel extends JLabel implements IComponent{
 		this.manager = manager;
 	}
 
+	@Override
+	public void iPlay() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void iPause() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void iFinished() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void iWait() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 	
 }

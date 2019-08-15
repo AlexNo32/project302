@@ -7,9 +7,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.swing.JComponent;
 import javax.swing.JFileChooser;
@@ -29,11 +27,11 @@ import au.edu.griffithuni.project302.gui.bottom.PlayControl;
 import au.edu.griffithuni.project302.gui.bottom.ProgressBar;
 import au.edu.griffithuni.project302.gui.bottom.ScaleBar;
 import au.edu.griffithuni.project302.gui.bottom.UiLabel;
+import au.edu.griffithuni.project302.gui.middle.UiCanvas;
 import au.edu.griffithuni.project302.gui.top.BtnFileChooser;
 import au.edu.griffithuni.project302.gui.top.CmbFlieList;
 import au.edu.griffithuni.project302.gui.top.UiTextField;
 import au.edu.griffithuni.project302.tools.FileLoadingWorker;
-import au.edu.griffithuni.project302.vo.PositionVo;
 
 /**
  * Application manager, which control gui and part of logic of app.
@@ -41,9 +39,8 @@ import au.edu.griffithuni.project302.vo.PositionVo;
  *
  */
 public class ApplicationManager {
-	/* csv data */
-	private HashMap<String, List<PositionVo>> csvData = new HashMap<String, List<PositionVo>>();
-	private String currentFile;
+	/* animation control manager */
+	AnimatedManager animate;
 	
 	/* GUI elements list */
 	private List<IComponent> components = new ArrayList<IComponent>();
@@ -55,6 +52,8 @@ public class ApplicationManager {
 	private UiTextField addressFileld; // top middle, file path, usage limited  
 	private UiButton btnFile; // top right, file selector
 
+	private UiCanvas canvas;
+	
 	private UiButton playCtrl;
 	private UiCombobox speedCtrl;
 	private UiSlider proceBar;
@@ -62,13 +61,14 @@ public class ApplicationManager {
 	private UiSlider scaleBar;
 
 	private ApplicationManager() {
+		animate = new AnimatedManager(this);
 		mainFrame = ApplicationGuiFactory.generator();
 		menu = new DropMenu(this);
 		
 		flieList = new CmbFlieList(this);
 		addressFileld = new UiTextField(this);
 		btnFile = new BtnFileChooser(this);
-
+		canvas = new UiCanvas(this);
 		playCtrl = new PlayControl(this);
 		speedCtrl = new CmbSpeedCtrl(this);
 		proceBar = new ProgressBar(this);
@@ -79,6 +79,8 @@ public class ApplicationManager {
 		components.add(addressFileld);
 		components.add(btnFile);
 
+		components.add(canvas);
+		
 		components.add(playCtrl);
 		components.add(speedCtrl);
 		components.add(proceBar);
@@ -120,15 +122,27 @@ public class ApplicationManager {
         }
 	}
 	
-	public void recv(Map<String, List<PositionVo>> csv) {
-		csvData.putAll(csv);
-		flieList.update(csv.keySet().toArray());
-		// draw first frame
-	}
-	
 	public void initialize(){
 		for(IComponent c : components){
 			c.iInitialize();
+		}
+	}
+	
+	public void play(){
+		for(IComponent c : components){
+			c.iPlay();
+		}
+	}
+	
+	public void pause() {
+		for(IComponent c : components){
+			c.iPause();
+		}
+	}
+	
+	public void finish() {
+		for(IComponent c : components){
+			c.iFinished();
 		}
 	}
 
@@ -138,6 +152,13 @@ public class ApplicationManager {
 	
 	public void addComponentBottom(JComponent o) {
 		mainFrame.getBottom().add(o);
+	}
+	
+	/**
+	 * @param currentData the currentData to set
+	 */
+	public void setCurrentData(String currentData) {
+		animate.setCurrentData(currentData);
 	}
 	
 	public static ApplicationManager getInstance() {
@@ -247,17 +268,17 @@ public class ApplicationManager {
 	}
 
 	/**
-	 * @return the currentFile
+	 * @return the animate
 	 */
-	public String getCurrentFile() {
-		return currentFile;
+	public AnimatedManager getAnimate() {
+		return animate;
 	}
 
 	/**
-	 * @param currentFile the currentFile to set
+	 * @param animate the animate to set
 	 */
-	public void setCurrentFile(String currentFile) {
-		this.currentFile = currentFile;
+	public void setAnimate(AnimatedManager animate) {
+		this.animate = animate;
 	}
 
 }

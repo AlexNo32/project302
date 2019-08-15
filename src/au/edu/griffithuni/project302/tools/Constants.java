@@ -104,6 +104,7 @@ public class Constants {
 	public static final int DIAMETER	 = 30;
 	public static final Color HEAD_COLOR = new Color(255, 0, 0); // red
 	public static final Color HAND_COLOR = new Color(0, 0, 255); // blue
+	public static final Color LINE_COLOR = Color.BLACK;
 	
 	
 }

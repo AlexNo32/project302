@@ -44,7 +44,7 @@ public class FileLoadingWorker extends SwingWorker<Map<String, List<PositionVo>>
 	@Override
 	protected void done() {
 		try {
-			manager.recv(get());
+			manager.getAnimate().recv(get());
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (ExecutionException e) {

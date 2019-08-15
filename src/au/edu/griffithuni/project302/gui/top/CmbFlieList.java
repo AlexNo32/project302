@@ -47,7 +47,7 @@ public class CmbFlieList extends UiCombobox {
 					ComboxItem item = (ComboxItem) e.getItem(); 
 					
 					getManager().getAddressFileld().setText(item.getAbsPath());
-					getManager().setCurrentFile(item.getAbsPath());
+					getManager().getAnimate().setCurrentData(item.getAbsPath());
 				}
 				
 			}
@@ -55,6 +55,30 @@ public class CmbFlieList extends UiCombobox {
 		});
 		
 		getManager().addComponentUpper(this);
+	}
+
+	@Override
+	public void iPlay() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void iPause() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void iFinished() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void iWait() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
