@@ -1,2 +1,2 @@
-# project302
+# High cohesion & Low coupling
  
