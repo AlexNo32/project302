@@ -32,6 +32,7 @@ public class UiCanvas extends JPanel implements IComponent{
 
 	private Point head, leftHand, rightHand;
 	private ApplicationManager manager;
+	private boolean animate; 
 	
 	public UiCanvas(ApplicationManager manager) {
 		this.manager = manager;
@@ -46,6 +47,7 @@ public class UiCanvas extends JPanel implements IComponent{
 	
 	@Override
 	public void iInitialize() {
+		animate  = false;
 		setBackground(COLOR_2);
 		setBounds(MARGIN, SCREEN_POS_HEIGHT, SCREEN_PANEL_WIDTH, SCREEN_PANEL_HEIGHT);
 		setBorder(new TitledBorder(null, PANEL_TITLE, TitledBorder.LEADING, TitledBorder.TOP, null));
@@ -81,12 +83,13 @@ public class UiCanvas extends JPanel implements IComponent{
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
 		paintBackground(g2d);
-
-//		g2d.translate((getWidth() / 2) - 15, (getHeight() / 2) - 15);
-
-//		drawJoneDoe(g2d);
 		
-//		g2d.translate(-((getWidth() / 2) - 15), -((getHeight() / 2) - 15));
+		if(animate) {
+			g2d.translate((getWidth() / 2) - 15, (getHeight() / 2) - 15);
+			drawJoneDoe(g2d);		
+			g2d.translate(-((getWidth() / 2) - 15), -((getHeight() / 2) - 15));
+		}
+			
 	}
 	
 	private void drawJoneDoe(Graphics2D g2d) {

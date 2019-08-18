@@ -3,23 +3,31 @@ package au.edu.griffithuni.project302.gui;
 import static au.edu.griffithuni.project302.tools.Constants.COLOR_3;
 
 import javax.swing.JSlider;
-import javax.swing.event.ChangeListener;
 
 import au.edu.griffithuni.project302.ApplicationManager;
 
-public abstract class UiSlider extends JSlider implements ChangeListener, IComponent {
+/***
+ * abstract object for slider
+ * sub-object: ProgressBar, ScaleBar 
+ * @author Firklaag_ins
+ *
+ */
+public abstract class UiSlider extends JSlider implements IComponent {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private ApplicationManager manager;
+	private ApplicationManager manager; //
 	
 	public UiSlider(ApplicationManager manager) {
 		this.manager = manager;
 		setBackground(COLOR_3);
-		addChangeListener(this);
+		//default setting
+		setMinimum(0);
+		setMaximum(100);
+		setValue(0);
 	}
 
 	/**

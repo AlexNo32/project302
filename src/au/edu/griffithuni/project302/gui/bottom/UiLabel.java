@@ -11,6 +11,11 @@ import javax.swing.JLabel;
 import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.gui.IComponent;
 
+/**
+ * label object
+ * @author Firklaag_ins
+ *
+ */
 public class UiLabel extends JLabel implements IComponent{
 
 	/**
@@ -28,7 +33,6 @@ public class UiLabel extends JLabel implements IComponent{
 	public void iInitialize() {
 		setText(SCALE_LABEL);
 		setBounds(LOWER_LABEL_LOC_X, LOWER_LABEL_LOC_Y, LOWER_LABEL_SIZE_X, LOWER_LABEL_SIZE_Y);
-		
 		getManager().addComponentBottom(this);
 	}
 
@@ -48,25 +52,22 @@ public class UiLabel extends JLabel implements IComponent{
 
 	@Override
 	public void iPlay() {
-		// TODO Auto-generated method stub
-		
+		// He is just a label,
 	}
 
 	@Override
 	public void iPause() {
-		// TODO Auto-generated method stub
-		
+		// What do you expect from a label?
 	}
 
 	@Override
 	public void iFinished() {
-		// TODO Auto-generated method stub
-		
+		// No, he doesn't need do anything
 	}
 
 	@Override
 	public void iWait() {
-		// TODO Auto-generated method stub
+		// just laid there.
 		
 	}
 

@@ -6,6 +6,7 @@ import static au.edu.griffithuni.project302.tools.Constants.LOWER_SCALE_BAR_SIZE
 import static au.edu.griffithuni.project302.tools.Constants.LOWER_SCALE_BAR_SIZE_Y;
 
 import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.gui.UiSlider;
@@ -19,13 +20,15 @@ public class ScaleBar extends UiSlider{
 
 	public ScaleBar(ApplicationManager manager) {
 		super(manager);
-		
-	}
+		addChangeListener(new ChangeListener() {
 
-	@Override
-	public void stateChanged(ChangeEvent e) {
-		// TODO Auto-generated method stub
-		
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
 	}
 
 	@Override

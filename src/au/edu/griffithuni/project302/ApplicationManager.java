@@ -128,6 +128,12 @@ public class ApplicationManager {
 		}
 	}
 	
+	public void delay() {
+		for(IComponent c : components){
+			c.iWait();
+		}
+	}
+	
 	public void play(){
 		for(IComponent c : components){
 			c.iPlay();
@@ -279,6 +285,14 @@ public class ApplicationManager {
 	 */
 	public void setAnimate(AnimatedManager animate) {
 		this.animate = animate;
+	}
+
+	public UiCanvas getCanvas() {
+		return canvas;
+	}
+
+	public void setCanvas(UiCanvas canvas) {
+		this.canvas = canvas;
 	}
 
 }

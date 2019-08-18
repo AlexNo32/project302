@@ -1,5 +1,7 @@
 package au.edu.griffithuni.project302.vo;
 
+import java.awt.Point;
+
 public class PositionVo {
 
 	private double time;
@@ -30,6 +32,14 @@ public class PositionVo {
 				+ leftHandY + "), " + "right hand Pos (" + rightHandX + ", " + rightHandY + ").";
 	}
 
+//	public Point getHead() {
+//		return new Point(headX, headY);
+//	}
+	
+	public Point leftHand() {
+		return new Point();
+	}
+	
 	public double getTime() {
 		return time;
 	}

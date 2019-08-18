@@ -5,11 +5,20 @@ import static au.edu.griffithuni.project302.tools.Constants.UPPER_TEXT_LOC_Y;
 import static au.edu.griffithuni.project302.tools.Constants.UPPER_TEXT_SIZE_X;
 import static au.edu.griffithuni.project302.tools.Constants.UPPER_TEXT_SIZE_Y;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.JTextField;
 
 import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.gui.IComponent;
 
+/**
+ * input field
+ * TODO file drop undone
+ * @author Firklaag_ins
+ *
+ */
 public class UiTextField extends JTextField implements IComponent {
 
 	/**
@@ -19,12 +28,32 @@ public class UiTextField extends JTextField implements IComponent {
 	
 	private ApplicationManager manager;
 	
+	/* Constructor */
 	public UiTextField(ApplicationManager manager) {
 		this.manager = manager;
-	}
+		
+		addKeyListener(new KeyListener() {
 
-	public void setAddr(String addr) {
-		setText(addr);
+			@Override
+			public void keyTyped(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
 	}
 
 	@Override
@@ -54,6 +83,12 @@ public class UiTextField extends JTextField implements IComponent {
 	}
 
 	@Override
+	public void iWait() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
 	public void iPause() {
 		// TODO Auto-generated method stub
 		
@@ -65,11 +100,4 @@ public class UiTextField extends JTextField implements IComponent {
 		
 	}
 
-	@Override
-	public void iWait() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
 }

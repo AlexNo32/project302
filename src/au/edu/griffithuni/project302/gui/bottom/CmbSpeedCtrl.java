@@ -12,22 +12,22 @@ import java.awt.event.ItemListener;
 import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.gui.UiCombobox;
 
+/***
+ * play speed control
+ * @author Firklaag_ins
+ *
+ */
 public class CmbSpeedCtrl extends UiCombobox {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	private float newSpeedRate;
+	
+	/* Constructor */
 	public CmbSpeedCtrl(ApplicationManager manager) {
 		super(manager);
-	}
-
-	@Override
-	public void iInitialize() {
-		setBounds(LOWER_CMB_SPEED_LOC_X, LOWER_CMB_SPEED_LOC_Y, LOWER_CMB_SPEED_SIZE_X, LOWER_CMB_SPEED_SIZE_Y);
-		for(String s: PROCE_BAR_CONTENYS)
-			addItem(new ComboxItem(s, ""));
 		
 		addItemListener(new ItemListener() {
 
@@ -37,10 +37,24 @@ public class CmbSpeedCtrl extends UiCombobox {
 			}
 			
 		});
-		
-		getManager().addComponentBottom(this);
 	}
 
+	@Override
+	public void iInitialize() {
+		setBounds(LOWER_CMB_SPEED_LOC_X, LOWER_CMB_SPEED_LOC_Y, LOWER_CMB_SPEED_SIZE_X, LOWER_CMB_SPEED_SIZE_Y);
+		for(String s: PROCE_BAR_CONTENYS)
+			addItem(new ComboxItem(s, ""));
+		getManager().addComponentBottom(this);
+		newSpeedRate = 1.0f;
+		setEnabled(false);
+	}
+
+	@Override
+	public void iWait() {
+		setEnabled(true);
+		getManager().getAnimate().setSpeedRate(getNewSpeedRate());
+	}
+	
 	@Override
 	public void update(Object[] array) {
 		// do nothing
@@ -64,10 +78,14 @@ public class CmbSpeedCtrl extends UiCombobox {
 		
 	}
 
-	@Override
-	public void iWait() {
-		// TODO Auto-generated method stub
-		
+	public float getNewSpeedRate() {
+		return newSpeedRate;
+	}
+
+	public void setNewSpeedRate(float newSpeedRate) {
+		this.newSpeedRate = newSpeedRate;
 	}
 	
+	
+
 }

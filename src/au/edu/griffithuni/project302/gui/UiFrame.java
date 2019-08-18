@@ -1,4 +1,4 @@
-package au.edu.griffithuni.project302.gui;
+	package au.edu.griffithuni.project302.gui;
 
 import static au.edu.griffithuni.project302.tools.Constants.COLOR_0;
 import static au.edu.griffithuni.project302.tools.Constants.COLOR_1;
@@ -10,8 +10,6 @@ import static au.edu.griffithuni.project302.tools.Constants.SCREEN_PANEL_WIDTH;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EtchedBorder;
-
-import au.edu.griffithuni.project302.gui.middle.UiCanvas;
 
 public class UiFrame extends JFrame {
 
