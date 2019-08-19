@@ -85,7 +85,7 @@ public class Constants {
 	//******************* File chooser fliter *******************
 	public static final String[] FILE_CHOOSER_FILTER = {"csv"};
 	//******************* process speed contents ************
-	public static final String[] PROCE_BAR_CONTENYS = {" x 0.5", " x 0.8", " x 1.0", " x 1.5"};
+	public static final String[] PROCE_BAR_CONTENYS = {" x 1.0", " x 2.0", " x 3.0", " x 4.0"};
 	
 	//******************* Theme **************************
 	public static final Color COLOR_0 = new Color(228,231,234);

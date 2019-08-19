@@ -17,9 +17,20 @@ public class ScaleBar extends UiSlider{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
+	private float newScaleRate;
+	
 	public ScaleBar(ApplicationManager manager) {
 		super(manager);
+	}
+
+	@Override
+	public void iInitialize() {
+		setMinimum(1);
+		setMaximum(5);
+		setValue(1);
+		setBounds(LOWER_SCALE_BAR_LOC_X, LOWER_SCALE_BAR_LOC_Y, LOWER_SCALE_BAR_SIZE_X, LOWER_SCALE_BAR_SIZE_Y);
+		getManager().addComponentBottom(this);
+		
 		addChangeListener(new ChangeListener() {
 
 			@Override
@@ -29,18 +40,16 @@ public class ScaleBar extends UiSlider{
 			}
 			
 		});
+		
+		newScaleRate = 10f;
 	}
 
 	@Override
-	public void iInitialize() {
-		setMinimum(1);
-		setMaximum(5);
-		setValue(1);
-		setBounds(LOWER_SCALE_BAR_LOC_X, LOWER_SCALE_BAR_LOC_Y, LOWER_SCALE_BAR_SIZE_X, LOWER_SCALE_BAR_SIZE_Y);
+	public void iWait() {
+		getManager().getAnimate().setScaleRate(getNewScaleRate());
 		
-		getManager().addComponentBottom(this);
 	}
-
+	
 	@Override
 	public void iPlay() {
 		// TODO Auto-generated method stub
@@ -59,10 +68,12 @@ public class ScaleBar extends UiSlider{
 		
 	}
 
-	@Override
-	public void iWait() {
-		// TODO Auto-generated method stub
-		
+	public float getNewScaleRate() {
+		return newScaleRate;
 	}
-	
+
+	public void setNewScaleRate(float newScaleRate) {
+		this.newScaleRate = newScaleRate;
+	}
+
 }

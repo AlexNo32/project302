@@ -28,6 +28,14 @@ public class CmbSpeedCtrl extends UiCombobox {
 	/* Constructor */
 	public CmbSpeedCtrl(ApplicationManager manager) {
 		super(manager);
+	}
+
+	@Override
+	public void iInitialize() {
+		setBounds(LOWER_CMB_SPEED_LOC_X, LOWER_CMB_SPEED_LOC_Y, LOWER_CMB_SPEED_SIZE_X, LOWER_CMB_SPEED_SIZE_Y);
+		for(String s: PROCE_BAR_CONTENYS)
+			addItem(new ComboxItem(s, ""));
+		getManager().addComponentBottom(this);
 		
 		addItemListener(new ItemListener() {
 
@@ -37,14 +45,7 @@ public class CmbSpeedCtrl extends UiCombobox {
 			}
 			
 		});
-	}
-
-	@Override
-	public void iInitialize() {
-		setBounds(LOWER_CMB_SPEED_LOC_X, LOWER_CMB_SPEED_LOC_Y, LOWER_CMB_SPEED_SIZE_X, LOWER_CMB_SPEED_SIZE_Y);
-		for(String s: PROCE_BAR_CONTENYS)
-			addItem(new ComboxItem(s, ""));
-		getManager().addComponentBottom(this);
+		
 		newSpeedRate = 1.0f;
 		setEnabled(false);
 	}

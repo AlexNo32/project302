@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.swing.Timer;
@@ -20,7 +19,7 @@ public class AnimatedManager implements ActionListener{
 	private String currentData;
 	private Timer timer;
 	private float speedRate;
-	private float folatRate;
+	private float scaleRate;
 	
 	public AnimatedManager(ApplicationManager manager) {
 		this.manager = manager;
@@ -82,12 +81,12 @@ public class AnimatedManager implements ActionListener{
 		this.speedRate = speedRate;
 	}
 
-	public float getFolatRate() {
-		return folatRate;
+	public float getScaleRate() {
+		return scaleRate;
 	}
 
-	public void setFolatRate(float folatRate) {
-		this.folatRate = folatRate;
+	public void setScaleRate(float scaleRate) {
+		this.scaleRate = scaleRate;
 	}
 
 	public ApplicationManager getManager() {

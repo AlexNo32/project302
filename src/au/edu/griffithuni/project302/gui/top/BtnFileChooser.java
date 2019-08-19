@@ -9,11 +9,14 @@ import static au.edu.griffithuni.project302.tools.Constants.UPPER_BTN_FILE_SIZE_
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
+import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.gui.UiButton;
+import au.edu.griffithuni.project302.tools.FileLoadingWorker;
 
 public class BtnFileChooser extends UiButton{
 
@@ -37,7 +40,7 @@ public class BtnFileChooser extends UiButton{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				getManager().showFileOpenDialog(filter);
+				showFileOpenDialog(filter);
 			}
 		});
 		
@@ -45,6 +48,21 @@ public class BtnFileChooser extends UiButton{
 		
 	}
 
+	public void showFileOpenDialog(FileNameExtensionFilter filter) {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File("."));
+        fileChooser.setFileFilter(filter);
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        fileChooser.setMultiSelectionEnabled(true);
+        
+        int result = fileChooser.showOpenDialog(this);
+        
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File[] files = fileChooser.getSelectedFiles(); 
+            new FileLoadingWorker(getManager(), files).execute();
+        }
+	}
+	
 	@Override
 	public void iPlay() {
 		// TODO Auto-generated method stub

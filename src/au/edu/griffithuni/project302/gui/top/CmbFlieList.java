@@ -27,21 +27,6 @@ public class CmbFlieList extends UiCombobox {
 	/* Constructor */
 	public CmbFlieList(ApplicationManager manager) {
 		super(manager);
-		
-		addItemListener(new ItemListener() {
-
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				if(e.getStateChange()  == ItemEvent.SELECTED) {
-					ComboxItem item = (ComboxItem) e.getItem(); 
-					
-					getManager().getAddressFileld().setText(item.getAbsPath());
-					getManager().getAnimate().setCurrentData(item.getAbsPath());
-				}
-				
-			}
-			
-		});
 	}
 	
 	/* update file list */
@@ -61,6 +46,21 @@ public class CmbFlieList extends UiCombobox {
 		setBounds(UPPER_COMBOX_LOC_X, UPPER_COMBOX_LOC_Y, UPPER_COMBOX_SIZE_X, UPPER_COMBOX_SIZE_Y);
 		addItem(new ComboxItem(COMBOBOX_DEFAULT, ""));
 		getManager().addComponentUpper(this);
+		
+		addItemListener(new ItemListener() {
+
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange()  == ItemEvent.SELECTED) {
+					ComboxItem item = (ComboxItem) e.getItem(); 
+					
+					getManager().getAddressFileld().setText(item.getAbsPath());
+					getManager().getAnimate().setCurrentData(item.getAbsPath());
+				}
+				
+			}
+			
+		});
 	}
 
 	@Override

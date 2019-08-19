@@ -5,16 +5,13 @@ import static au.edu.griffithuni.project302.tools.Constants.FRANE_HEIGHT;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComponent;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 import au.edu.griffithuni.project302.gui.DropMenu;
 import au.edu.griffithuni.project302.gui.IComponent;
@@ -31,7 +28,6 @@ import au.edu.griffithuni.project302.gui.middle.UiCanvas;
 import au.edu.griffithuni.project302.gui.top.BtnFileChooser;
 import au.edu.griffithuni.project302.gui.top.CmbFlieList;
 import au.edu.griffithuni.project302.gui.top.UiTextField;
-import au.edu.griffithuni.project302.tools.FileLoadingWorker;
 
 /**
  * Application manager, which control gui and part of logic of app.
@@ -105,21 +101,6 @@ public class ApplicationManager {
 			}
 
 		});
-	}
-
-	public void showFileOpenDialog(FileNameExtensionFilter filter) {
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(new File("."));
-        fileChooser.setFileFilter(filter);
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        fileChooser.setMultiSelectionEnabled(true);
-        
-        int result = fileChooser.showOpenDialog(btnFile);
-        
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File[] files = fileChooser.getSelectedFiles(); 
-            new FileLoadingWorker(this, files).execute();
-        }
 	}
 	
 	public void initialize(){
