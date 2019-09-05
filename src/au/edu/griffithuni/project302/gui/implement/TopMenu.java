@@ -11,14 +11,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractAction;
-import javax.swing.Action;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import au.edu.griffithuni.project302.ApplicationManager;
 
-public class TopMenu extends JMenuBar {
+/**
+ * Top menu
+ *  - need fill the funcs
+ * @author Firklaag_ins
+ *
+ */
+public final class TopMenu extends JMenuBar {
 
 	/**
 	 * 
@@ -29,64 +34,42 @@ public class TopMenu extends JMenuBar {
 	private JMenuItem open, close, about;
 	private JMenu decorate;
 	private ApplicationManager manager;
-	
+
 	public TopMenu(ApplicationManager manager) {
 		this.manager = manager;
-		file = new JMenu(MENU_FILE);
-		help = new JMenu(MENU_HELP);
-		file.setMnemonic(KeyEvent.VK_F);
-		help.setMnemonic(KeyEvent.VK_H);
-		
-		open = new JMenuItem(MENU_ITEM_OPEN);
-		close = new JMenuItem(MENU_ITEM_CLOSE);
-		about = new JMenuItem(MENU_ITEM_ABOUT);
-		
-		decorate = new JMenu(MENU_ITEM_DEC);
+		this.file 	= new JMenu(MENU_FILE);
+		this.help 	= new JMenu(MENU_HELP);
+		this.file.setMnemonic(KeyEvent.VK_F);
+		this.help.setMnemonic(KeyEvent.VK_H);
+
+		this.open 	= new JMenuItem(MENU_ITEM_OPEN);
+		this.close 	= new JMenuItem(MENU_ITEM_CLOSE);
+		this.about 	= new JMenuItem(MENU_ITEM_ABOUT);
+
+		decorate 	= new JMenu(MENU_ITEM_DEC);
 		decorate.setEnabled(false);
-		
+
 		file.add(open);
 		file.addSeparator();
 		file.add(close);
 		help.add(about);
-		
+
 		add(file);
 		add(decorate);
 		add(help);
-		
-		open.setAction(act_open);
+
+		open.setAction(new AbstractAction(MENU_ITEM_OPEN) {
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 5398334147642421864L;
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO
+			}
+
+		});
 	}
-	
-	//***********************  Actions **************************
-	
-	Action act_open = new AbstractAction(MENU_ITEM_OPEN) {
-
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = 5398334147642421864L;
-
-		@Override
-		public void actionPerformed(ActionEvent e) {
-//			System.out.println("Open");
-			
-		}
-		
-	};
-
-	/**
-	 * @return the manager
-	 */
-	public ApplicationManager getManager() {
-		return manager;
-	}
-
-	/**
-	 * @param manager the manager to set
-	 */
-	public void setManager(ApplicationManager manager) {
-		this.manager = manager;
-	}
-	
-	
-
 }

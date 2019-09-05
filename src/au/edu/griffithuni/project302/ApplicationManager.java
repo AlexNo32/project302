@@ -1,19 +1,12 @@
 package au.edu.griffithuni.project302;
 
 import static au.edu.griffithuni.project302.tools.Constants.FRAME_TITLE;
-import static au.edu.griffithuni.project302.tools.Constants.FRAME_WIDTH;
-import static au.edu.griffithuni.project302.tools.Constants.FRANE_HEIGHT;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JComponent;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
-import javax.swing.UIManager;
 
 import au.edu.griffithuni.project302.gui.IComponent;
 import au.edu.griffithuni.project302.gui.implement.BtmLabel;
@@ -37,43 +30,41 @@ import au.edu.griffithuni.project302.gui.implement.TopTextField;
 public class ApplicationManager {
 	
 	/* animation control manager */
-	AnimatedManager animate;
+	public AnimatedManager animate;
 	
 	/* GUI elements list */
-	private List<IComponent> components = new ArrayList<IComponent>();
+	public List<IComponent> components = new ArrayList<IComponent>();
 	/* Components */
-	private TopMenu menu; // banner menu
-	private TopFlieList flieList; // top left, all existing files list
-	private TopTextField addressFileld; // top middle, file path  
-	private TopFileChooser fileChooser; // top right, file selector
+	public TopMenu 		menu; // banner menu
+	public TopFlieList 	flieList; // top left, all existing files list
+	public TopTextField 	addressFileld; // top middle, file path  
+	public TopFileChooser 	fileChooser; // top right, file selector
 	
-	private BtmPlayControl playCtrl;// play/pause button
-	private BtmSpeedCtrl speedCtrl; // speed control
-	private BtmProgressBar proceBar; // process bar
-	private BtmLabel scaleLab; // label
-	private BtmScaleBar scaleBar; // scale bar
+	public BtmPlayControl 	playCtrl;// play/pause button
+	public BtmSpeedCtrl 	speedCtrl; // speed control
+	public BtmProgressBar 	proceBar; // process bar
+	public BtmLabel 		scaleLab; // label
+	public BtmScaleBar 	scaleBar; // scale bar
 
-	private MainFrame mainFrame; // main frame
-	private MainCanvas canvas; // canvas
-	
-	private JPanel contentPane; //
+	public MainFrame 		mainFrame; // main frame
+	public MainCanvas 		canvas; // canvas
 	
 	private ApplicationManager() {
-		animate = new AnimatedManager(this);
+		animate = 		new AnimatedManager(this);
 		
-		mainFrame = new MainFrame(FRAME_TITLE);
-		canvas =    new MainCanvas(this);
+		mainFrame = 	new MainFrame(FRAME_TITLE);
+		canvas =    	new MainCanvas(this);
 		
 		menu =          new TopMenu(this);
 		flieList =      new TopFlieList(this);
 		addressFileld = new TopTextField(this);
 		fileChooser =   new TopFileChooser(this);
 		
-		playCtrl =  new BtmPlayControl(this);
-		speedCtrl = new BtmSpeedCtrl(this);
-		proceBar =  new BtmProgressBar(this);
-		scaleLab =  new BtmLabel(this);
-		scaleBar =  new BtmScaleBar(this);
+		playCtrl =  	new BtmPlayControl(this);
+		speedCtrl = 	new BtmSpeedCtrl(this);
+		proceBar =  	new BtmProgressBar(this);
+		scaleLab =  	new BtmLabel(this);
+		scaleBar =  	new BtmScaleBar(this);
 
 		components.add(flieList);
 		components.add(addressFileld);
@@ -83,11 +74,10 @@ public class ApplicationManager {
 		components.add(proceBar);
 		components.add(scaleLab);
 		components.add(scaleBar);
-		
 		components.add(canvas);
 		
 		mainFrame.setJMenuBar(menu);
-		initialize();
+		iInitialize();
 	}
 
 	public void draw() {
@@ -101,43 +91,27 @@ public class ApplicationManager {
 		});
 	}
 	
-	public void initialize(){
+	public void iInitialize(){
 		for(IComponent c : components){
 			c.iInitialize();
 		}
 	}
 	
-	public void delay() {
+	public void iWait() {
 		for(IComponent c : components){
 			c.iWait();
 		}
 	}
 	
-	public void play(){
+	public void iPlay(){
 		for(IComponent c : components){
 			c.iPlay();
-		}
-	}
-	
-	public void pause() {
-		for(IComponent c : components){
-			c.iPause();
-		}
-	}
-	
-	public void finish() {
-		for(IComponent c : components){
-			c.iFinished();
 		}
 	}
 
 	public void addComponent(JComponent o) {
 		mainFrame.getContentPane().add(o);
 	}
-	
-//	public void addComponentBottom(JComponent o) {
-//		mainFrame.getBottom().add(o);
-//	}
 	
 	/**
 	 * @param currentData the currentData to set
@@ -175,20 +149,7 @@ public class ApplicationManager {
 		return mainFrame;
 	}
 	
-	/**
-	 * @return the contentPane
-	 */
-	public JPanel getContentPane() {
-		return contentPane;
-	}
-
-	/**
-	 * @param contentPane the contentPane to set
-	 */
-	public void setContentPane(JPanel contentPane) {
-		this.contentPane = contentPane;
-	}
-
+	
 	/**
 	 * @return the animate
 	 */

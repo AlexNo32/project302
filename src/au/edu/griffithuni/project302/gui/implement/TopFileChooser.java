@@ -19,7 +19,12 @@ import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.gui.IComponent;
 import au.edu.griffithuni.project302.tools.FileLoadingWorker;
 
-public class TopFileChooser extends JButton implements IComponent{
+/**
+ * File loader, no need for change for now
+ * @author Firklaag_ins
+ *
+ */
+public final class TopFileChooser extends JButton implements IComponent{
 
 	/**
 	 * 
@@ -45,11 +50,10 @@ public class TopFileChooser extends JButton implements IComponent{
 				showFileOpenDialog(filter);
 			}
 		});
-		
 		manager.addComponent(this);
-		
 	}
 
+	/* file open dialog */
 	public void showFileOpenDialog(FileNameExtensionFilter filter) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setCurrentDirectory(new File("."));
@@ -67,26 +71,12 @@ public class TopFileChooser extends JButton implements IComponent{
 	
 	@Override
 	public void iWait() {
-		// do nothing
-		
+		setEnabled(true);
 	}
 	
 	@Override
 	public void iPlay() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void iPause() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void iFinished() {
-		// TODO Auto-generated method stub
-		
+		setEnabled(false);
 	}
 	
 }

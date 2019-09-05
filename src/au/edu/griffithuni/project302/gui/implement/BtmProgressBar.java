@@ -12,7 +12,12 @@ import javax.swing.event.ChangeListener;
 import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.gui.IComponent;
 
-public class BtmProgressBar extends JSlider implements IComponent{
+/**
+ * progress bar
+ * @author Firklaag_ins
+ *
+ */
+public final class BtmProgressBar extends JSlider implements IComponent{
 
 	/**
 	 * 
@@ -36,24 +41,11 @@ public class BtmProgressBar extends JSlider implements IComponent{
 	@Override
 	public void iInitialize() {
 		setBounds(LOWER_PROC_LOC_X, LOWER_PROC_LOC_Y, LOWER_PROC_SIZE_X, LOWER_PROC_SIZE_Y);
-
 		manager.addComponent(this);
 	}
 
 	@Override
 	public void iPlay() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void iPause() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void iFinished() {
 		// TODO Auto-generated method stub
 		
 	}

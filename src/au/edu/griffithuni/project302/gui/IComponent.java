@@ -6,9 +6,5 @@ public interface IComponent {
 	
 	void iWait();
 	
-	void iPlay();
-	
-	void iPause();
-	
-	void iFinished();
+	void iPlay();	
 }

@@ -15,16 +15,20 @@ import javax.swing.JButton;
 import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.gui.IComponent;
 
-
-public class BtmPlayControl extends JButton implements IComponent  {
+/**
+ * Play control button
+ * @author Firklaag_ins
+ *
+ */
+public final class BtmPlayControl extends JButton implements IComponent  {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private boolean isPlay = true;
 	private ApplicationManager manager;
+	private boolean isPlay = true;
 	
 	public BtmPlayControl(ApplicationManager manager) {
 		this.manager = manager;
@@ -36,12 +40,12 @@ public class BtmPlayControl extends JButton implements IComponent  {
 				if (isPlay) {
 					isPlay = false;
 					setText(BTN_PAUSE);
-					manager.play();
-					manager.getAnimate().startTimer(1000);
+//					manager.play();
+					manager.getAnimate().startTimer(500);
 				} else {
 					isPlay = true;
 					setText(BTN_PALY);
-					manager.pause();
+//					manager.pause();
 				}
 			}
 		});
@@ -67,17 +71,5 @@ public class BtmPlayControl extends JButton implements IComponent  {
 		// TODO Auto-generated method stub
 
 	}
-
-	@Override
-	public void iPause() {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void iFinished() {
-		// TODO Auto-generated method stub
-
-	}
-
+	
 }

@@ -1,10 +1,17 @@
 package au.edu.griffithuni.project302.gui.implement;
 
-import static au.edu.griffithuni.project302.tools.Constants.*;
+import static au.edu.griffithuni.project302.tools.Constants.DIAMETER;
+import static au.edu.griffithuni.project302.tools.Constants.FONT_SIZE;
+import static au.edu.griffithuni.project302.tools.Constants.GRID_GAP;
+import static au.edu.griffithuni.project302.tools.Constants.HAND_COLOR;
 import static au.edu.griffithuni.project302.tools.Constants.HEAD_COLOR;
+import static au.edu.griffithuni.project302.tools.Constants.LINE_COLOR;
 import static au.edu.griffithuni.project302.tools.Constants.PANEL_TITLE;
+import static au.edu.griffithuni.project302.tools.Constants.SCREEN_BACKGROUND;
 import static au.edu.griffithuni.project302.tools.Constants.SCREEN_PANEL_HEIGHT;
 import static au.edu.griffithuni.project302.tools.Constants.SCREEN_PANEL_WIDTH;
+import static au.edu.griffithuni.project302.tools.Constants.SCREEN_POS_LOC_X;
+import static au.edu.griffithuni.project302.tools.Constants.SCREEN_POS_LOC_Y;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -21,7 +28,12 @@ import javax.swing.border.TitledBorder;
 import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.gui.IComponent;
 
-public class MainCanvas extends JPanel implements IComponent{
+/**
+ * canvas.	Draw, baby draw -- Dr.Ruben
+ * @author Firklaag_ins
+ *
+ */
+public final class MainCanvas extends JPanel implements IComponent{
 
 	/**
 	 * 
@@ -38,18 +50,18 @@ public class MainCanvas extends JPanel implements IComponent{
 	}
 	
 	public void setJoneDoe(Point[] pos) {
-		setHead(pos[0]);
-		setLeftHand(pos[1]);
-		setRightHand(pos[2]);
+		head = pos[0];
+		leftHand = pos[1];
+		rightHand = pos[2];
 	}
 	
 	@Override
 	public void iInitialize() {
 		animate  = false;
-		setBackground(COLOR_2);
+		setBackground(SCREEN_BACKGROUND);// background color (jade green)
 		setBounds(SCREEN_POS_LOC_X, SCREEN_POS_LOC_Y, SCREEN_PANEL_WIDTH, SCREEN_PANEL_HEIGHT);
 		setBorder(new TitledBorder(null, PANEL_TITLE, TitledBorder.LEADING, TitledBorder.TOP, null));
-		manager.getMainFrame().add(this);
+		manager.mainFrame.add(this);
 	}
 
 	@Override
@@ -60,18 +72,6 @@ public class MainCanvas extends JPanel implements IComponent{
 	
 	@Override
 	public void iPlay() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void iPause() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void iFinished() {
 		// TODO Auto-generated method stub
 		
 	}
@@ -129,6 +129,7 @@ public class MainCanvas extends JPanel implements IComponent{
 		
 	}
 
+	/* background color and grids */
 	private void paintBackground(Graphics2D g2d) {   
 		g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 		GradientPaint gp = new GradientPaint(0, 0, Color.RED, 0, getHeight(), Color.YELLOW);
@@ -139,32 +140,15 @@ public class MainCanvas extends JPanel implements IComponent{
 
 		bs = new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[] { 16, 4 }, 0);
 		g2d.setStroke(bs);
-		g2d.drawLine(0, (SCREEN_PANEL_HEIGHT / 2), SCREEN_PANEL_WIDTH, (SCREEN_PANEL_HEIGHT / 2));
-		g2d.drawLine((SCREEN_PANEL_WIDTH / 2), 0, (SCREEN_PANEL_WIDTH / 2), SCREEN_PANEL_HEIGHT);
+		
+		int i = GRID_GAP;
+		while(i < SCREEN_PANEL_WIDTH) {
+			g2d.drawLine(0, i, SCREEN_PANEL_WIDTH, i);
+			g2d.drawLine(i, 0, i, SCREEN_PANEL_HEIGHT);
+			i += GRID_GAP;
+		}
+
 		g2d.setStroke(st);  
 	}
-
-	public Point getHead() {
-		return head;
-	}
-
-	public void setHead(Point head) {
-		this.head = head;
-	}
-
-	public Point getLeftHand() {
-		return leftHand;
-	}
-
-	public void setLeftHand(Point leftHand) {
-		this.leftHand = leftHand;
-	}
-
-	public Point getRightHand() {
-		return rightHand;
-	}
-
-	public void setRightHand(Point rightHand) {
-		this.rightHand = rightHand;
-	}
+	
 }

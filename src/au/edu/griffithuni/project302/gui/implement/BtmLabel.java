@@ -16,7 +16,7 @@ import au.edu.griffithuni.project302.gui.IComponent;
  * @author Firklaag_ins
  *
  */
-public class BtmLabel extends JLabel implements IComponent{
+public final class BtmLabel extends JLabel implements IComponent{
 
 	/**
 	 * 
@@ -33,45 +33,13 @@ public class BtmLabel extends JLabel implements IComponent{
 	public void iInitialize() {
 		setText(SCALE_LABEL);
 		setBounds(LOWER_LABEL_LOC_X, LOWER_LABEL_LOC_Y, LOWER_LABEL_SIZE_X, LOWER_LABEL_SIZE_Y);
-		
 		manager.addComponent(this);
 	}
 
-	/**
-	 * @return the manager
-	 */
-	public ApplicationManager getManager() {
-		return manager;
-	}
-
-	/**
-	 * @param manager the manager to set
-	 */
-	public void setManager(ApplicationManager manager) {
-		this.manager = manager;
-	}
+	@Override
+	public void iPlay() {}
 
 	@Override
-	public void iPlay() {
-		// He is just a label,
-	}
+	public void iWait() {}
 
-	@Override
-	public void iPause() {
-		// What do you expect from a label?
-	}
-
-	@Override
-	public void iFinished() {
-		// No, he doesn't need do anything
-	}
-
-	@Override
-	public void iWait() {
-		// just laid there.
-		
-	}
-
-	
-	
 }

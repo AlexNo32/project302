@@ -45,7 +45,7 @@ public class FileLoadingWorker extends SwingWorker<Map<String, LinkedList<Positi
 	protected void done() {
 		try {
 			manager.getAnimate().recv(get());
-			manager.delay();
+			manager.iWait();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (ExecutionException e) {

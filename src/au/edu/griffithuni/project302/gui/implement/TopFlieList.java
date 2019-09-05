@@ -20,7 +20,7 @@ import au.edu.griffithuni.project302.gui.implement.TopFlieList.ComboxItem;
  * @author Firklaag_ins
  *
  */
-public class TopFlieList extends JComboBox<ComboxItem> implements IComponent {
+public final class TopFlieList extends JComboBox<ComboxItem> implements IComponent {
 
 	/**
 	 * 
@@ -59,8 +59,8 @@ public class TopFlieList extends JComboBox<ComboxItem> implements IComponent {
 				if(e.getStateChange()  == ItemEvent.SELECTED) {
 					ComboxItem item = (ComboxItem) e.getItem(); 
 					
-//					manager.getAddressFileld().setText(item.getAbsPath());
-					manager.getAnimate().setCurrentData(item.getAbsPath());
+					manager.addressFileld.setText(item.getAbsPath());
+					manager.animate.setCurrentData(item.getAbsPath());
 				}
 				
 			}
@@ -70,26 +70,12 @@ public class TopFlieList extends JComboBox<ComboxItem> implements IComponent {
 
 	@Override
 	public void iWait() {
-		// do nothing
-		
+		setEnabled(true);
 	}
 	
 	@Override
 	public void iPlay() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void iPause() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void iFinished() {
-		// TODO Auto-generated method stub
-		
+		setEnabled(false);
 	}
 	
 	/**

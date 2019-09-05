@@ -20,14 +20,14 @@ import au.edu.griffithuni.project302.gui.IComponent;
  * @author Firklaag_ins
  *
  */
-public class BtmSpeedCtrl extends JComboBox<String> implements IComponent  {
+public final class BtmSpeedCtrl extends JComboBox<String> implements IComponent  {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private float newSpeedRate;
 	private ApplicationManager manager;
+	private float newSpeedRate;
 	
 	/* Constructor */
 	public BtmSpeedCtrl(ApplicationManager manager) {
@@ -58,7 +58,7 @@ public class BtmSpeedCtrl extends JComboBox<String> implements IComponent  {
 	@Override
 	public void iWait() {
 		setEnabled(true);
-		manager.getAnimate().setSpeedRate(getNewSpeedRate());
+		manager.animate.setSpeedRate(newSpeedRate);
 	}
 
 	@Override
@@ -66,27 +66,5 @@ public class BtmSpeedCtrl extends JComboBox<String> implements IComponent  {
 		// TODO Auto-generated method stub
 		
 	}
-
-	@Override
-	public void iPause() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void iFinished() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	public float getNewSpeedRate() {
-		return newSpeedRate;
-	}
-
-	public void setNewSpeedRate(float newSpeedRate) {
-		this.newSpeedRate = newSpeedRate;
-	}
-	
-	
 
 }
