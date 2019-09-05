@@ -1,4 +1,4 @@
-package au.edu.griffithuni.project302.gui.bottom;
+package au.edu.griffithuni.project302.gui.implement;
 
 import static au.edu.griffithuni.project302.tools.Constants.LOWER_LABEL_LOC_X;
 import static au.edu.griffithuni.project302.tools.Constants.LOWER_LABEL_LOC_Y;
@@ -16,7 +16,7 @@ import au.edu.griffithuni.project302.gui.IComponent;
  * @author Firklaag_ins
  *
  */
-public class UiLabel extends JLabel implements IComponent{
+public class BtmLabel extends JLabel implements IComponent{
 
 	/**
 	 * 
@@ -25,7 +25,7 @@ public class UiLabel extends JLabel implements IComponent{
 
 	private ApplicationManager manager;
 	
-	public UiLabel(ApplicationManager manager) {
+	public BtmLabel(ApplicationManager manager) {
 		this.manager = manager;
 	}
 	
@@ -33,7 +33,8 @@ public class UiLabel extends JLabel implements IComponent{
 	public void iInitialize() {
 		setText(SCALE_LABEL);
 		setBounds(LOWER_LABEL_LOC_X, LOWER_LABEL_LOC_Y, LOWER_LABEL_SIZE_X, LOWER_LABEL_SIZE_Y);
-		getManager().addComponentBottom(this);
+		
+		manager.addComponent(this);
 	}
 
 	/**

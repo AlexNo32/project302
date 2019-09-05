@@ -1,12 +1,10 @@
-package au.edu.griffithuni.project302.gui.middle;
+package au.edu.griffithuni.project302.gui.implement;
 
 import static au.edu.griffithuni.project302.tools.Constants.*;
 import static au.edu.griffithuni.project302.tools.Constants.HEAD_COLOR;
-import static au.edu.griffithuni.project302.tools.Constants.MARGIN;
 import static au.edu.griffithuni.project302.tools.Constants.PANEL_TITLE;
 import static au.edu.griffithuni.project302.tools.Constants.SCREEN_PANEL_HEIGHT;
 import static au.edu.griffithuni.project302.tools.Constants.SCREEN_PANEL_WIDTH;
-import static au.edu.griffithuni.project302.tools.Constants.SCREEN_POS_HEIGHT;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
@@ -23,7 +21,7 @@ import javax.swing.border.TitledBorder;
 import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.gui.IComponent;
 
-public class UiCanvas extends JPanel implements IComponent{
+public class MainCanvas extends JPanel implements IComponent{
 
 	/**
 	 * 
@@ -34,29 +32,29 @@ public class UiCanvas extends JPanel implements IComponent{
 	private ApplicationManager manager;
 	private boolean animate; 
 	
-	public UiCanvas(ApplicationManager manager) {
+	public MainCanvas(ApplicationManager manager) {
 		this.manager = manager;
 		
 	}
 	
-	public void setJoneDoe(Point head, Point leftHand, Point rightHand) {
-		setHead(head);
-		setLeftHand(leftHand);
-		setRightHand(rightHand);
+	public void setJoneDoe(Point[] pos) {
+		setHead(pos[0]);
+		setLeftHand(pos[1]);
+		setRightHand(pos[2]);
 	}
 	
 	@Override
 	public void iInitialize() {
 		animate  = false;
 		setBackground(COLOR_2);
-		setBounds(MARGIN, SCREEN_POS_HEIGHT, SCREEN_PANEL_WIDTH, SCREEN_PANEL_HEIGHT);
+		setBounds(SCREEN_POS_LOC_X, SCREEN_POS_LOC_Y, SCREEN_PANEL_WIDTH, SCREEN_PANEL_HEIGHT);
 		setBorder(new TitledBorder(null, PANEL_TITLE, TitledBorder.LEADING, TitledBorder.TOP, null));
-		manager.getMainFrame().getContentPane().add(this);
+		manager.getMainFrame().add(this);
 	}
 
 	@Override
 	public void iWait() {
-		// TODO Auto-generated method stub
+		animate = true;
 		
 	}
 	
@@ -85,9 +83,9 @@ public class UiCanvas extends JPanel implements IComponent{
 		paintBackground(g2d);
 		
 		if(animate) {
-			g2d.translate((getWidth() / 2) - 15, (getHeight() / 2) - 15);
+			g2d.translate((getWidth() / 2) - DIAMETER, (getHeight() / 2) - DIAMETER);
 			drawJoneDoe(g2d);		
-			g2d.translate(-((getWidth() / 2) - 15), -((getHeight() / 2) - 15));
+			g2d.translate(-((getWidth() / 2) - DIAMETER), -((getHeight() / 2) - DIAMETER));
 		}
 			
 	}
@@ -109,12 +107,18 @@ public class UiCanvas extends JPanel implements IComponent{
 		g2d.drawOval(leftHand.x, leftHand.y, DIAMETER, DIAMETER);
 		
 		//draw line
-		int centerHeadX = head.x - (DIAMETER / 2);
-		int centerHeadY = head.y - (DIAMETER / 2);
-		int centerLeftX = leftHand.x - (DIAMETER / 2);
-		int centerLeftY = leftHand.y - (DIAMETER / 2);
-		int centerRightX = rightHand.x - (DIAMETER / 2);
-		int centerRightY = rightHand.y - (DIAMETER / 2);
+		int centerHeadX = head.x + (DIAMETER / 2);
+		int centerHeadY = head.y + (DIAMETER / 2);
+		int centerLeftX = leftHand.x + (DIAMETER / 2);
+		int centerLeftY = leftHand.y + (DIAMETER / 2);
+		int centerRightX = rightHand.x + (DIAMETER / 2);
+		int centerRightY = rightHand.y + (DIAMETER / 2);
+		
+//		System.out.println(head.x + ":" + head.y);
+//		
+//		System.out.println("centerh" + centerHeadX + ":" + centerHeadY);
+//		System.out.println("centerl" + centerLeftX + ":" + centerLeftY);
+//		System.out.println("centerr" + centerRightX + ":" + centerRightY);
 		
 		g2d.setColor(LINE_COLOR);
 		g2d.fillOval(centerHeadX, centerHeadY, 2, 2);

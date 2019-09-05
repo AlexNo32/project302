@@ -1,8 +1,8 @@
 package au.edu.griffithuni.project302.tools;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
@@ -12,7 +12,7 @@ import javax.swing.SwingWorker;
 import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.vo.PositionVo;
 
-public class FileLoadingWorker extends SwingWorker<Map<String, ArrayList<PositionVo>>, String> {
+public class FileLoadingWorker extends SwingWorker<Map<String, LinkedList<PositionVo>>, String> {
 
 	private File[] files;
 	private ApplicationManager manager;
@@ -24,17 +24,18 @@ public class FileLoadingWorker extends SwingWorker<Map<String, ArrayList<Positio
 	}
 	
 	@Override
-	protected Map<String, ArrayList<PositionVo>> doInBackground() throws Exception {
-		HashMap<String, ArrayList<PositionVo>> trackList = new HashMap<String, ArrayList<PositionVo>>();
+	protected Map<String, LinkedList<PositionVo>> doInBackground() throws Exception {
+		HashMap<String, LinkedList<PositionVo>> trackList = new HashMap<String, LinkedList<PositionVo>>();
 		
 		for(File fd: files) {
-			ArrayList<PositionVo> track = new ArrayList<PositionVo>();
+			LinkedList<PositionVo> track = new LinkedList<PositionVo>();
 			scanner = new Scanner(fd);
-			scanner.nextLine();
+			scanner.nextLine();// jump title
+			scanner.nextLine();// jump first line
 			
-			while(scanner.hasNextLine()) {
+			while(scanner.hasNextLine())
 				track.add(voConvert(scanner.nextLine()));
-			}
+			
 			trackList.put(fd.getAbsolutePath(), track);
 		}
 		return trackList;

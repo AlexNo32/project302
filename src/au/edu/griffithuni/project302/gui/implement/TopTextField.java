@@ -1,4 +1,4 @@
-package au.edu.griffithuni.project302.gui.top;
+package au.edu.griffithuni.project302.gui.implement;
 
 import static au.edu.griffithuni.project302.tools.Constants.UPPER_TEXT_LOC_X;
 import static au.edu.griffithuni.project302.tools.Constants.UPPER_TEXT_LOC_Y;
@@ -19,7 +19,7 @@ import au.edu.griffithuni.project302.gui.IComponent;
  * @author Firklaag_ins
  *
  */
-public class UiTextField extends JTextField implements IComponent {
+public class TopTextField extends JTextField implements IComponent {
 
 	/**
 	 * 
@@ -29,7 +29,7 @@ public class UiTextField extends JTextField implements IComponent {
 	private ApplicationManager manager;
 	
 	/* Constructor */
-	public UiTextField(ApplicationManager manager) {
+	public TopTextField(ApplicationManager manager) {
 		this.manager = manager;
 		
 		addKeyListener(new KeyListener() {
@@ -59,7 +59,8 @@ public class UiTextField extends JTextField implements IComponent {
 	@Override
 	public void iInitialize() {
 		setBounds(UPPER_TEXT_LOC_X, UPPER_TEXT_LOC_Y,UPPER_TEXT_SIZE_X,UPPER_TEXT_SIZE_Y);
-		getManager().addComponentUpper(this);
+
+		manager.addComponent(this);
 	}
 
 	/**
@@ -77,17 +78,17 @@ public class UiTextField extends JTextField implements IComponent {
 	}
 
 	@Override
+	public void iWait() {
+		// do nothing
+		
+	}
+	
+	@Override
 	public void iPlay() {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
-	public void iWait() {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	@Override
 	public void iPause() {
 		// TODO Auto-generated method stub

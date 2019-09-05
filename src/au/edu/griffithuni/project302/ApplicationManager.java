@@ -1,5 +1,6 @@
 package au.edu.griffithuni.project302;
 
+import static au.edu.griffithuni.project302.tools.Constants.FRAME_TITLE;
 import static au.edu.griffithuni.project302.tools.Constants.FRAME_WIDTH;
 import static au.edu.griffithuni.project302.tools.Constants.FRANE_HEIGHT;
 
@@ -12,22 +13,21 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
 
-import au.edu.griffithuni.project302.gui.DropMenu;
 import au.edu.griffithuni.project302.gui.IComponent;
-import au.edu.griffithuni.project302.gui.UiButton;
-import au.edu.griffithuni.project302.gui.UiCombobox;
-import au.edu.griffithuni.project302.gui.UiFrame;
-import au.edu.griffithuni.project302.gui.UiSlider;
-import au.edu.griffithuni.project302.gui.bottom.CmbSpeedCtrl;
-import au.edu.griffithuni.project302.gui.bottom.PlayControl;
-import au.edu.griffithuni.project302.gui.bottom.ProgressBar;
-import au.edu.griffithuni.project302.gui.bottom.ScaleBar;
-import au.edu.griffithuni.project302.gui.bottom.UiLabel;
-import au.edu.griffithuni.project302.gui.middle.UiCanvas;
-import au.edu.griffithuni.project302.gui.top.BtnFileChooser;
-import au.edu.griffithuni.project302.gui.top.CmbFlieList;
-import au.edu.griffithuni.project302.gui.top.UiTextField;
+import au.edu.griffithuni.project302.gui.implement.BtmLabel;
+import au.edu.griffithuni.project302.gui.implement.BtmPlayControl;
+import au.edu.griffithuni.project302.gui.implement.BtmProgressBar;
+import au.edu.griffithuni.project302.gui.implement.BtmScaleBar;
+import au.edu.griffithuni.project302.gui.implement.BtmSpeedCtrl;
+import au.edu.griffithuni.project302.gui.implement.MainCanvas;
+import au.edu.griffithuni.project302.gui.implement.MainFrame;
+import au.edu.griffithuni.project302.gui.implement.TopFileChooser;
+import au.edu.griffithuni.project302.gui.implement.TopFlieList;
+import au.edu.griffithuni.project302.gui.implement.TopMenu;
+import au.edu.griffithuni.project302.gui.implement.TopTextField;
+
 
 /**
  * Application manager, which control gui and part of logic of app.
@@ -35,54 +35,57 @@ import au.edu.griffithuni.project302.gui.top.UiTextField;
  *
  */
 public class ApplicationManager {
+	
 	/* animation control manager */
 	AnimatedManager animate;
 	
 	/* GUI elements list */
 	private List<IComponent> components = new ArrayList<IComponent>();
-	private UiFrame mainFrame; // main frame
-	private JPanel contentPane; // 
-	private DropMenu menu; // banner menu
-
-	private UiCombobox flieList; // top left, all existing files list
-	private UiTextField addressFileld; // top middle, file path, usage limited  
-	private UiButton btnFile; // top right, file selector
-
-	private UiCanvas canvas;
+	/* Components */
+	private TopMenu menu; // banner menu
+	private TopFlieList flieList; // top left, all existing files list
+	private TopTextField addressFileld; // top middle, file path  
+	private TopFileChooser fileChooser; // top right, file selector
 	
-	private UiButton playCtrl;
-	private UiCombobox speedCtrl;
-	private UiSlider proceBar;
-	private UiLabel scaleLab;
-	private UiSlider scaleBar;
+	private BtmPlayControl playCtrl;// play/pause button
+	private BtmSpeedCtrl speedCtrl; // speed control
+	private BtmProgressBar proceBar; // process bar
+	private BtmLabel scaleLab; // label
+	private BtmScaleBar scaleBar; // scale bar
 
+	private MainFrame mainFrame; // main frame
+	private MainCanvas canvas; // canvas
+	
+	private JPanel contentPane; //
+	
 	private ApplicationManager() {
 		animate = new AnimatedManager(this);
-		mainFrame = ApplicationGuiFactory.generator();
-		menu = new DropMenu(this);
 		
-		flieList = new CmbFlieList(this);
-		addressFileld = new UiTextField(this);
-		btnFile = new BtnFileChooser(this);
-		canvas = new UiCanvas(this);
-		playCtrl = new PlayControl(this);
-		speedCtrl = new CmbSpeedCtrl(this);
-		proceBar = new ProgressBar(this);
-		scaleLab = new UiLabel(this);
-		scaleBar = new ScaleBar(this);
+		mainFrame = new MainFrame(FRAME_TITLE);
+		canvas =    new MainCanvas(this);
+		
+		menu =          new TopMenu(this);
+		flieList =      new TopFlieList(this);
+		addressFileld = new TopTextField(this);
+		fileChooser =   new TopFileChooser(this);
+		
+		playCtrl =  new BtmPlayControl(this);
+		speedCtrl = new BtmSpeedCtrl(this);
+		proceBar =  new BtmProgressBar(this);
+		scaleLab =  new BtmLabel(this);
+		scaleBar =  new BtmScaleBar(this);
 
 		components.add(flieList);
 		components.add(addressFileld);
-		components.add(btnFile);
-
-		components.add(canvas);
-		
+		components.add(fileChooser);
 		components.add(playCtrl);
 		components.add(speedCtrl);
 		components.add(proceBar);
 		components.add(scaleLab);
 		components.add(scaleBar);
-
+		
+		components.add(canvas);
+		
 		mainFrame.setJMenuBar(menu);
 		initialize();
 	}
@@ -92,12 +95,7 @@ public class ApplicationManager {
 
 			@Override
 			public void run() {
-				Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-				mainFrame.setLocation((int) (screenSize.getWidth() - FRAME_WIDTH) / 2, (int) (screenSize.getHeight() - FRANE_HEIGHT) / 2);
-				mainFrame.setSize(FRAME_WIDTH, FRANE_HEIGHT);
-				mainFrame.setResizable(false);
-				mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-				mainFrame.setVisible(true);
+				mainFrame.start();
 			}
 
 		});
@@ -133,13 +131,13 @@ public class ApplicationManager {
 		}
 	}
 
-	public void addComponentUpper(JComponent o) {
-		mainFrame.getUpper().add(o);
+	public void addComponent(JComponent o) {
+		mainFrame.getContentPane().add(o);
 	}
 	
-	public void addComponentBottom(JComponent o) {
-		mainFrame.getBottom().add(o);
-	}
+//	public void addComponentBottom(JComponent o) {
+//		mainFrame.getBottom().add(o);
+//	}
 	
 	/**
 	 * @param currentData the currentData to set
@@ -173,7 +171,7 @@ public class ApplicationManager {
 	/**
 	 * @return the mainFrame
 	 */
-	public UiFrame getMainFrame() {
+	public MainFrame getMainFrame() {
 		return mainFrame;
 	}
 	
@@ -192,69 +190,6 @@ public class ApplicationManager {
 	}
 
 	/**
-	 * @return the menu
-	 */
-	public DropMenu getMenu() {
-		return menu;
-	}
-
-	/**
-	 * @return the flieList
-	 */
-	public UiCombobox getFlieList() {
-		return flieList;
-	}
-
-	/**
-	 * @return the addressFileld
-	 */
-	public UiTextField getAddressFileld() {
-		return addressFileld;
-	}
-
-	/**
-	 * @return the btnFile
-	 */
-	public UiButton getBtnFile() {
-		return btnFile;
-	}
-
-	/**
-	 * @return the playCtrl
-	 */
-	public UiButton getPlayCtrl() {
-		return playCtrl;
-	}
-
-	/**
-	 * @return the speedCtrl
-	 */
-	public UiCombobox getSpeedCtrl() {
-		return speedCtrl;
-	}
-	
-	/**
-	 * @return the proceBar
-	 */
-	public UiSlider getProceBar() {
-		return proceBar;
-	}
-
-	/**
-	 * @return the scaleLab
-	 */
-	public UiLabel getScaleLab() {
-		return scaleLab;
-	}
-
-	/**
-	 * @return the scaleBar
-	 */
-	public UiSlider getScaleBar() {
-		return scaleBar;
-	}
-
-	/**
 	 * @return the animate
 	 */
 	public AnimatedManager getAnimate() {
@@ -268,11 +203,11 @@ public class ApplicationManager {
 		this.animate = animate;
 	}
 
-	public UiCanvas getCanvas() {
+	public MainCanvas getCanvas() {
 		return canvas;
 	}
 
-	public void setCanvas(UiCanvas canvas) {
+	public void setCanvas(MainCanvas canvas) {
 		this.canvas = canvas;
 	}
 

@@ -1,4 +1,4 @@
-package au.edu.griffithuni.project302.gui.bottom;
+package au.edu.griffithuni.project302.gui.implement;
 
 import static au.edu.griffithuni.project302.tools.Constants.BTN_PALY;
 import static au.edu.griffithuni.project302.tools.Constants.BTN_PAUSE;
@@ -10,10 +10,13 @@ import static au.edu.griffithuni.project302.tools.Constants.LOWER_BTN_PLAY_SIZE_
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import au.edu.griffithuni.project302.ApplicationManager;
-import au.edu.griffithuni.project302.gui.UiButton;
+import javax.swing.JButton;
 
-public class PlayControl extends UiButton {
+import au.edu.griffithuni.project302.ApplicationManager;
+import au.edu.griffithuni.project302.gui.IComponent;
+
+
+public class BtmPlayControl extends JButton implements IComponent  {
 
 	/**
 	 * 
@@ -21,9 +24,10 @@ public class PlayControl extends UiButton {
 	private static final long serialVersionUID = 1L;
 
 	private boolean isPlay = true;
-
-	public PlayControl(ApplicationManager manager) {
-		super(manager);
+	private ApplicationManager manager;
+	
+	public BtmPlayControl(ApplicationManager manager) {
+		this.manager = manager;
 
 		addActionListener(new ActionListener() {
 
@@ -32,11 +36,12 @@ public class PlayControl extends UiButton {
 				if (isPlay) {
 					isPlay = false;
 					setText(BTN_PAUSE);
-					getManager().play();
+					manager.play();
+					manager.getAnimate().startTimer(1000);
 				} else {
 					isPlay = true;
 					setText(BTN_PALY);
-					getManager().pause();
+					manager.pause();
 				}
 			}
 		});
@@ -46,7 +51,8 @@ public class PlayControl extends UiButton {
 	public void iInitialize() {
 		setText(BTN_PALY);
 		setBounds(LOWER_BTN_PLAY_LOC_X, LOWER_BTN_PLAY_LOC_Y, LOWER_BTN_PLAY_SIZE_X, LOWER_BTN_PLAY_SIZE_Y);
-		getManager().addComponentBottom(this);
+		
+		manager.addComponent(this);
 		setEnabled(false);
 	}
 

@@ -1,4 +1,4 @@
-package au.edu.griffithuni.project302.gui;
+package au.edu.griffithuni.project302.gui.implement;
 
 import static au.edu.griffithuni.project302.tools.Constants.MENU_FILE;
 import static au.edu.griffithuni.project302.tools.Constants.MENU_HELP;
@@ -18,7 +18,7 @@ import javax.swing.JMenuItem;
 
 import au.edu.griffithuni.project302.ApplicationManager;
 
-public class DropMenu extends JMenuBar {
+public class TopMenu extends JMenuBar {
 
 	/**
 	 * 
@@ -30,7 +30,7 @@ public class DropMenu extends JMenuBar {
 	private JMenu decorate;
 	private ApplicationManager manager;
 	
-	public DropMenu(ApplicationManager manager) {
+	public TopMenu(ApplicationManager manager) {
 		this.manager = manager;
 		file = new JMenu(MENU_FILE);
 		help = new JMenu(MENU_HELP);
@@ -67,7 +67,7 @@ public class DropMenu extends JMenuBar {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Open");
+//			System.out.println("Open");
 			
 		}
 		
