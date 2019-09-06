@@ -26,6 +26,16 @@ public class PositionVo {
 		this.rightHandY = rightHandY;
 	}
 	
+	public PositionVo(Point head, Point leftHand, Point rightHand) {
+		this.time = 0L;
+		this.headX = head.x;
+		this.headY = head.y;
+		this.leftHandX = leftHand.x;
+		this.leftHandY = leftHand.y;
+		this.rightHandX = rightHand.x;
+		this.rightHandY = rightHand.y;
+	}
+	
 	public double getTime() {
 		return time;
 	}

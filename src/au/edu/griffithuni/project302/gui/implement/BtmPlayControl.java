@@ -49,14 +49,14 @@ public final class BtmPlayControl extends JButton implements IComponent {
 
 	/* play */
 	public void play() {
-		pause = false;
+		pause = true;
 		setText(BTN_PAUSE);
 		manager.animate.performance();
 	}
 
 	/* pause */
 	public void pause() {
-		pause = true;
+		pause = false;
 		setText(BTN_PALY);
 		manager.animate.pauseTimer();
 	}

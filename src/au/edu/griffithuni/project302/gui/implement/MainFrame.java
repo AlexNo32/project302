@@ -7,7 +7,6 @@ import static au.edu.griffithuni.project302.tools.Constants.THEME;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.Enumeration;
 
@@ -55,7 +54,7 @@ public final class MainFrame extends JFrame {
 			e.printStackTrace();
 		}
 		setFont();
-		setIcon();
+//		setIcon();
 		pack();
 		setVisible(true);
 	}
@@ -78,9 +77,9 @@ public final class MainFrame extends JFrame {
 		setContentPane(contentPane);
 	}
 	
-	private void setIcon() {
-		Image icon = Toolkit.getDefaultToolkit().getImage("./ico/gu.png"); 
-	    setIconImage(icon);
-	}
+//	private void setIcon() {
+//		Image icon = Toolkit.getDefaultToolkit().getImage("./ico/gu.png"); 
+//	    setIconImage(icon);
+//	}
 
 }

@@ -74,15 +74,22 @@ public final class MainCanvas extends JPanel implements IComponent{
 		
 		if(animate) {
 			g2d.translate((getWidth() / 2) - HEAD_DIAMETER, (getHeight() / 2) - HEAD_DIAMETER);
-			drawJoneDoe(g2d);		
+			drawJoneDoe(g2d);
 			g2d.translate(-((getWidth() / 2) - HEAD_DIAMETER), -((getHeight() / 2) - HEAD_DIAMETER));
 		}
 	}
 	
 	public void setJoneDoe(PositionVo pos) {
-		head = pos.getHead();
-		leftHand = pos.getLeftHand();
-		rightHand = pos.getRightHand();
+//		head 		= dataScaling(pos.getHead());
+//		leftHand  	= dataScaling(pos.getLeftHand());
+//		rightHand 	= dataScaling(pos.getRightHand());
+		head 		= pos.getHead();
+		leftHand  	= pos.getLeftHand();
+		rightHand 	= pos.getRightHand();
+	}
+	
+	private Point dataScaling(Point p) {
+		return null;
 	}
 	
 	private void drawJoneDoe(Graphics2D g2d) {
@@ -112,9 +119,9 @@ public final class MainCanvas extends JPanel implements IComponent{
 		
 //		System.out.println(head.x + ":" + head.y);
 //		
-		System.out.println("Head: " + head);
-		System.out.println("leftHand: " + leftHand);
-		System.out.println("rigthHand" + rightHand);
+		System.out.println("[MainCanvase] Head: " + head);
+		System.out.println("[MainCanvase] leftHand: " + leftHand);
+		System.out.println("[MainCanvase] rigthHand" + rightHand);
 		
 		g2d.setColor(LINE_COLOR);
 		g2d.fillOval(centerHeadX, centerHeadY, 2, 2);

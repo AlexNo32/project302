@@ -87,7 +87,7 @@ public class ApplicationManager {
 		// 1, insert data to animate manager
 		animate.recv(csvPack);
 		// 2, update file list
-		String[] fdList = csvPack.keySet().stream().toArray(String[] :: new);
+		String[] fdList = animate.csvDataMap.keySet().stream().toArray(String[] :: new);
 		flieList.update(fdList);
 	}
 	
