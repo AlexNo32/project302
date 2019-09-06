@@ -1,6 +1,6 @@
 package au.edu.griffithuni.project302.gui.implement;
 
-import static au.edu.griffithuni.project302.tools.Constants.DIAMETER;
+import static au.edu.griffithuni.project302.tools.Constants.*;
 import static au.edu.griffithuni.project302.tools.Constants.FONT_SIZE;
 import static au.edu.griffithuni.project302.tools.Constants.GRID_GAP;
 import static au.edu.griffithuni.project302.tools.Constants.HAND_COLOR;
@@ -27,6 +27,7 @@ import javax.swing.border.TitledBorder;
 
 import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.gui.IComponent;
+import au.edu.griffithuni.project302.vo.PositionVo;
 
 /**
  * canvas.	Draw, baby draw -- Dr.Ruben
@@ -46,13 +47,6 @@ public final class MainCanvas extends JPanel implements IComponent{
 	
 	public MainCanvas(ApplicationManager manager) {
 		this.manager = manager;
-		
-	}
-	
-	public void setJoneDoe(Point[] pos) {
-		head = pos[0];
-		leftHand = pos[1];
-		rightHand = pos[2];
 	}
 	
 	@Override
@@ -67,14 +61,10 @@ public final class MainCanvas extends JPanel implements IComponent{
 	@Override
 	public void iWait() {
 		animate = true;
-		
 	}
-	
+
 	@Override
-	public void iPlay() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void iPlay() {}
 	
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -83,42 +73,48 @@ public final class MainCanvas extends JPanel implements IComponent{
 		paintBackground(g2d);
 		
 		if(animate) {
-			g2d.translate((getWidth() / 2) - DIAMETER, (getHeight() / 2) - DIAMETER);
+			g2d.translate((getWidth() / 2) - HEAD_DIAMETER, (getHeight() / 2) - HEAD_DIAMETER);
 			drawJoneDoe(g2d);		
-			g2d.translate(-((getWidth() / 2) - DIAMETER), -((getHeight() / 2) - DIAMETER));
+			g2d.translate(-((getWidth() / 2) - HEAD_DIAMETER), -((getHeight() / 2) - HEAD_DIAMETER));
 		}
-			
+	}
+	
+	public void setJoneDoe(PositionVo pos) {
+		head = pos.getHead();
+		leftHand = pos.getLeftHand();
+		rightHand = pos.getRightHand();
 	}
 	
 	private void drawJoneDoe(Graphics2D g2d) {
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		// head
 		g2d.setColor(HEAD_COLOR);
 		g2d.setStroke(new BasicStroke(FONT_SIZE));
-		g2d.drawOval(head.x, head.y, DIAMETER, DIAMETER);
+		g2d.drawOval(head.x, head.y, HEAD_DIAMETER, HEAD_DIAMETER);
 		
 		//left hand
 		g2d.setColor(HAND_COLOR);
 		g2d.setStroke(new BasicStroke(FONT_SIZE));
-		g2d.drawOval(leftHand.x, leftHand.y, DIAMETER, DIAMETER);
+		g2d.drawOval(leftHand.x, leftHand.y, HAND_DIAMETER, HAND_DIAMETER);
 		
 		//right hand
 		g2d.setColor(HAND_COLOR);
 		g2d.setStroke(new BasicStroke(FONT_SIZE));
-		g2d.drawOval(leftHand.x, leftHand.y, DIAMETER, DIAMETER);
+		g2d.drawOval(rightHand.x, rightHand.y, HAND_DIAMETER, HAND_DIAMETER);
 		
 		//draw line
-		int centerHeadX = head.x + (DIAMETER / 2);
-		int centerHeadY = head.y + (DIAMETER / 2);
-		int centerLeftX = leftHand.x + (DIAMETER / 2);
-		int centerLeftY = leftHand.y + (DIAMETER / 2);
-		int centerRightX = rightHand.x + (DIAMETER / 2);
-		int centerRightY = rightHand.y + (DIAMETER / 2);
+		int centerHeadX = head.x + (HEAD_DIAMETER / 2);
+		int centerHeadY = head.y + (HEAD_DIAMETER / 2);
+		int centerLeftX = leftHand.x + (HAND_DIAMETER / 2);
+		int centerLeftY = leftHand.y + (HAND_DIAMETER / 2);
+		int centerRightX = rightHand.x + (HAND_DIAMETER / 2);
+		int centerRightY = rightHand.y + (HAND_DIAMETER / 2);
 		
 //		System.out.println(head.x + ":" + head.y);
 //		
-//		System.out.println("centerh" + centerHeadX + ":" + centerHeadY);
-//		System.out.println("centerl" + centerLeftX + ":" + centerLeftY);
-//		System.out.println("centerr" + centerRightX + ":" + centerRightY);
+		System.out.println("Head: " + head);
+		System.out.println("leftHand: " + leftHand);
+		System.out.println("rigthHand" + rightHand);
 		
 		g2d.setColor(LINE_COLOR);
 		g2d.fillOval(centerHeadX, centerHeadY, 2, 2);

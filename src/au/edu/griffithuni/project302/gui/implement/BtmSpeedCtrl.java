@@ -27,7 +27,7 @@ public final class BtmSpeedCtrl extends JComboBox<String> implements IComponent 
 	 */
 	private static final long serialVersionUID = 1L;
 	private ApplicationManager manager;
-	private float newSpeedRate;
+	private float currentRate;
 	
 	/* Constructor */
 	public BtmSpeedCtrl(ApplicationManager manager) {
@@ -51,20 +51,17 @@ public final class BtmSpeedCtrl extends JComboBox<String> implements IComponent 
 			
 		});
 		
-		newSpeedRate = 1.0f;
+		currentRate = 1.0f;
 		setEnabled(false);
 	}
 
 	@Override
 	public void iWait() {
 		setEnabled(true);
-		manager.animate.setSpeedRate(newSpeedRate);
+		manager.animate.speedRate = currentRate;
 	}
 
 	@Override
-	public void iPlay() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void iPlay() {}
 
 }

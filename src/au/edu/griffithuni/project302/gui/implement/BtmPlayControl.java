@@ -17,10 +17,11 @@ import au.edu.griffithuni.project302.gui.IComponent;
 
 /**
  * Play control button
+ * 
  * @author Firklaag_ins
  *
  */
-public final class BtmPlayControl extends JButton implements IComponent  {
+public final class BtmPlayControl extends JButton implements IComponent {
 
 	/**
 	 * 
@@ -28,8 +29,8 @@ public final class BtmPlayControl extends JButton implements IComponent  {
 	private static final long serialVersionUID = 1L;
 
 	private ApplicationManager manager;
-	private boolean isPlay = true;
-	
+	private boolean pause = false;
+
 	public BtmPlayControl(ApplicationManager manager) {
 		this.manager = manager;
 
@@ -37,25 +38,34 @@ public final class BtmPlayControl extends JButton implements IComponent  {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (isPlay) {
-					isPlay = false;
-					setText(BTN_PAUSE);
-//					manager.play();
-					manager.getAnimate().startTimer(500);
-				} else {
-					isPlay = true;
-					setText(BTN_PALY);
-//					manager.pause();
-				}
+				if (!pause)
+					/* state transfer: wait -> play */
+					play();
+				else
+					pause();
 			}
 		});
+	}
+
+	/* play */
+	public void play() {
+		pause = false;
+		setText(BTN_PAUSE);
+		manager.animate.performance();
+	}
+
+	/* pause */
+	public void pause() {
+		pause = true;
+		setText(BTN_PALY);
+		manager.animate.pauseTimer();
 	}
 
 	@Override
 	public void iInitialize() {
 		setText(BTN_PALY);
 		setBounds(LOWER_BTN_PLAY_LOC_X, LOWER_BTN_PLAY_LOC_Y, LOWER_BTN_PLAY_SIZE_X, LOWER_BTN_PLAY_SIZE_Y);
-		
+
 		manager.addComponent(this);
 		setEnabled(false);
 	}
@@ -65,11 +75,7 @@ public final class BtmPlayControl extends JButton implements IComponent  {
 		setEnabled(true);
 	}
 
-	
 	@Override
-	public void iPlay() {
-		// TODO Auto-generated method stub
+	public void iPlay() {}
 
-	}
-	
 }

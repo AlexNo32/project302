@@ -3,7 +3,9 @@ package au.edu.griffithuni.project302;
 import static au.edu.griffithuni.project302.tools.Constants.FRAME_TITLE;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
@@ -20,6 +22,7 @@ import au.edu.griffithuni.project302.gui.implement.TopFileChooser;
 import au.edu.griffithuni.project302.gui.implement.TopFlieList;
 import au.edu.griffithuni.project302.gui.implement.TopMenu;
 import au.edu.griffithuni.project302.gui.implement.TopTextField;
+import au.edu.griffithuni.project302.vo.PositionVo;
 
 
 /**
@@ -75,11 +78,19 @@ public class ApplicationManager {
 		components.add(scaleLab);
 		components.add(scaleBar);
 		components.add(canvas);
-		
-		mainFrame.setJMenuBar(menu);
+
 		iInitialize();
 	}
 
+	/* when the data get ready */
+	public void poise(Map<String, LinkedList<PositionVo>> csvPack) {
+		// 1, insert data to animate manager
+		animate.recv(csvPack);
+		// 2, update file list
+		String[] fdList = csvPack.keySet().stream().toArray(String[] :: new);
+		flieList.update(fdList);
+	}
+	
 	public void draw() {
 		SwingUtilities.invokeLater(new Runnable() {
 
@@ -91,33 +102,30 @@ public class ApplicationManager {
 		});
 	}
 	
+	/* initial state */
 	public void iInitialize(){
 		for(IComponent c : components){
 			c.iInitialize();
 		}
 	}
 	
+	/* wait state */
 	public void iWait() {
 		for(IComponent c : components){
 			c.iWait();
 		}
 	}
 	
+	/* play state */
 	public void iPlay(){
 		for(IComponent c : components){
 			c.iPlay();
 		}
 	}
 
+	/* add components to the main frame */
 	public void addComponent(JComponent o) {
 		mainFrame.getContentPane().add(o);
-	}
-	
-	/**
-	 * @param currentData the currentData to set
-	 */
-	public void setCurrentData(String currentData) {
-		animate.setCurrentData(currentData);
 	}
 	
 	public static ApplicationManager getInstance() {
@@ -126,50 +134,6 @@ public class ApplicationManager {
 
 	private static class ApplicationManagerHolder {
 		private static final ApplicationManager instance = new ApplicationManager();
-	}
-
-	/**
-	 * @return the components
-	 */
-	public List<IComponent> getComponents() {
-		return components;
-	}
-
-	/**
-	 * @param components the components to set
-	 */
-	public void setComponents(List<IComponent> components) {
-		this.components = components;
-	}
-
-	/**
-	 * @return the mainFrame
-	 */
-	public MainFrame getMainFrame() {
-		return mainFrame;
-	}
-	
-	
-	/**
-	 * @return the animate
-	 */
-	public AnimatedManager getAnimate() {
-		return animate;
-	}
-
-	/**
-	 * @param animate the animate to set
-	 */
-	public void setAnimate(AnimatedManager animate) {
-		this.animate = animate;
-	}
-
-	public MainCanvas getCanvas() {
-		return canvas;
-	}
-
-	public void setCanvas(MainCanvas canvas) {
-		this.canvas = canvas;
 	}
 
 }

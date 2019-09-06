@@ -12,6 +12,11 @@ import javax.swing.SwingWorker;
 import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.vo.PositionVo;
 
+/**
+ * Use swing worker to load the files, system call gc() after job done.
+ * @author Firklaag_ins
+ *
+ */
 public class FileLoadingWorker extends SwingWorker<Map<String, LinkedList<PositionVo>>, String> {
 
 	private File[] files;
@@ -44,27 +49,28 @@ public class FileLoadingWorker extends SwingWorker<Map<String, LinkedList<Positi
 	@Override
 	protected void done() {
 		try {
-			manager.getAnimate().recv(get());
-			manager.iWait();
+			manager.poise(get()); // load files done
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} catch (ExecutionException e) {
 			e.printStackTrace();
 		}
+		/* state transfer: initial -> wait */
+		manager.iWait(); // get ready to play
 	}
 	
 	private PositionVo voConvert(String data) {
 		String s[] = data.split(",");
-		double time = Double.valueOf(s[0]);
+		double time 		= Double.valueOf(s[0]);
 		
-		double headX = Double.valueOf(s[1]);
-		double headY = Double.valueOf(s[2]);
+		double headX 		= Double.valueOf(s[1]);
+		double headY 		= Double.valueOf(s[2]);
 		
-		double leftHandX = Double.valueOf(s[7]);
-		double leftHandY = Double.valueOf(s[8]);
+		double leftHandX 	= Double.valueOf(s[7]);
+		double leftHandY 	= Double.valueOf(s[8]);
 		
-		double rightHandX = Double.valueOf(s[13]);
-		double rightHandY = Double.valueOf(s[14]);
+		double rightHandX 	= Double.valueOf(s[13]);
+		double rightHandY 	= Double.valueOf(s[14]);
 		
 		return new PositionVo(time, headX, headY, leftHandX, leftHandY, rightHandX, rightHandY);
 	}

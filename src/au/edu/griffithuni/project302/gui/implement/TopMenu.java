@@ -71,5 +71,6 @@ public final class TopMenu extends JMenuBar {
 			}
 
 		});
+		this.manager.mainFrame.setJMenuBar(this);
 	}
 }

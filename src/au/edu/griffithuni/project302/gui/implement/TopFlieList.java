@@ -33,18 +33,6 @@ public final class TopFlieList extends JComboBox<ComboxItem> implements ICompone
 		this.manager = manager;
 	}
 	
-	/* update file list */
-	public void update(Object[] items) {
-		removeAllItems();
-		
-		for(Object abs: items) {
-			String absPath = (String) abs;
-			String fName = absPath.substring(absPath.lastIndexOf("\\") + 1);
-			addItem(new ComboxItem(fName, absPath));
-		}
-		setSelectedIndex(0); 
-	}
-	
 	@Override
 	public void iInitialize() {
 		setBounds(UPPER_COMBOX_LOC_X, UPPER_COMBOX_LOC_Y, UPPER_COMBOX_SIZE_X, UPPER_COMBOX_SIZE_Y);
@@ -58,9 +46,8 @@ public final class TopFlieList extends JComboBox<ComboxItem> implements ICompone
 			public void itemStateChanged(ItemEvent e) {
 				if(e.getStateChange()  == ItemEvent.SELECTED) {
 					ComboxItem item = (ComboxItem) e.getItem(); 
-					
 					manager.addressFileld.setText(item.getAbsPath());
-					manager.animate.setCurrentData(item.getAbsPath());
+					manager.animate.setCurrentPerforme(item.getAbsPath());
 				}
 				
 			}
@@ -76,6 +63,17 @@ public final class TopFlieList extends JComboBox<ComboxItem> implements ICompone
 	@Override
 	public void iPlay() {
 		setEnabled(false);
+	}
+	
+	/* update file list */
+	public void update(String[] items) {
+		removeAllItems();
+		
+		for(String abs: items) {
+			String fName = abs.substring(abs.lastIndexOf("\\") + 1);
+			addItem(new ComboxItem(fName, abs));
+		}
+		setSelectedIndex(0); 
 	}
 	
 	/**

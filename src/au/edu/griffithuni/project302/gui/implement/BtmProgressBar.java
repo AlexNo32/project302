@@ -42,18 +42,18 @@ public final class BtmProgressBar extends JSlider implements IComponent{
 	public void iInitialize() {
 		setBounds(LOWER_PROC_LOC_X, LOWER_PROC_LOC_Y, LOWER_PROC_SIZE_X, LOWER_PROC_SIZE_Y);
 		manager.addComponent(this);
+		setEnabled(false);
 	}
 
 	@Override
 	public void iPlay() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
 	@Override
 	public void iWait() {
-		// TODO Auto-generated method stub
-		
+		setEnabled(true);
 	}
 
 }

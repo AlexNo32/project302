@@ -7,6 +7,7 @@ import static au.edu.griffithuni.project302.tools.Constants.THEME;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.Enumeration;
 
@@ -14,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.FontUIResource;
 
 /**
@@ -43,10 +45,17 @@ public final class MainFrame extends JFrame {
 		try {
 			UIManager.setLookAndFeel(THEME);
 			SwingUtilities.updateComponentTreeUI(this);
-		} catch (Exception ex) {
-			System.out.println("Exception:" + ex);
+		} catch (UnsupportedLookAndFeelException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
 		}
 		setFont();
+		setIcon();
 		pack();
 		setVisible(true);
 	}
@@ -67,6 +76,11 @@ public final class MainFrame extends JFrame {
 		contentPane.setPreferredSize(new Dimension(FRAME_WIDTH, FRANE_HEIGHT)); 
 		contentPane.setLayout(null);
 		setContentPane(contentPane);
+	}
+	
+	private void setIcon() {
+		Image icon = Toolkit.getDefaultToolkit().getImage("./ico/gu.png"); 
+	    setIconImage(icon);
 	}
 
 }

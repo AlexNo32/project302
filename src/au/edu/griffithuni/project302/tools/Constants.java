@@ -2,6 +2,8 @@ package au.edu.griffithuni.project302.tools;
 
 import java.awt.Color;
 
+import javax.swing.UIManager;
+
 public class Constants {
 	// ******************* Main frame *********************
 	public static final String FRAME_TITLE 	= "Griffithuni 2D Viewer";
@@ -9,11 +11,12 @@ public class Constants {
 	public static final int FRAME_WIDTH 	= 1280;
 	public static final int FRANE_HEIGHT 	= 960;
 	public static final String FRAME_FONT 	= "Georgia";
-//	public static final String THEME = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
-//	public static final String THEME = "com.sun.java.swing.plaf.motif.MotifLookAndFee";
-	public static final String THEME = "javax.swing.plaf.metal.MetalLookAndFeel";
+//	public static final String THEME = UIManager.getCrossPlatformLookAndFeelClassName();
+	public static final String THEME = UIManager.getSystemLookAndFeelClassName();
+//	public static final String THEME = "javax.swing.plaf.metal.MetalLookAndFeel";
 
-
+	public static final int ANIMATE_FPS = 500;
+	
 	// ******************* Upper panel *************************
 	// ********* Combobox ********
 	public static final String COMBOBOX_DEFAULT 	= "---------- EXISTING FILE LIST ----------";
@@ -101,8 +104,9 @@ public class Constants {
 	public static final String[] PROCE_BAR_CONTENYS 	= { " x 1.0", " x 2.0", " x 3.0", " x 4.0" };
 
 	// ****************** Jone Doe *************************
-	public static final float FONT_SIZE 	= 6.6f;
-	public static final int DIAMETER 		= 30;
+	public static final float FONT_SIZE 	= 4.6f;
+	public static final int HEAD_DIAMETER 	= 30;
+	public static final int HAND_DIAMETER 	= 24;
 	public static final Color HEAD_COLOR 	= new Color(255, 0, 0); // red
 	public static final Color HAND_COLOR 	= new Color(0, 0, 255); // blue
 	public static final Color LINE_COLOR 	= Color.BLACK;

@@ -19,7 +19,7 @@ public final class BtmScaleBar extends JSlider implements IComponent{
 	 */
 	private static final long serialVersionUID = 1L;
 	private ApplicationManager manager;
-	private float newScaleRate;
+	private float currentRate;
 	
 	public BtmScaleBar(ApplicationManager manager) {
 		this.manager = manager;
@@ -42,18 +42,17 @@ public final class BtmScaleBar extends JSlider implements IComponent{
 			}
 		});
 		
-		newScaleRate = 10f;
+		currentRate = 10f;
+		setEnabled(false);
 	}
 
 	@Override
 	public void iWait() {
-		manager.animate.setScaleRate(newScaleRate);
+		manager.animate.scaleRate = currentRate;
+		setEnabled(true);
 	}
 	
 	@Override
-	public void iPlay() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void iPlay() {}
 
 }

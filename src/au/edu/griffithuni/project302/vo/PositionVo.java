@@ -25,14 +25,23 @@ public class PositionVo {
 		this.rightHandX = rightHandX;
 		this.rightHandY = rightHandY;
 	}
-
-	public Point[] getStatue(int s) {
-		Point head = new Point((int) headX * s, (int) headY * s);
-		Point lhand = new Point((int) leftHandX * s, (int) leftHandY);
-		Point rhand = new Point((int) rightHandX * s, (int) rightHandY);
-		return new Point[] {head, lhand, rhand}; 
-	}
 	
+	public double getTime() {
+		return time;
+	}
+
+	public Point getHead() {
+		return new Point((int)(headX * 1000), (int)(headY * 1000));
+	}
+
+	public Point getLeftHand() {
+		return new Point((int)(leftHandX * 1000), (int)(leftHandY * 1000));
+	}
+
+	public Point getRightHand() {
+		return new Point((int)(rightHandX * 1000), (int)(rightHandY * 1000));
+	}
+
 	@Override
 	public String toString() {
 		return "Time:" + time + ", head Pos (" + headX + ", " + headY + "), \n left hand Pos (" + leftHandX + ", "
