@@ -99,4 +99,10 @@ public class Matrix2DTransfer {
 		return new float[][] {{-1, 0, 0}, {0, 1, 0}, {0, 0, 1}};
 	}
 	
+	public static void main(String[] args) {
+		Point p = new Point(-11426, 1436);
+		
+		System.out.println(mappingAroundX(p));
+	}
+	
 }

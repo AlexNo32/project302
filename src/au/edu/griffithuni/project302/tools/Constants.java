@@ -15,7 +15,7 @@ public class Constants {
 	public static final String THEME = UIManager.getSystemLookAndFeelClassName();
 //	public static final String THEME = "javax.swing.plaf.metal.MetalLookAndFeel";
 
-	public static final int ANIMATE_FPS = 500;
+	public static final int ANIMATE_FPS = 250;
 	
 	// ******************* Upper panel *************************
 	// ********* Combobox ********
@@ -54,8 +54,8 @@ public class Constants {
 	// ******************* Canvsa DashBoard***************
 	public static final int DASHBOARD_POS_LOC_X 	= 945;
 	public static final int DASHBOARD_POS_LOC_Y 	= 17;
-	public static final int DASHBOARD_WIDTH 		= 255;
-	public static final int DASHBOARD_HEIGHT 		= 100;
+	public static final int DASHBOARD_WIDTH 		= 260;
+	public static final int DASHBOARD_HEIGHT 		= 75;
 
 	// ******************* Lower panel *************************
 	// ********* play Button ********

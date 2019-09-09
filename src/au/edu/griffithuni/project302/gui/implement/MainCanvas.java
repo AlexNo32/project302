@@ -33,6 +33,7 @@ import javax.swing.border.TitledBorder;
 
 import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.gui.IComponent;
+import au.edu.griffithuni.project302.tools.Matrix2DTransfer;
 import au.edu.griffithuni.project302.vo.PositionVo;
 
 /**
@@ -49,6 +50,7 @@ public final class MainCanvas extends JPanel implements IComponent{
 
 	private DashBoard dashBoard;
 	private Point head, leftHand, rightHand;
+	private Point referPoint, headLine, handLine;
 	private ApplicationManager manager;
 	private boolean animate; 
 	
@@ -73,11 +75,31 @@ public final class MainCanvas extends JPanel implements IComponent{
 	@Override
 	public void iWait() {
 		dashBoard.display("Csv files upload ... done.");
+		animate  = false;
 	}
 
 	@Override
 	public void iPlay() {
 		dashBoard.clear();
+		animate = true;
+	}
+	
+	/* reference point - current pos = right position */
+	public void setJoneDoe(PositionVo pos, Point reference) {
+		head 		= pos.getHead();
+		leftHand  	= pos.getLeftHand();
+		rightHand 	= pos.getRightHand();
+//		referPoint  = new Point(reference.x - head.x, reference.y - head.y);
+		referPoint  = reference;
+		// mapping
+		head = Matrix2DTransfer.mappingAroundX(head);
+		leftHand = Matrix2DTransfer.mappingAroundX(leftHand);
+		rightHand = Matrix2DTransfer.mappingAroundX(rightHand);
+		
+		if(pos.getTime() != 0) 
+			dashBoard.display(pos);
+		
+		repaint();
 	}
 	
 	@Override
@@ -86,33 +108,14 @@ public final class MainCanvas extends JPanel implements IComponent{
 		Graphics2D g2d = (Graphics2D) g;
 		paintBackground(g2d);
 		
-		if(animate) {
-			g2d.translate((getWidth() / 2) - HEAD_DIAMETER, (getHeight() / 2) - HEAD_DIAMETER);
+		if(animate)
 			drawJoneDoe(g2d);
-			g2d.translate(-((getWidth() / 2) - HEAD_DIAMETER), -((getHeight() / 2) - HEAD_DIAMETER));
-		}
-	}
-	
-	public void setJoneDoe(PositionVo pos) {
-//		head 		= dataScaling(pos.getHead());
-//		leftHand  	= dataScaling(pos.getLeftHand());
-//		rightHand 	= dataScaling(pos.getRightHand());
-		head 		= pos.getHead();
-		leftHand  	= pos.getLeftHand();
-		rightHand 	= pos.getRightHand();
-		
-		if(pos.getTime() != 0) 
-			dashBoard.display(pos);
-		
-		repaint();
-	}
-	
-	public void clearDashBoard() {
-		dashBoard.clear();
 	}
 	
 	private void drawJoneDoe(Graphics2D g2d) {
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		
+		g2d.translate(referPoint.x - head.x, referPoint.y - head.y);
 		// head
 		g2d.setColor(HEAD_COLOR);
 		g2d.setStroke(new BasicStroke(FONT_SIZE));
@@ -135,12 +138,10 @@ public final class MainCanvas extends JPanel implements IComponent{
 		int centerLeftY = leftHand.y + (HAND_DIAMETER / 2);
 		int centerRightX = rightHand.x + (HAND_DIAMETER / 2);
 		int centerRightY = rightHand.y + (HAND_DIAMETER / 2);
-		
-//		System.out.println(head.x + ":" + head.y);
 //		
-		System.out.println("[MainCanvase] Head: " + head);
-		System.out.println("[MainCanvase] leftHand: " + leftHand);
-		System.out.println("[MainCanvase] rigthHand" + rightHand);
+//		System.out.println("[MainCanvase] Head: " + head);
+//		System.out.println("[MainCanvase] leftHand: " + leftHand);
+//		System.out.println("[MainCanvase] rigthHand" + rightHand);
 		
 		g2d.setColor(LINE_COLOR);
 		g2d.fillOval(centerHeadX, centerHeadY, 2, 2);
@@ -148,6 +149,8 @@ public final class MainCanvas extends JPanel implements IComponent{
 		g2d.fillOval(centerRightX, centerRightX, 2, 2);
 		g2d.drawLine(centerHeadX , centerHeadY, centerLeftX, centerLeftY);
 		g2d.drawLine(centerHeadX , centerHeadY, centerRightX, centerRightY);
+		
+		g2d.translate(-(referPoint.x - head.x), -(referPoint.y - head.y));
 		
 	}
 
@@ -172,7 +175,7 @@ public final class MainCanvas extends JPanel implements IComponent{
 
 		g2d.setStroke(st);  
 	}
-	
+
 	public class DashBoard extends JTextArea {
 
 		/**
@@ -183,7 +186,8 @@ public final class MainCanvas extends JPanel implements IComponent{
 		public DashBoard() {
 			setBounds(DASHBOARD_POS_LOC_X, DASHBOARD_POS_LOC_Y, DASHBOARD_WIDTH, DASHBOARD_HEIGHT);
 			setRows(4); 
-			setOpaque(false);
+			setBackground(SCREEN_BACKGROUND);
+//			setOpaque(false);
 		}
 		
 		public void display(String msg) {

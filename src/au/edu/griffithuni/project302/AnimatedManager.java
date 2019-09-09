@@ -25,9 +25,13 @@ public class AnimatedManager implements ActionListener {
 	public LinkedList<PositionVo> currentPerformed;
 	public float speedRate;
 	public float scaleRate;
-
+	public double movingRate;
+	public int referX, referY;// Animation initial start position
+	
 	public AnimatedManager(ApplicationManager manager) {
 		this.manager = manager;
+		this.referX = (int)(SCREEN_PANEL_WIDTH / 5 - HEAD_DIAMETER);
+		this.referY = (int)(SCREEN_PANEL_HEIGHT / 5 - HEAD_DIAMETER);
 	}
 
 	public void recv(Map<String, LinkedList<PositionVo>> csv) {
@@ -43,13 +47,20 @@ public class AnimatedManager implements ActionListener {
 		if (this.currentPerformed == null)
 			System.err.println("[DEBUG] data cannot find. " + fdName);
 
-//		manager.canvas.setJoneDoe(currentPerformed.get(0)); // draw the first frame
-//		manager.canvas.repaint();
 	}
 
 	/* btn 'play' has been clicked */
 	public void performance() {
-		// Fill the gaps in 3 elements, 3 is fixed TODO make it flex
+		PositionVo s = currentPerformed.getFirst();
+		PositionVo e = currentPerformed.getLast();
+
+		int timeCost = (int) (e.getTime() - s.getTime());
+		int span =  (int) Math.abs(e.getHead().getX() - s.getHead().getX()); 
+		movingRate = (span / timeCost) *  0.1;
+		
+		System.out.println("[AnimatedManager DEBUG] timecost:" + timeCost + "; span:" + span + "; moving rate:" + movingRate +".\n");
+		//TODO according to the moving rate decide how many nodes fill the gap
+		
 		int size = currentPerformed.size();
 
 		for (int i = 1; i < size * 4 - 4; i += 4) {
@@ -63,10 +74,10 @@ public class AnimatedManager implements ActionListener {
 			for (int j = 0; j < 3; j++) 
 				currentPerformed.add(i + j, new PositionVo(delta_Head[j], delta_left_hand[j], delta_right_hand[j]));
 		}
+		
 		nCount = currentPerformed.size();
 		cursor = 0;
-		System.out.println("[DEBUG] list size: " + nCount);
-		
+
 		startTimer(ANIMATE_FPS);
 	}
 
@@ -89,13 +100,15 @@ public class AnimatedManager implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(cursor >= nCount - 1)
+		if(cursor >= nCount - 1) {
 			stopTimer();
-			
-		System.out.println("[DEBUG]" + currentPerformed.get(cursor).toString());
-		
-		manager.canvas.setJoneDoe(currentPerformed.get(cursor ++));
-//		manager.canvas.repaint();PositionVo
+			// TODO clean & reset
+			manager.iWait();
+		}
+		PositionVo curr = currentPerformed.get(cursor);
+		referX += movingRate;
+		manager.canvas.setJoneDoe(curr, new Point(referX, referY));
+		cursor++;
 	}
 
 	/**

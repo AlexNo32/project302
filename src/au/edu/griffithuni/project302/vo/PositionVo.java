@@ -59,10 +59,7 @@ public class PositionVo {
 		return "Time Stamp:" + time + " \nHead Pos (" + headX + ", " + headY + ").\nLeft Hand Pos (" + leftHandX + ", "
 				+ leftHandY + ").\nRight Hand Pos (" + rightHandX + ", " + rightHandY + ").\n";
 	}
-//	this.append("Time: 302.5378 \n");
-//	this.append("Head Pos: (-11.426, 1.435) \n");
-//	this.append("Left hand Pos: (-11.426, 1.435) \n");
-//	this.append("Right hand Pos: (-11.426, 1.435) \n");	
+
 	private static int roundOff(double f) {
 		return (int) Math.round(f + 0.5f);
 	}

@@ -30,6 +30,7 @@ public final class BtmPlayControl extends JButton implements IComponent {
 
 	private ApplicationManager manager;
 	private boolean pause = false;
+	private boolean playing = false;
 
 	public BtmPlayControl(ApplicationManager manager) {
 		this.manager = manager;
@@ -51,8 +52,13 @@ public final class BtmPlayControl extends JButton implements IComponent {
 	public void play() {
 		pause = true;
 		setText(BTN_PAUSE);
-		manager.iPlay();
-		manager.animate.performance();
+		if(!playing) {
+			playing = true;
+			manager.iPlay();
+			manager.animate.performance();
+		}else 
+			manager.animate.pauseTimer();
+		
 	}
 
 	/* pause */
@@ -74,6 +80,7 @@ public final class BtmPlayControl extends JButton implements IComponent {
 	@Override
 	public void iWait() {
 		setEnabled(true);
+		playing = false;
 	}
 
 	@Override
