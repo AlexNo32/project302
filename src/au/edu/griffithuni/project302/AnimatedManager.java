@@ -37,19 +37,19 @@ public class AnimatedManager implements ActionListener {
 	public void setCurrentPerforme(String fdName) {
 		this.currentFlieName = fdName;
 		if (csvDataMap.size() == 0)
-			System.err.println("[DEBUG] csv data map is empty.");
+			System.err.println("[DEBUG] csv data map is empty. ");
 
 		this.currentPerformed = csvDataMap.get(fdName);
 		if (this.currentPerformed == null)
 			System.err.println("[DEBUG] data cannot find. " + fdName);
 
-		manager.canvas.setJoneDoe(currentPerformed.get(0));
-		manager.canvas.repaint();
+//		manager.canvas.setJoneDoe(currentPerformed.get(0)); // draw the first frame
+//		manager.canvas.repaint();
 	}
 
 	/* btn 'play' has been clicked */
 	public void performance() {
-		// Fill the gaps in 4 elements, 4 is fixed TODO make it flex
+		// Fill the gaps in 3 elements, 3 is fixed TODO make it flex
 		int size = currentPerformed.size();
 
 		for (int i = 1; i < size * 4 - 4; i += 4) {
@@ -84,8 +84,6 @@ public class AnimatedManager implements ActionListener {
 			y += dy;
 			tmp[i] = new Point((int)x, (int)y);
 		}
-			
-
 		return tmp;
 	}
 
@@ -95,8 +93,9 @@ public class AnimatedManager implements ActionListener {
 			stopTimer();
 			
 		System.out.println("[DEBUG]" + currentPerformed.get(cursor).toString());
+		
 		manager.canvas.setJoneDoe(currentPerformed.get(cursor ++));
-		manager.canvas.repaint();
+//		manager.canvas.repaint();PositionVo
 	}
 
 	/**

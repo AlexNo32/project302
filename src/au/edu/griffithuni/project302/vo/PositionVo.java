@@ -1,5 +1,7 @@
 package au.edu.griffithuni.project302.vo;
 
+import static au.edu.griffithuni.project302.tools.Constants.PRECISION;
+
 import java.awt.Point;
 
 public class PositionVo {
@@ -41,21 +43,28 @@ public class PositionVo {
 	}
 
 	public Point getHead() {
-		return new Point((int)(headX * 1000), (int)(headY * 1000));
+		return new Point(roundOff(headX * PRECISION), roundOff(headY * PRECISION));
 	}
 
 	public Point getLeftHand() {
-		return new Point((int)(leftHandX * 1000), (int)(leftHandY * 1000));
+		return new Point(roundOff(leftHandX * PRECISION), roundOff(leftHandY * PRECISION));
 	}
 
 	public Point getRightHand() {
-		return new Point((int)(rightHandX * 1000), (int)(rightHandY * 1000));
+		return new Point(roundOff(rightHandX * PRECISION), roundOff(rightHandY * PRECISION));
 	}
 
 	@Override
 	public String toString() {
-		return "Time:" + time + ", head Pos (" + headX + ", " + headY + "), \n left hand Pos (" + leftHandX + ", "
-				+ leftHandY + "), " + "right hand Pos (" + rightHandX + ", " + rightHandY + ")";
+		return "Time Stamp:" + time + " \nHead Pos (" + headX + ", " + headY + ").\nLeft Hand Pos (" + leftHandX + ", "
+				+ leftHandY + ").\nRight Hand Pos (" + rightHandX + ", " + rightHandY + ").\n";
+	}
+//	this.append("Time: 302.5378 \n");
+//	this.append("Head Pos: (-11.426, 1.435) \n");
+//	this.append("Left hand Pos: (-11.426, 1.435) \n");
+//	this.append("Right hand Pos: (-11.426, 1.435) \n");	
+	private static int roundOff(double f) {
+		return (int) Math.round(f + 0.5f);
 	}
 
 }

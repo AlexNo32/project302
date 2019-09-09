@@ -1,10 +1,15 @@
 package au.edu.griffithuni.project302.gui.implement;
 
-import static au.edu.griffithuni.project302.tools.Constants.*;
+import static au.edu.griffithuni.project302.tools.Constants.DASHBOARD_HEIGHT;
+import static au.edu.griffithuni.project302.tools.Constants.DASHBOARD_POS_LOC_X;
+import static au.edu.griffithuni.project302.tools.Constants.DASHBOARD_POS_LOC_Y;
+import static au.edu.griffithuni.project302.tools.Constants.DASHBOARD_WIDTH;
 import static au.edu.griffithuni.project302.tools.Constants.FONT_SIZE;
 import static au.edu.griffithuni.project302.tools.Constants.GRID_GAP;
 import static au.edu.griffithuni.project302.tools.Constants.HAND_COLOR;
+import static au.edu.griffithuni.project302.tools.Constants.HAND_DIAMETER;
 import static au.edu.griffithuni.project302.tools.Constants.HEAD_COLOR;
+import static au.edu.griffithuni.project302.tools.Constants.HEAD_DIAMETER;
 import static au.edu.griffithuni.project302.tools.Constants.LINE_COLOR;
 import static au.edu.griffithuni.project302.tools.Constants.PANEL_TITLE;
 import static au.edu.griffithuni.project302.tools.Constants.SCREEN_BACKGROUND;
@@ -23,6 +28,7 @@ import java.awt.RenderingHints;
 import java.awt.Stroke;
 
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
 import au.edu.griffithuni.project302.ApplicationManager;
@@ -41,12 +47,14 @@ public final class MainCanvas extends JPanel implements IComponent{
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private DashBoard dashBoard;
 	private Point head, leftHand, rightHand;
 	private ApplicationManager manager;
 	private boolean animate; 
 	
 	public MainCanvas(ApplicationManager manager) {
 		this.manager = manager;
+		setLayout(null);
 	}
 	
 	@Override
@@ -56,15 +64,21 @@ public final class MainCanvas extends JPanel implements IComponent{
 		setBounds(SCREEN_POS_LOC_X, SCREEN_POS_LOC_Y, SCREEN_PANEL_WIDTH, SCREEN_PANEL_HEIGHT);
 		setBorder(new TitledBorder(null, PANEL_TITLE, TitledBorder.LEADING, TitledBorder.TOP, null));
 		manager.mainFrame.add(this);
+		dashBoard = new DashBoard();
+		add(dashBoard);
+		
+		dashBoard.display("2D viewer Gui initial ... done.");
 	}
 
 	@Override
 	public void iWait() {
-		animate = true;
+		dashBoard.display("Csv files upload ... done.");
 	}
 
 	@Override
-	public void iPlay() {}
+	public void iPlay() {
+		dashBoard.clear();
+	}
 	
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -86,10 +100,15 @@ public final class MainCanvas extends JPanel implements IComponent{
 		head 		= pos.getHead();
 		leftHand  	= pos.getLeftHand();
 		rightHand 	= pos.getRightHand();
+		
+		if(pos.getTime() != 0) 
+			dashBoard.display(pos);
+		
+		repaint();
 	}
 	
-	private Point dataScaling(Point p) {
-		return null;
+	public void clearDashBoard() {
+		dashBoard.clear();
 	}
 	
 	private void drawJoneDoe(Graphics2D g2d) {
@@ -152,6 +171,34 @@ public final class MainCanvas extends JPanel implements IComponent{
 		}
 
 		g2d.setStroke(st);  
+	}
+	
+	public class DashBoard extends JTextArea {
+
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		
+		public DashBoard() {
+			setBounds(DASHBOARD_POS_LOC_X, DASHBOARD_POS_LOC_Y, DASHBOARD_WIDTH, DASHBOARD_HEIGHT);
+			setRows(4); 
+			setOpaque(false);
+		}
+		
+		public void display(String msg) {
+			append(msg + "\n");
+		}
+		
+		public void display(PositionVo info) {
+			clear();
+			append(info.toString());
+		}
+		
+		public void clear() {
+			setText("");
+		}
+		
 	}
 	
 }
