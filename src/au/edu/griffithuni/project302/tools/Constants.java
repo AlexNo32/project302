@@ -9,13 +9,13 @@ public class Constants {
 	public static final String FRAME_TITLE 	= "Griffithuni 2D Viewer";
 	public static final String PANEL_TITLE 	= "Screen";
 	public static final int FRAME_WIDTH 	= 1280;
-	public static final int FRANE_HEIGHT 	= 960;
+	public static final int FRANE_HEIGHT 	= 740;//960
 	public static final String FRAME_FONT 	= "Georgia";
 //	public static final String THEME = UIManager.getCrossPlatformLookAndFeelClassName();
 	public static final String THEME = UIManager.getSystemLookAndFeelClassName();
 //	public static final String THEME = "javax.swing.plaf.metal.MetalLookAndFeel";
 
-	public static final int ANIMATE_FPS = 250;
+	public static final int ANIMATE_FPS = 200;
 	
 	// ******************* Upper panel *************************
 	// ********* Combobox ********
@@ -46,9 +46,9 @@ public class Constants {
 	public static final int SCREEN_POS_LOC_X 	= 10;
 	public static final int SCREEN_POS_LOC_Y 	= 45;
 	public static final int SCREEN_PANEL_WIDTH 	= 1260;
-	public static final int SCREEN_PANEL_HEIGHT = 870;
+	public static final int SCREEN_PANEL_HEIGHT = 650;// 870
 	
-	public static final Color SCREEN_BACKGROUND = new Color(0, 255, 127); //jade green
+	public static final Color SCREEN_BACKGROUND = new Color(128, 128, 128); 
 	public static final int GRID_GAP 			= 45;
 	
 	// ******************* Canvsa DashBoard***************
@@ -60,7 +60,7 @@ public class Constants {
 	// ******************* Lower panel *************************
 	// ********* play Button ********
 	public static final int LOWER_BTN_PLAY_LOC_X 	= 10;
-	public static final int LOWER_BTN_PLAY_LOC_Y 	= 925;
+	public static final int LOWER_BTN_PLAY_LOC_Y 	= 705;//925
 	
 	public static final int LOWER_BTN_PLAY_SIZE_X 	= 110;
 	public static final int LOWER_BTN_PLAY_SIZE_Y 	= 25;
@@ -70,7 +70,7 @@ public class Constants {
 
 	// ******** combobox speed list *********
 	public static final int LOWER_CMB_SPEED_LOC_X 	= 130;
-	public static final int LOWER_CMB_SPEED_LOC_Y 	= 925;
+	public static final int LOWER_CMB_SPEED_LOC_Y 	= 705;
 	
 	public static final int LOWER_CMB_SPEED_SIZE_X 	= 110;
 	public static final int LOWER_CMB_SPEED_SIZE_Y 	= 25;
@@ -79,21 +79,21 @@ public class Constants {
 
 	// ******* process bar **********
 	public static final int LOWER_PROC_LOC_X 	= 250;
-	public static final int LOWER_PROC_LOC_Y 	= 925;
+	public static final int LOWER_PROC_LOC_Y 	= 705;
 	
 	public static final int LOWER_PROC_SIZE_X 	= 720;
 	public static final int LOWER_PROC_SIZE_Y 	= 25;
 
 	// ****** label ***********
 	public static final int LOWER_LABEL_LOC_X 	= 980;
-	public static final int LOWER_LABEL_LOC_Y 	= 925;
+	public static final int LOWER_LABEL_LOC_Y 	= 705;
 	
 	public static final int LOWER_LABEL_SIZE_X 	= 50;
 	public static final int LOWER_LABEL_SIZE_Y 	= 25;
 
 	// ***** scale bar *********
 	public static final int LOWER_SCALE_BAR_LOC_X 	= 1030;
-	public static final int LOWER_SCALE_BAR_LOC_Y 	= 925;
+	public static final int LOWER_SCALE_BAR_LOC_Y 	= 705;
 	
 	public static final int LOWER_SCALE_BAR_SIZE_X 	= 240;
 	public static final int LOWER_SCALE_BAR_SIZE_Y 	= 25;

@@ -26,12 +26,12 @@ public class AnimatedManager implements ActionListener {
 	public float speedRate;
 	public float scaleRate;
 	public double movingRate;
-	public int referX, referY;// Animation initial start position
+	public int referX, referY;// Animation initial base point
 	
 	public AnimatedManager(ApplicationManager manager) {
 		this.manager = manager;
-		this.referX = (int)(SCREEN_PANEL_WIDTH / 5 - HEAD_DIAMETER);
-		this.referY = (int)(SCREEN_PANEL_HEIGHT / 5 - HEAD_DIAMETER);
+		this.referX = (int)(SCREEN_PANEL_WIDTH / 5);
+		this.referY = (int)(SCREEN_PANEL_HEIGHT / 2);
 	}
 
 	public void recv(Map<String, LinkedList<PositionVo>> csv) {
@@ -56,6 +56,7 @@ public class AnimatedManager implements ActionListener {
 
 		int timeCost = (int) (e.getTime() - s.getTime());
 		int span =  (int) Math.abs(e.getHead().getX() - s.getHead().getX()); 
+		
 		movingRate = (span / timeCost) *  0.1;
 		
 		System.out.println("[AnimatedManager DEBUG] timecost:" + timeCost + "; span:" + span + "; moving rate:" + movingRate +".\n");
@@ -78,6 +79,10 @@ public class AnimatedManager implements ActionListener {
 		nCount = currentPerformed.size();
 		cursor = 0;
 
+		System.out.println(s.getHead());
+		referX -= s.getHead().getX();
+		referY += s.getHead().getY();
+		
 		startTimer(ANIMATE_FPS);
 	}
 
@@ -106,7 +111,7 @@ public class AnimatedManager implements ActionListener {
 			manager.iWait();
 		}
 		PositionVo curr = currentPerformed.get(cursor);
-		referX += movingRate;
+//		referX += movingRate;
 		manager.canvas.setJoneDoe(curr, new Point(referX, referY));
 		cursor++;
 	}

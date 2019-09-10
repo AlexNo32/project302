@@ -8,24 +8,41 @@ public class PositionVo {
 
 	private double time;
 
-	private double headX;
-	private double headY;
+	private double og_headX;
+	private double og_headY;
 
-	private double leftHandX;
-	private double leftHandY;
+	private double og_leftHandX;
+	private double og_leftHandY;
 
-	private double rightHandX;
-	private double rightHandY;
+	private double og_rightHandX;
+	private double og_rightHandY;
+	
+	private int headX;
+	private int headY;
+
+	private int leftHandX;
+	private int leftHandY;
+
+	private int rightHandX;
+	private int rightHandY;
 
 	public PositionVo(double time, double headX, double headY, double leftHandX, double leftHandY, double rightHandX,
 			double rightHandY) {
 		this.time = time;
-		this.headX = headX;
-		this.headY = headY;
-		this.leftHandX = leftHandX;
-		this.leftHandY = leftHandY;
-		this.rightHandX = rightHandX;
-		this.rightHandY = rightHandY;
+		this.og_headX = headX;
+		this.og_headY = headY;
+		this.headX = roundOff(og_headX * PRECISION);
+		this.headY = roundOff(og_headY * PRECISION);
+		
+		this.og_leftHandX = leftHandX;
+		this.og_leftHandY = leftHandY;
+		this.leftHandX = roundOff(og_leftHandX * PRECISION);
+		this.leftHandY = roundOff(og_leftHandY * PRECISION);
+		
+		this.og_rightHandX = rightHandX;
+		this.og_rightHandY = rightHandY;
+		this.rightHandX = roundOff(og_rightHandX * PRECISION);
+		this.rightHandY = roundOff(og_rightHandY * PRECISION);
 	}
 	
 	public PositionVo(Point head, Point leftHand, Point rightHand) {
@@ -43,21 +60,21 @@ public class PositionVo {
 	}
 
 	public Point getHead() {
-		return new Point(roundOff(headX * PRECISION), roundOff(headY * PRECISION));
+		return new Point(headX, headY);
 	}
 
 	public Point getLeftHand() {
-		return new Point(roundOff(leftHandX * PRECISION), roundOff(leftHandY * PRECISION));
+		return new Point(leftHandX, leftHandY);
 	}
 
 	public Point getRightHand() {
-		return new Point(roundOff(rightHandX * PRECISION), roundOff(rightHandY * PRECISION));
+		return new Point(rightHandX, rightHandY);
 	}
 
 	@Override
 	public String toString() {
-		return "Time Stamp:" + time + " \nHead Pos (" + headX + ", " + headY + ").\nLeft Hand Pos (" + leftHandX + ", "
-				+ leftHandY + ").\nRight Hand Pos (" + rightHandX + ", " + rightHandY + ").\n";
+		return "Time Stamp:" + time + " \nHead Pos (" + og_headX + ", " + og_headY + ").\nLeft Hand Pos (" + og_leftHandX + ", "
+				+ og_leftHandY + ").\nRight Hand Pos (" + og_rightHandX + ", " + og_rightHandY + ").\n";
 	}
 
 	private static int roundOff(double f) {

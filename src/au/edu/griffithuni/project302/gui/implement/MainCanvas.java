@@ -48,11 +48,13 @@ public final class MainCanvas extends JPanel implements IComponent{
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private ApplicationManager manager;
 	private DashBoard dashBoard;
 	private Point head, leftHand, rightHand;
 	private Point referPoint, headLine, handLine;
-	private ApplicationManager manager;
+	
 	private boolean animate; 
+	public int referX, referY;// Animation initial start position
 	
 	public MainCanvas(ApplicationManager manager) {
 		this.manager = manager;
@@ -90,6 +92,7 @@ public final class MainCanvas extends JPanel implements IComponent{
 		leftHand  	= pos.getLeftHand();
 		rightHand 	= pos.getRightHand();
 //		referPoint  = new Point(reference.x - head.x, reference.y - head.y);
+		System.out.println("[DEBUG]" + reference);
 		referPoint  = reference;
 		// mapping
 		head = Matrix2DTransfer.mappingAroundX(head);
@@ -115,7 +118,7 @@ public final class MainCanvas extends JPanel implements IComponent{
 	private void drawJoneDoe(Graphics2D g2d) {
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		
-		g2d.translate(referPoint.x - head.x, referPoint.y - head.y);
+		g2d.translate(referPoint.x, referPoint.y);
 		// head
 		g2d.setColor(HEAD_COLOR);
 		g2d.setStroke(new BasicStroke(FONT_SIZE));
@@ -139,9 +142,10 @@ public final class MainCanvas extends JPanel implements IComponent{
 		int centerRightX = rightHand.x + (HAND_DIAMETER / 2);
 		int centerRightY = rightHand.y + (HAND_DIAMETER / 2);
 //		
-//		System.out.println("[MainCanvase] Head: " + head);
-//		System.out.println("[MainCanvase] leftHand: " + leftHand);
-//		System.out.println("[MainCanvase] rigthHand" + rightHand);
+		System.out.println("[MainCanvase] Head: " + head);
+		System.out.println("[MainCanvase] leftHand: " + leftHand);
+		System.out.println("[MainCanvase] rigthHand" + rightHand);
+		System.out.println();
 		
 		g2d.setColor(LINE_COLOR);
 		g2d.fillOval(centerHeadX, centerHeadY, 2, 2);
@@ -150,7 +154,7 @@ public final class MainCanvas extends JPanel implements IComponent{
 		g2d.drawLine(centerHeadX , centerHeadY, centerLeftX, centerLeftY);
 		g2d.drawLine(centerHeadX , centerHeadY, centerRightX, centerRightY);
 		
-		g2d.translate(-(referPoint.x - head.x), -(referPoint.y - head.y));
+		g2d.translate(-referPoint.x, -referPoint.y);
 		
 	}
 

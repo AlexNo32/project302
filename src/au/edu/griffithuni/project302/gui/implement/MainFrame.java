@@ -10,6 +10,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.util.Enumeration;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -37,7 +38,7 @@ public final class MainFrame extends JFrame {
 	/* draw the frame */
 	public void start() {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		setLocation((int) (screenSize.getWidth() - FRAME_WIDTH) / 2, 20); // appear location
+		setLocation((int) (screenSize.getWidth() - FRAME_WIDTH) / 2, 40); // appear location
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -54,7 +55,7 @@ public final class MainFrame extends JFrame {
 			e.printStackTrace();
 		}
 		setFont();
-//		setIcon();
+		setIcon();
 		pack();
 		setVisible(true);
 	}
@@ -77,9 +78,9 @@ public final class MainFrame extends JFrame {
 		setContentPane(contentPane);
 	}
 	
-//	private void setIcon() {
-//		Image icon = Toolkit.getDefaultToolkit().getImage("./ico/gu.png"); 
-//	    setIconImage(icon);
-//	}
+	private void setIcon() {
+		ImageIcon imgicon = new ImageIcon(".\\bin\\img\\guico2.png");
+		setIconImage(imgicon.getImage());
+	}
 
 }
