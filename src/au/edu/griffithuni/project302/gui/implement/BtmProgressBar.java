@@ -31,8 +31,10 @@ public final class BtmProgressBar extends JSlider implements IComponent{
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				// TODO Auto-generated method stub
-				
+				int value = getValue();
+		        if (value > 0) {
+		        	manager.animate.setCursor(value);
+		        }
 			}
 			
 		});
@@ -54,6 +56,7 @@ public final class BtmProgressBar extends JSlider implements IComponent{
 	@Override
 	public void iWait() {
 		setEnabled(true);
+		setValue(1);
 	}
 
 }

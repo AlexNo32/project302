@@ -51,7 +51,8 @@ public final class MainCanvas extends JPanel implements IComponent{
 	private ApplicationManager manager;
 	private DashBoard dashBoard;
 	private Point head, leftHand, rightHand;
-	private Point referPoint, headLine, handLine;
+	private Point referPoint; 
+//	private Point headLine, handLine;
 	
 	private boolean animate; 
 	public int referX, referY;// Animation initial start position
@@ -91,8 +92,6 @@ public final class MainCanvas extends JPanel implements IComponent{
 		head 		= pos.getHead();
 		leftHand  	= pos.getLeftHand();
 		rightHand 	= pos.getRightHand();
-//		referPoint  = new Point(reference.x - head.x, reference.y - head.y);
-		System.out.println("[DEBUG]" + reference);
 		referPoint  = reference;
 		// mapping
 		head = Matrix2DTransfer.mappingAroundX(head);

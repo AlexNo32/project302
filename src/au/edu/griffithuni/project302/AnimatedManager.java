@@ -23,14 +23,16 @@ public class AnimatedManager implements ActionListener {
 	public HashMap<String, LinkedList<PositionVo>> csvDataMap = new HashMap<String, LinkedList<PositionVo>>();
 	public String currentFlieName;
 	public LinkedList<PositionVo> currentPerformed;
-	public float speedRate;
+	public float speedRate = 1.0f;
 	public float scaleRate;
 	public double movingRate;
 	public int referX, referY;// Animation initial base point
 	
 	public AnimatedManager(ApplicationManager manager) {
 		this.manager = manager;
-		this.referX = (int)(SCREEN_PANEL_WIDTH / 5);
+//		this.referX = (int)(SCREEN_PANEL_WIDTH / 5);
+//		this.referY = (int)(SCREEN_PANEL_HEIGHT / 2);
+		this.referX = 50;
 		this.referY = (int)(SCREEN_PANEL_HEIGHT / 2);
 	}
 
@@ -79,11 +81,15 @@ public class AnimatedManager implements ActionListener {
 		nCount = currentPerformed.size();
 		cursor = 0;
 
-		System.out.println(s.getHead());
 		referX -= s.getHead().getX();
 		referY += s.getHead().getY();
 		
-		startTimer(ANIMATE_FPS);
+		/* update gui */
+		manager.proceBar.setMinimum(1);
+		manager.proceBar.setMaximum(nCount);
+		/* end */
+		
+		startTimer((int)(ANIMATE_FPS * speedRate));
 	}
 
 	/* dda algorithm */
@@ -114,6 +120,11 @@ public class AnimatedManager implements ActionListener {
 //		referX += movingRate;
 		manager.canvas.setJoneDoe(curr, new Point(referX, referY));
 		cursor++;
+		
+		/* update gui */
+		if(curr.getTime() != 0)
+			manager.proceBar.setValue(cursor);
+		/* end */
 	}
 
 	/**
@@ -146,6 +157,14 @@ public class AnimatedManager implements ActionListener {
 		if (timer != null)
 			timer.stop();
 		timer = null;
+	}
+
+	public void setCursor(int cursor) {
+		this.cursor = cursor;
+	}
+
+	public void setSpeedRate(float speedRate) {
+		this.speedRate = speedRate;
 	}
 
 }
