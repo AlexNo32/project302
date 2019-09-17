@@ -92,14 +92,22 @@ public final class MainCanvas extends JPanel implements IComponent{
 		head 		= pos.getHead();
 		leftHand  	= pos.getLeftHand();
 		rightHand 	= pos.getRightHand();
-		referPoint  = reference;
+		
 		// mapping
 		head = Matrix2DTransfer.mappingAroundX(head);
 		leftHand = Matrix2DTransfer.mappingAroundX(leftHand);
 		rightHand = Matrix2DTransfer.mappingAroundX(rightHand);
+		referPoint  = reference;
 		
+		/* dashboard display */
 		if(pos.getTime() != 0) 
 			dashBoard.display(pos);
+		/* end */
+		
+		System.out.println("[MainCanvase] Head: " + head);
+		System.out.println("[MainCanvase] leftHand: " + leftHand);
+		System.out.println("[MainCanvase] rigthHand" + rightHand);
+		System.out.println();
 		
 		repaint();
 	}
@@ -140,11 +148,6 @@ public final class MainCanvas extends JPanel implements IComponent{
 		int centerLeftY = leftHand.y + (HAND_DIAMETER / 2);
 		int centerRightX = rightHand.x + (HAND_DIAMETER / 2);
 		int centerRightY = rightHand.y + (HAND_DIAMETER / 2);
-//		
-		System.out.println("[MainCanvase] Head: " + head);
-		System.out.println("[MainCanvase] leftHand: " + leftHand);
-		System.out.println("[MainCanvase] rigthHand" + rightHand);
-		System.out.println();
 		
 		g2d.setColor(LINE_COLOR);
 		g2d.fillOval(centerHeadX, centerHeadY, 2, 2);

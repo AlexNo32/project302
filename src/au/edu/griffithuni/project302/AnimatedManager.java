@@ -27,13 +27,14 @@ public class AnimatedManager implements ActionListener {
 	public float scaleRate;
 	public double movingRate;
 	public int referX, referY;// Animation initial base point
+	public int currReferX, currReferY;
+	
+	private int borderLimit = SCREEN_PANEL_WIDTH - HAND_DIAMETER; // border
 	
 	public AnimatedManager(ApplicationManager manager) {
 		this.manager = manager;
-//		this.referX = (int)(SCREEN_PANEL_WIDTH / 5);
-//		this.referY = (int)(SCREEN_PANEL_HEIGHT / 2);
-		this.referX = 50;
-		this.referY = (int)(SCREEN_PANEL_HEIGHT / 2);
+		this.referX = INITIAL_LOCATION_X;
+		this.referY = INITIAL_LOCATION_Y;
 	}
 
 	public void recv(Map<String, LinkedList<PositionVo>> csv) {
@@ -81,8 +82,11 @@ public class AnimatedManager implements ActionListener {
 		nCount = currentPerformed.size();
 		cursor = 0;
 
+		/* (*)absolute point = initial point - current point */
 		referX -= s.getHead().getX();
 		referY += s.getHead().getY();
+		currReferX = referX;
+		currReferY = referY;
 		
 		/* update gui */
 		manager.proceBar.setMinimum(1);
@@ -113,12 +117,24 @@ public class AnimatedManager implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if(cursor >= nCount - 1) {
 			stopTimer();
-			// TODO clean & reset
+			// TODO Finish! clean & reset 
 			manager.iWait();
 		}
 		PositionVo curr = currentPerformed.get(cursor);
 //		referX += movingRate;
-		manager.canvas.setJoneDoe(curr, new Point(referX, referY));
+		
+		
+		/* border verify */
+		if((referX + curr.getLeftHand().x) > borderLimit) {
+			System.out.println("DEBUG (Over border): " + (referX + curr.getLeftHand().x) + " referX" + referX + " currentX" + curr.getLeftHand().x);
+			// left move 1/3
+			referX -= SCREEN_PANEL_WIDTH / 3;
+			currReferX = referX;
+			
+		}
+		/* end */
+		
+		manager.canvas.setJoneDoe(curr, new Point(currReferX, currReferY));
 		cursor++;
 		
 		/* update gui */
@@ -163,8 +179,11 @@ public class AnimatedManager implements ActionListener {
 		this.cursor = cursor;
 	}
 
-	public void setSpeedRate(float speedRate) {
+	public void setSpeedRate(int speedRate) {
 		this.speedRate = speedRate;
+		if(timer.isRunning()) {
+			timer.setDelay(speedRate);
+		}
 	}
 
 }

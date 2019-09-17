@@ -75,7 +75,12 @@ public class Constants {
 	public static final int LOWER_CMB_SPEED_SIZE_X 	= 110;
 	public static final int LOWER_CMB_SPEED_SIZE_Y 	= 25;
 	
-	public static final String[] PROCE_BAR_CONTENYS 	= { " x 1.0", " x 2.0", " x 3.0", " x 4.0" };
+	public static final String ITEM_1 = "x 0.5";
+	public static final String ITEM_2 = "x 0.8";
+	public static final String ITEM_3 = "x 1.0";
+	public static final String ITEM_4 = "x 2.0";
+	public static final String ITEM_5 = "x 3.0";
+	public static final String[] PROCE_BAR_CONTENYS = { ITEM_1, ITEM_2, ITEM_3, ITEM_4, ITEM_5};
 
 	// ******* process bar **********
 	public static final int LOWER_PROC_LOC_X 	= 250;
@@ -115,6 +120,9 @@ public class Constants {
 	public static final Color HEAD_COLOR 	= new Color(255, 0, 0); // red
 	public static final Color HAND_COLOR 	= new Color(0, 0, 255); // blue
 	public static final Color LINE_COLOR 	= Color.BLACK;
+	public static final int INITIAL_LOCATION_X = 50; // initial loc x
+	public static final int INITIAL_LOCATION_Y = (int)(SCREEN_PANEL_HEIGHT / 2);// initial loc y
+	
 	
 	// ****************** Data represting *******************
 	public static final int PRECISION 	= 100; // 1000 keep three digits behind point, 100 keep two
