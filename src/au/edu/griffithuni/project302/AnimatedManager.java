@@ -42,14 +42,13 @@ public class AnimatedManager implements ActionListener {
 	}
 
 	public void setCurrentPerforme(String fdName) {
-		this.currentFlieName = fdName;
+		currentFlieName = fdName;
 		if (csvDataMap.size() == 0)
 			System.err.println("[DEBUG] csv data map is empty. ");
 
-		this.currentPerformed = csvDataMap.get(fdName);
-		if (this.currentPerformed == null)
-			System.err.println("[DEBUG] data cannot find. " + fdName);
-
+		currentPerformed = new LinkedList<PositionVo>(csvDataMap.get(currentFlieName));
+		if (currentPerformed == null)
+			System.err.println("[DEBUG] data cannot find. " + currentFlieName);
 	}
 
 	/* btn 'play' has been clicked */
@@ -60,7 +59,7 @@ public class AnimatedManager implements ActionListener {
 		int timeCost = (int) (e.getTime() - s.getTime());
 		int span =  (int) Math.abs(e.getHead().getX() - s.getHead().getX()); 
 		
-		movingRate = (span / timeCost) *  0.1;
+//		movingRate = (span / timeCost) *  0.1;
 		
 		System.out.println("[AnimatedManager DEBUG] timecost:" + timeCost + "; span:" + span + "; moving rate:" + movingRate +".\n");
 		//TODO according to the moving rate decide how many nodes fill the gap
@@ -115,22 +114,13 @@ public class AnimatedManager implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(cursor >= nCount - 1) {
-			stopTimer();
-			// TODO Finish! clean & reset 
-			manager.iWait();
-		}
 		PositionVo curr = currentPerformed.get(cursor);
-//		referX += movingRate;
-		
 		
 		/* border verify */
 		if((referX + curr.getLeftHand().x) > borderLimit) {
-			System.out.println("DEBUG (Over border): " + (referX + curr.getLeftHand().x) + " referX" + referX + " currentX" + curr.getLeftHand().x);
 			// left move 1/3
-			referX -= SCREEN_PANEL_WIDTH / 3;
+			referX -= SCREEN_PANEL_WIDTH / 2;
 			currReferX = referX;
-			
 		}
 		/* end */
 		
@@ -141,8 +131,29 @@ public class AnimatedManager implements ActionListener {
 		if(curr.getTime() != 0)
 			manager.proceBar.setValue(cursor);
 		/* end */
+		
+		if(cursor >= nCount - 1) {
+			stopTimer();
+			free();
+			manager.iWait();
+		}
 	}
 
+	private void free() {
+		speedRate = 1.0f;
+		scaleRate = 1.0f;
+//		public double movingRate;
+		referX = INITIAL_LOCATION_X;
+		referY = INITIAL_LOCATION_Y;
+		currReferX = currReferY = 0;
+		
+		currentPerformed.clear();
+		currentPerformed = new LinkedList<PositionVo>(csvDataMap.get(currentFlieName));
+		if (currentPerformed == null)
+			System.err.println("[DEBUG] data cannot find. " + currentFlieName);
+
+	}
+	
 	/**
 	 * Starts the animation
 	 */
@@ -179,10 +190,10 @@ public class AnimatedManager implements ActionListener {
 		this.cursor = cursor;
 	}
 
-	public void setSpeedRate(int speedRate) {
+	public void setSpeedRate(float speedRate) {
 		this.speedRate = speedRate;
-		if(timer.isRunning()) {
-			timer.setDelay(speedRate);
+		if(timer != null && timer.isRunning()) {
+			timer.setDelay((int)(ANIMATE_FPS * speedRate));
 		}
 	}
 

@@ -33,7 +33,7 @@ public final class BtmSpeedCtrl extends JComboBox<String> implements IComponent 
 	 */
 	private static final long serialVersionUID = 1L;
 	private ApplicationManager manager;
-	private int currentRate;
+	private float currentRate;
 
 	/* Constructor */
 	public BtmSpeedCtrl(ApplicationManager manager) {
@@ -58,19 +58,19 @@ public final class BtmSpeedCtrl extends JComboBox<String> implements IComponent 
 
 					switch ((String) e.getItem()) {
 					case ITEM_1:
-						currentRate = 300;
+						currentRate = 1.5f;
 						break;
 					case ITEM_2:
-						currentRate = 250;
+						currentRate = 1.25f;
 						break;
 					case ITEM_3:
-						currentRate = ANIMATE_FPS;
+						currentRate = 1.0f;
 						break;
 					case ITEM_4:
-						currentRate = 100;
+						currentRate = 0.5f;
 						break;
 					case ITEM_5:
-						currentRate = 50;
+						currentRate = 0.25f;
 						break;
 					default:
 						currentRate = ANIMATE_FPS;
@@ -89,6 +89,7 @@ public final class BtmSpeedCtrl extends JComboBox<String> implements IComponent 
 	@Override
 	public void iWait() {
 		setEnabled(true);
+		setSelectedIndex(2);
 	}
 
 	@Override

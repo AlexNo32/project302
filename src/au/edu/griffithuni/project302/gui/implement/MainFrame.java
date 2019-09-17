@@ -82,5 +82,5 @@ public final class MainFrame extends JFrame {
 		ImageIcon imgicon = new ImageIcon(".\\bin\\img\\guico2.png");
 		setIconImage(imgicon.getImage());
 	}
-
+	
 }

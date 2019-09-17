@@ -135,5 +135,5 @@ public class ApplicationManager {
 	private static class ApplicationManagerHolder {
 		private static final ApplicationManager instance = new ApplicationManager();
 	}
-
+	
 }

@@ -70,17 +70,18 @@ public final class BtmPlayControl extends JButton implements IComponent {
 
 	@Override
 	public void iInitialize() {
-		setText(BTN_PALY);
 		setBounds(LOWER_BTN_PLAY_LOC_X, LOWER_BTN_PLAY_LOC_Y, LOWER_BTN_PLAY_SIZE_X, LOWER_BTN_PLAY_SIZE_Y);
-
 		manager.addComponent(this);
 		setEnabled(false);
+		setText(BTN_PALY);
 	}
 
 	@Override
 	public void iWait() {
 		setEnabled(true);
 		playing = false;
+		pause = false;
+		setText(BTN_PALY);
 	}
 
 	@Override
