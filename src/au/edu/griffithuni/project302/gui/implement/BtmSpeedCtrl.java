@@ -79,6 +79,7 @@ public final class BtmSpeedCtrl extends JComboBox<String> implements IComponent 
 					
 					manager.animate.setSpeedRate(currentRate);
 				}
+				
 			}
 
 		});

@@ -56,7 +56,7 @@ public final class BtmProgressBar extends JSlider implements IComponent{
 	@Override
 	public void iWait() {
 		setEnabled(true);
-		setValue(1);
+		setValue(0);
 	}
 
 }

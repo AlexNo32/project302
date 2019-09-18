@@ -61,7 +61,7 @@ public class AnimatedManager implements ActionListener {
 		
 //		movingRate = (span / timeCost) *  0.1;
 		
-		System.out.println("[AnimatedManager DEBUG] timecost:" + timeCost + "; span:" + span + "; moving rate:" + movingRate +".\n");
+//		System.out.println("[AnimatedManager DEBUG] timecost:" + timeCost + "; span:" + span + "; moving rate:" + movingRate +".\n");
 		//TODO according to the moving rate decide how many nodes fill the gap
 		
 		int size = currentPerformed.size();
@@ -88,7 +88,7 @@ public class AnimatedManager implements ActionListener {
 		currReferY = referY;
 		
 		/* update gui */
-		manager.proceBar.setMinimum(1);
+		manager.proceBar.setMinimum(0);
 		manager.proceBar.setMaximum(nCount);
 		/* end */
 		
@@ -132,14 +132,21 @@ public class AnimatedManager implements ActionListener {
 			manager.proceBar.setValue(cursor);
 		/* end */
 		
-		if(cursor >= nCount - 1) {
-			stopTimer();
-			free();
-			manager.iWait();
-		}
+		if(cursor >= nCount - 1)
+			finish();
 	}
 
+	public void finish() {
+		stopTimer();
+		free();
+		manager.iWait();
+	}
+	
 	private void free() {
+		pause = false;
+		nCount = 0;
+		cursor = 0;
+		
 		speedRate = 1.0f;
 		scaleRate = 1.0f;
 //		public double movingRate;

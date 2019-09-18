@@ -33,6 +33,7 @@ public final class MainFrame extends JFrame {
 	public MainFrame(String title) {
 		super(title);
 		setUi();
+//		setFocusable(true);
 	}
 	
 	/* draw the frame */
@@ -82,5 +83,5 @@ public final class MainFrame extends JFrame {
 		ImageIcon imgicon = new ImageIcon(".\\bin\\img\\guico2.png");
 		setIconImage(imgicon.getImage());
 	}
-	
+
 }

@@ -2,6 +2,9 @@ package au.edu.griffithuni.project302;
 
 import static au.edu.griffithuni.project302.tools.Constants.FRAME_TITLE;
 
+import java.awt.Point;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -24,50 +27,50 @@ import au.edu.griffithuni.project302.gui.implement.TopMenu;
 import au.edu.griffithuni.project302.gui.implement.TopTextField;
 import au.edu.griffithuni.project302.vo.PositionVo;
 
-
 /**
  * Application manager, which control gui and part of logic of app.
+ * 
  * @author Firklaag_ins
  *
  */
 public class ApplicationManager {
-	
+
 	/* animation control manager */
 	public AnimatedManager animate;
-	
+
 	/* GUI elements list */
 	public List<IComponent> components = new ArrayList<IComponent>();
 	/* Components */
-	public TopMenu 		menu; // banner menu
-	public TopFlieList 	flieList; // top left, all existing files list
-	public TopTextField 	addressFileld; // top middle, file path  
-	public TopFileChooser 	fileChooser; // top right, file selector
-	
-	public BtmPlayControl 	playCtrl;// play/pause button
-	public BtmSpeedCtrl 	speedCtrl; // speed control
-	public BtmProgressBar 	proceBar; // process bar
-	public BtmLabel 		scaleLab; // label
-	public BtmScaleBar 	scaleBar; // scale bar
+	public TopMenu menu; // banner menu
+	public TopFlieList flieList; // top left, all existing files list
+	public TopTextField addressFileld; // top middle, file path
+	public TopFileChooser fileChooser; // top right, file selector
 
-	public MainFrame 		mainFrame; // main frame
-	public MainCanvas 		canvas; // canvas
-	
+	public BtmPlayControl playCtrl;// play/pause button
+	public BtmSpeedCtrl speedCtrl; // speed control
+	public BtmProgressBar proceBar; // process bar
+	public BtmLabel scaleLab; // label
+	public BtmScaleBar scaleBar; // scale bar
+
+	public MainFrame mainFrame; // main frame
+	public MainCanvas canvas; // canvas
+
 	private ApplicationManager() {
-		animate = 		new AnimatedManager(this);
-		
-		mainFrame = 	new MainFrame(FRAME_TITLE);
-		canvas =    	new MainCanvas(this);
-		
-		menu =          new TopMenu(this);
-		flieList =      new TopFlieList(this);
+		animate = new AnimatedManager(this);
+
+		mainFrame = new MainFrame(FRAME_TITLE);
+		canvas = new MainCanvas(this);
+
+		menu = new TopMenu(this);
+		flieList = new TopFlieList(this);
 		addressFileld = new TopTextField(this);
-		fileChooser =   new TopFileChooser(this);
-		
-		playCtrl =  	new BtmPlayControl(this);
-		speedCtrl = 	new BtmSpeedCtrl(this);
-		proceBar =  	new BtmProgressBar(this);
-		scaleLab =  	new BtmLabel(this);
-		scaleBar =  	new BtmScaleBar(this);
+		fileChooser = new TopFileChooser(this);
+
+		playCtrl = new BtmPlayControl(this);
+		speedCtrl = new BtmSpeedCtrl(this);
+		proceBar = new BtmProgressBar(this);
+		scaleLab = new BtmLabel(this);
+		scaleBar = new BtmScaleBar(this);
 
 		components.add(flieList);
 		components.add(addressFileld);
@@ -79,6 +82,11 @@ public class ApplicationManager {
 		components.add(scaleBar);
 		components.add(canvas);
 
+		playCtrl.addKeyListener(new GuiKeyAdapter());
+		speedCtrl.addKeyListener(new GuiKeyAdapter());
+		proceBar.addKeyListener(new GuiKeyAdapter());
+		scaleBar.addKeyListener(new GuiKeyAdapter());
+
 		iInitialize();
 	}
 
@@ -87,10 +95,10 @@ public class ApplicationManager {
 		// 1, insert data to animate manager
 		animate.recv(csvPack);
 		// 2, update file list
-		String[] fdList = animate.csvDataMap.keySet().stream().toArray(String[] :: new);
+		String[] fdList = animate.csvDataMap.keySet().stream().toArray(String[]::new);
 		flieList.update(fdList);
 	}
-	
+
 	public void draw() {
 		SwingUtilities.invokeLater(new Runnable() {
 
@@ -101,33 +109,35 @@ public class ApplicationManager {
 
 		});
 	}
-	
+
 	/* initial state */
-	public void iInitialize(){
-		for(IComponent c : components){
+	public void iInitialize() {
+		for (IComponent c : components) {
 			c.iInitialize();
 		}
 	}
-	
+
 	/* wait state */
 	public void iWait() {
-		for(IComponent c : components){
+		for (IComponent c : components) {
 			c.iWait();
 		}
+//		mainFrame.requestFocus();
 	}
-	
+
 	/* play state */
-	public void iPlay(){
-		for(IComponent c : components){
+	public void iPlay() {
+		for (IComponent c : components) {
 			c.iPlay();
 		}
+//		mainFrame.requestFocus();
 	}
 
 	/* add components to the main frame */
 	public void addComponent(JComponent o) {
 		mainFrame.getContentPane().add(o);
 	}
-	
+
 	public static ApplicationManager getInstance() {
 		return ApplicationManagerHolder.instance;
 	}
@@ -135,5 +145,19 @@ public class ApplicationManager {
 	private static class ApplicationManagerHolder {
 		private static final ApplicationManager instance = new ApplicationManager();
 	}
-	
+
+	/* Key listener */
+	private class GuiKeyAdapter extends KeyAdapter {
+
+		@Override
+		public void keyPressed(KeyEvent e) {
+			if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_C) {
+				PositionVo v = new PositionVo(1d, 0d, 0d, 0d, 0d, 0d, 0d);
+				canvas.setJoneDoe(v, new Point(0, 0));
+				animate.finish();
+			}
+		}
+
+	}
+
 }
