@@ -1,6 +1,7 @@
 package au.edu.griffithuni.project302.tools;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.UIManager;
 
@@ -48,8 +49,9 @@ public class Constants {
 	public static final int SCREEN_PANEL_WIDTH 	= 1260;
 	public static final int SCREEN_PANEL_HEIGHT = 650;// 870
 	
-	public static final Color SCREEN_BACKGROUND = new Color(128, 128, 128); 
-	public static final int GRID_GAP 			= 45;
+	public static final Color SCREEN_BACKGROUND = new Color(176,196,222); 
+	public static final int GRID_GAP 			= 50;
+	public static final Font MARK_FONT = new Font("Arial", Font.PLAIN, 13);
 	
 	// ******************* Canvsa DashBoard***************
 	public static final int DASHBOARD_POS_LOC_X 	= 945;

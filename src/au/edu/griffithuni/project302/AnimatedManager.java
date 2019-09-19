@@ -61,7 +61,7 @@ public class AnimatedManager implements ActionListener {
 		
 //		movingRate = (span / timeCost) *  0.1;
 		
-//		System.out.println("[AnimatedManager DEBUG] timecost:" + timeCost + "; span:" + span + "; moving rate:" + movingRate +".\n");
+		System.out.println("[AnimatedManager DEBUG] timecost:" + timeCost + "; span:" + span + "; moving rate:" + movingRate +".\n");
 		//TODO according to the moving rate decide how many nodes fill the gap
 		
 		int size = currentPerformed.size();

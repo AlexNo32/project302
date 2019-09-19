@@ -1,6 +1,6 @@
 package au.edu.griffithuni.project302.gui.implement;
 
-import static au.edu.griffithuni.project302.tools.Constants.DASHBOARD_HEIGHT;
+import static au.edu.griffithuni.project302.tools.Constants.*;
 import static au.edu.griffithuni.project302.tools.Constants.DASHBOARD_POS_LOC_X;
 import static au.edu.griffithuni.project302.tools.Constants.DASHBOARD_POS_LOC_Y;
 import static au.edu.griffithuni.project302.tools.Constants.DASHBOARD_WIDTH;
@@ -11,7 +11,6 @@ import static au.edu.griffithuni.project302.tools.Constants.HAND_DIAMETER;
 import static au.edu.griffithuni.project302.tools.Constants.HEAD_COLOR;
 import static au.edu.griffithuni.project302.tools.Constants.HEAD_DIAMETER;
 import static au.edu.griffithuni.project302.tools.Constants.LINE_COLOR;
-import static au.edu.griffithuni.project302.tools.Constants.PANEL_TITLE;
 import static au.edu.griffithuni.project302.tools.Constants.SCREEN_BACKGROUND;
 import static au.edu.griffithuni.project302.tools.Constants.SCREEN_PANEL_HEIGHT;
 import static au.edu.griffithuni.project302.tools.Constants.SCREEN_PANEL_WIDTH;
@@ -29,7 +28,6 @@ import java.awt.Stroke;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.border.TitledBorder;
 
 import au.edu.griffithuni.project302.ApplicationManager;
 import au.edu.griffithuni.project302.gui.IComponent;
@@ -68,7 +66,7 @@ public final class MainCanvas extends JPanel implements IComponent {
 		animate = false;
 		setBackground(SCREEN_BACKGROUND);// background color (jade green)
 		setBounds(SCREEN_POS_LOC_X, SCREEN_POS_LOC_Y, SCREEN_PANEL_WIDTH, SCREEN_PANEL_HEIGHT);
-		setBorder(new TitledBorder(null, PANEL_TITLE, TitledBorder.LEADING, TitledBorder.TOP, null));
+//		setBorder(new TitledBorder(null, PANEL_TITLE, TitledBorder.LEADING, TitledBorder.TOP, null));
 		manager.mainFrame.add(this);
 		dashBoard = new DashBoard();
 		add(dashBoard);
@@ -116,7 +114,7 @@ public final class MainCanvas extends JPanel implements IComponent {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
-		paintBackground(g2d);
+		paintBackground(g2d, GRID_GAP);
 
 		if (animate)
 			drawJoneDoe(g2d);
@@ -152,7 +150,7 @@ public final class MainCanvas extends JPanel implements IComponent {
 		g2d.setColor(LINE_COLOR);
 		g2d.fillOval(centerHeadX, centerHeadY, 2, 2);
 		g2d.fillOval(centerLeftX, centerLeftY, 2, 2);
-		g2d.fillOval(centerRightX, centerRightX, 2, 2);
+		g2d.fillOval(centerRightX, centerRightY, 2, 2);
 		g2d.drawLine(centerHeadX, centerHeadY, centerLeftX, centerLeftY);
 		g2d.drawLine(centerHeadX, centerHeadY, centerRightX, centerRightY);
 
@@ -161,10 +159,10 @@ public final class MainCanvas extends JPanel implements IComponent {
 	}
 
 	/* background color and grids */
-	private void paintBackground(Graphics2D g2d) {
+	private void paintBackground(Graphics2D g2d, int gap) {
 		g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-		GradientPaint gp = new GradientPaint(0, 0, Color.RED, 0, getHeight(), Color.YELLOW);
-//		
+//		GradientPaint gp = new GradientPaint(0, 0, Color.RED, 0, getHeight(), Color.YELLOW);
+		GradientPaint gp = new GradientPaint(0, 0, new Color(0, 0, 255), 0, getHeight(), new Color(25, 25, 112));
 		g2d.setPaint(gp);
 		Stroke st = g2d.getStroke();
 		Stroke bs;
@@ -172,17 +170,36 @@ public final class MainCanvas extends JPanel implements IComponent {
 		bs = new BasicStroke(1, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[] { 16, 4 }, 0);
 		g2d.setStroke(bs);
 
-		int i = GRID_GAP;
+		g2d.setFont(MARK_FONT);
+		
+		int i = 5, j = 0;
 		while (i < SCREEN_PANEL_WIDTH) {
 			g2d.drawLine(0, i, SCREEN_PANEL_WIDTH, i);
 			g2d.drawLine(i, 0, i, SCREEN_PANEL_HEIGHT);
-			i += GRID_GAP;
+
+			setMark(j, i, true, g2d);
+			setMark(j, i, false, g2d);
+
+			j++;
+			i += gap;
 		}
 
 		g2d.setStroke(st);
 	}
 
-	public class DashBoard extends JTextArea {
+	private void setMark(int mark, int seq, boolean x_axis, Graphics2D g2d) {
+		if (x_axis)
+			g2d.drawString(mark + "", seq + 2, SCREEN_PANEL_HEIGHT - 8);
+		else {
+			if (mark == 0)
+				return;
+
+			g2d.drawString(mark + "", 8, SCREEN_PANEL_HEIGHT - seq);
+		}
+
+	}
+
+	private class DashBoard extends JTextArea {
 
 		/**
 		 * 
