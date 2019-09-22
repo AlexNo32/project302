@@ -148,9 +148,9 @@ public final class MainCanvas extends JPanel implements IComponent {
 		int centerRightY = rightHand.y + (HAND_DIAMETER / 2);
 
 		g2d.setColor(LINE_COLOR);
-		g2d.fillOval(centerHeadX, centerHeadY, 2, 2);
-		g2d.fillOval(centerLeftX, centerLeftY, 2, 2);
-		g2d.fillOval(centerRightX, centerRightY, 2, 2);
+//		g2d.fillOval(centerHeadX, centerHeadY, 2, 2);
+//		g2d.fillOval(centerLeftX, centerLeftY, 2, 2);
+//		g2d.fillOval(centerRightX, centerRightY, 2, 2);
 		g2d.drawLine(centerHeadX, centerHeadY, centerLeftX, centerLeftY);
 		g2d.drawLine(centerHeadX, centerHeadY, centerRightX, centerRightY);
 
@@ -160,6 +160,7 @@ public final class MainCanvas extends JPanel implements IComponent {
 
 	/* background color and grids */
 	private void paintBackground(Graphics2D g2d, int gap) {
+//		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 		g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
 //		GradientPaint gp = new GradientPaint(0, 0, Color.RED, 0, getHeight(), Color.YELLOW);
 		GradientPaint gp = new GradientPaint(0, 0, new Color(0, 0, 255), 0, getHeight(), new Color(25, 25, 112));

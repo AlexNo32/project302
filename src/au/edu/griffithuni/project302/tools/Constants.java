@@ -20,17 +20,33 @@ public class Constants {
 	
 	// ******************* Upper panel *************************
 	// ********* Combobox ********
-	public static final String COMBOBOX_DEFAULT 	= "---------- EXISTING FILE LIST ----------";
+	public static final String COMBOBOX_DEFAULT 	= "------- EXISTING FILE LIST -------";
 	public static final int UPPER_COMBOX_LOC_X 		= 10;
 	public static final int UPPER_COMBOX_LOC_Y 		= 10;
 
-	public static final int UPPER_COMBOX_SIZE_X 	= 250;
+	public static final int UPPER_COMBOX_SIZE_X 	= 200; // 250
 	public static final int UPPER_COMBOX_SIZE_Y 	= 25;
+	
+	// ***************** Addition 1 *************************
+	public static final int UPPER_ADDITION_BTN_1_LOC_X = 215;
+	public static final int UPPER_ADDITION_BTN_1_LOC_Y = 10;
+	
+	public static final int UPPER_ADDITION_BTN_1_SIZE_X = 80;
+	public static final int UPPER_ADDITION_BTN_1_SIZE_Y = 25;
+	
+	// ***************** addition 2 *************************
+	
+	public static final int UPPER_ADDITION_BTN_2_LOC_X = 300;
+	public static final int UPPER_ADDITION_BTN_2_LOC_Y = 10;
+	
+	public static final int UPPER_ADDITION_BTN_2_SIZE_X = 80;
+	public static final int UPPER_ADDITION_BTN_2_SIZE_Y = 25;
+	
 	// ********* Text field ********
-	public static final int UPPER_TEXT_LOC_X 		= 270;
+	public static final int UPPER_TEXT_LOC_X 		= 385; // 270
 	public static final int UPPER_TEXT_LOC_Y 		= 10;
 
-	public static final int UPPER_TEXT_SIZE_X 		= 880;
+	public static final int UPPER_TEXT_SIZE_X 		= 765;// 880
 	public static final int UPPER_TEXT_SIZE_Y 		= 25;
 	// ********* File Button *******
 	public static final int UPPER_BTN_FILE_LOC_X 	= 1160;

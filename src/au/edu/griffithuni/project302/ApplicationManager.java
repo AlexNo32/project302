@@ -14,6 +14,8 @@ import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 
 import au.edu.griffithuni.project302.gui.IComponent;
+import au.edu.griffithuni.project302.gui.implement.AdditionButton2;
+import au.edu.griffithuni.project302.gui.implement.AdditionButton1;
 import au.edu.griffithuni.project302.gui.implement.BtmLabel;
 import au.edu.griffithuni.project302.gui.implement.BtmPlayControl;
 import au.edu.griffithuni.project302.gui.implement.BtmProgressBar;
@@ -55,6 +57,10 @@ public class ApplicationManager {
 	public MainFrame mainFrame; // main frame
 	public MainCanvas canvas; // canvas
 
+	/* additions */
+	public AdditionButton1 ab1;
+	public AdditionButton2 ab2;
+	
 	private ApplicationManager() {
 		animate = new AnimatedManager(this);
 
@@ -72,6 +78,9 @@ public class ApplicationManager {
 		scaleLab = new BtmLabel(this);
 		scaleBar = new BtmScaleBar(this);
 
+		ab1 = new AdditionButton1(this);
+		ab2 = new AdditionButton2(this);
+		
 		components.add(flieList);
 		components.add(addressFileld);
 		components.add(fileChooser);
@@ -81,6 +90,9 @@ public class ApplicationManager {
 		components.add(scaleLab);
 		components.add(scaleBar);
 		components.add(canvas);
+		
+		components.add(ab1);
+		components.add(ab2);
 
 		playCtrl.addKeyListener(new GuiKeyAdapter());
 		speedCtrl.addKeyListener(new GuiKeyAdapter());
