@@ -30,7 +30,7 @@ public class AdditionButton1 extends JButton implements IComponent {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				String arguments = " python C:\\Users\\huhu8\\Documents\\Uni\\3821ICT\\Project\\project302\\Python\\TraceMain.py "+"\""+manager.animate.currentFlieName+"\"";
+				String arguments = " python "+System.getProperty("user.dir") +"\\project302\\Python\\TraceMain.py "+"\""+manager.animate.currentFlieName+"\"";
 				System.out.println(arguments);
 				try{
 					Process process = Runtime.getRuntime().exec("cmd.exe /c start cmd.exe /c"+ arguments);
