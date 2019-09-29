@@ -1,12 +1,12 @@
 File: README.md
 This file contains the conditions and instructions required to run this program. 
 
-**Purpose:**
-This program is written to display the movement of a users’ head, left and right hand’s movement under VR environment by interpreting a user supplied CSV file in a standard format.
-The main display is in 2D top down view, including replay speed control and a slider to track and change progress.
-Supplementary displays are also offered to trace the movement of the three objects, as well as a simple 3D display.
-
-**Required Environment:**
+**Purpose:** \n
+This program is written to display the movement of a users’ head, left and right hand’s movement under VR environment by interpreting a user supplied CSV file in a standard format. \n
+The main display is in 2D top down view, including replay speed control and a slider to track and change progress. \n
+Supplementary displays are also offered to trace the movement of the three objects, as well as a simple 3D display. \n
+\n
+**Required Environment:** \n
 For the best performance, it is recommended to have the windows display scaling set to 100% on a 1080P screen. 
 For the program to work, the following software/package need to be installed:
 *Python 3.7
