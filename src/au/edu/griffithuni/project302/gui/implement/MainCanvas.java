@@ -51,9 +51,11 @@ public final class MainCanvas extends JPanel implements IComponent {
 	private DashBoard dashBoard;
 	private Point head, leftHand, rightHand;
 	private Point referPoint;
-//	private Point headLine, handLine;
-
+	private int baseX = 0, baseY = 0;
+//	private int mx = 0, my = 0;
+	
 	private boolean animate;
+	private Direction offset = Direction.NONE;
 	public int referX, referY;// Animation initial start position
 
 	public MainCanvas(ApplicationManager manager) {
@@ -78,6 +80,7 @@ public final class MainCanvas extends JPanel implements IComponent {
 	public void iWait() {
 		dashBoard.display("Ready the data files ... done.");
 		animate = false;
+		restore();
 	}
 
 	@Override
@@ -87,10 +90,15 @@ public final class MainCanvas extends JPanel implements IComponent {
 	}
 
 	/* reference point - current pos = right position */
-	public void setJoneDoe(PositionVo pos, Point reference) {
+	public void setJoneDoe(PositionVo pos, Point reference, Direction direct) {
 		head = pos.getHead();
 		leftHand = pos.getLeftHand();
 		rightHand = pos.getRightHand();
+		this.offset = direct;
+		
+		/* debug delete */
+//		if(direct != Direction.NONE)
+//			System.out.println("[DEBUG]: " + direct);
 
 		// mapping
 		head = Matrix2DTransfer.mappingAroundX(head);
@@ -114,7 +122,7 @@ public final class MainCanvas extends JPanel implements IComponent {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
-		paintBackground(g2d, GRID_GAP);
+		paintBackground(g2d, GRID_GAP, offset);
 
 		if (animate)
 			drawJoneDoe(g2d);
@@ -148,9 +156,6 @@ public final class MainCanvas extends JPanel implements IComponent {
 		int centerRightY = rightHand.y + (HAND_DIAMETER / 2);
 
 		g2d.setColor(LINE_COLOR);
-//		g2d.fillOval(centerHeadX, centerHeadY, 2, 2);
-//		g2d.fillOval(centerLeftX, centerLeftY, 2, 2);
-//		g2d.fillOval(centerRightX, centerRightY, 2, 2);
 		g2d.drawLine(centerHeadX, centerHeadY, centerLeftX, centerLeftY);
 		g2d.drawLine(centerHeadX, centerHeadY, centerRightX, centerRightY);
 
@@ -159,11 +164,9 @@ public final class MainCanvas extends JPanel implements IComponent {
 	}
 
 	/* background color and grids */
-	private void paintBackground(Graphics2D g2d, int gap) {
-//		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+	private void paintBackground(Graphics2D g2d, int gap, Direction offset) {
 		g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
-//		GradientPaint gp = new GradientPaint(0, 0, Color.RED, 0, getHeight(), Color.YELLOW);
-		GradientPaint gp = new GradientPaint(0, 0, new Color(0, 0, 255), 0, getHeight(), new Color(25, 25, 112));
+		GradientPaint gp = new GradientPaint(0, 0, new Color(0, 0, 255), 0, getHeight(), new Color(25, 25, 112));// TODO 
 		g2d.setPaint(gp);
 		Stroke st = g2d.getStroke();
 		Stroke bs;
@@ -173,15 +176,36 @@ public final class MainCanvas extends JPanel implements IComponent {
 
 		g2d.setFont(MARK_FONT);
 		
-		int i = 5, j = 0;
+		/* i refer position, j refer mark (number) */
+		int i = 5, markX = 0, markY = 0;
+		
+		switch(offset) {
+			case RIGHT:
+				baseX += 1; 
+				break;
+			case TOP:
+				baseY += 1;
+				break;
+			case BOTTOM:
+				baseY -= 1;
+				break;
+			case NONE:
+				break;
+			default:
+				break;
+		}
+		markX = baseX;
+		markY = baseY;
+		
 		while (i < SCREEN_PANEL_WIDTH) {
 			g2d.drawLine(0, i, SCREEN_PANEL_WIDTH, i);
 			g2d.drawLine(i, 0, i, SCREEN_PANEL_HEIGHT);
 
-			setMark(j, i, true, g2d);
-			setMark(j, i, false, g2d);
+			setMark(markX, i, true, g2d);
+			setMark(markY, i, false, g2d);
 
-			j++;
+			markX++;
+			markY++;
 			i += gap;
 		}
 
@@ -192,7 +216,7 @@ public final class MainCanvas extends JPanel implements IComponent {
 		if (x_axis)
 			g2d.drawString(mark + "", seq + 2, SCREEN_PANEL_HEIGHT - 8);
 		else {
-			if (mark == 0)
+			if (seq == 5)
 				return;
 
 			g2d.drawString(mark + "", 8, SCREEN_PANEL_HEIGHT - seq);
@@ -200,6 +224,11 @@ public final class MainCanvas extends JPanel implements IComponent {
 
 	}
 
+	private void restore() {
+		baseX = 0;
+		baseY = 0;
+	}
+	
 	private class DashBoard extends JTextArea {
 
 		/**
