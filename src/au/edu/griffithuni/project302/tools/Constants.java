@@ -144,4 +144,5 @@ public class Constants {
 	
 	// ****************** Data represting *******************
 	public static final int PRECISION 	= 100; // 1000 keep three digits behind point, 100 keep two
+	public static enum Direction{RIGHT, TOP, BOTTOM, NONE}; 
 }

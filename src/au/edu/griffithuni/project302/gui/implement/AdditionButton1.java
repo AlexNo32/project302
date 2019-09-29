@@ -7,6 +7,8 @@ import static au.edu.griffithuni.project302.tools.Constants.UPPER_ADDITION_BTN_1
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 import javax.swing.JButton;
 
@@ -28,7 +30,19 @@ public class AdditionButton1 extends JButton implements IComponent {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(manager.animate.currentFlieName);
+				String arguments = " python "+System.getProperty("user.dir") +"\\Python\\TraceMain.py "+"\""+manager.animate.currentFlieName+"\"";
+				System.out.println(arguments);
+				try{
+					Process process = Runtime.getRuntime().exec("cmd.exe /c start cmd.exe /c"+ arguments);
+					BufferedReader in = new BufferedReader(new InputStreamReader(process.getInputStream()));
+					String line = null;
+					while ((line = in.readLine())!= null){
+						System.out.println(line);
+					}
+					in.close();
+				}catch(Exception error){
+					error.printStackTrace();
+				}
 			}
 		});
 	}

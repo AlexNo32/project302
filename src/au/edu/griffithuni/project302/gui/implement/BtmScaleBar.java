@@ -27,8 +27,8 @@ public final class BtmScaleBar extends JSlider implements IComponent{
 	@Override
 	public void iInitialize() {
 		setMinimum(1);
-		setMaximum(5);
-		setValue(1);
+		setMaximum(10);
+		setValue(10);
 		setBounds(LOWER_SCALE_BAR_LOC_X, LOWER_SCALE_BAR_LOC_Y, LOWER_SCALE_BAR_SIZE_X, LOWER_SCALE_BAR_SIZE_Y);
 		manager.addComponent(this);
 		
@@ -36,7 +36,10 @@ public final class BtmScaleBar extends JSlider implements IComponent{
 
 			@Override
 			public void stateChanged(ChangeEvent e) {
-				// TODO Auto-generated method stub
+				int value = getValue();
+		        if (value > 0) {
+		        	manager.animate.setScaleRate(value);
+		        }
 				
 			}
 		});
@@ -47,7 +50,7 @@ public final class BtmScaleBar extends JSlider implements IComponent{
 	@Override
 	public void iWait() {
 		setEnabled(true);
-		setValue(1);
+		setValue(10);
 	}
 	
 	@Override

@@ -2,7 +2,6 @@ package au.edu.griffithuni.project302;
 
 import static au.edu.griffithuni.project302.tools.Constants.FRAME_TITLE;
 
-import java.awt.Point;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -14,8 +13,8 @@ import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
 
 import au.edu.griffithuni.project302.gui.IComponent;
-import au.edu.griffithuni.project302.gui.implement.AdditionButton2;
 import au.edu.griffithuni.project302.gui.implement.AdditionButton1;
+import au.edu.griffithuni.project302.gui.implement.AdditionButton2;
 import au.edu.griffithuni.project302.gui.implement.BtmLabel;
 import au.edu.griffithuni.project302.gui.implement.BtmPlayControl;
 import au.edu.griffithuni.project302.gui.implement.BtmProgressBar;
@@ -164,8 +163,8 @@ public class ApplicationManager {
 		@Override
 		public void keyPressed(KeyEvent e) {
 			if (e.isControlDown() && e.getKeyCode() == KeyEvent.VK_C) {
-				PositionVo v = new PositionVo(1d, 0d, 0d, 0d, 0d, 0d, 0d);
-				canvas.setJoneDoe(v, new Point(0, 0));
+//				PositionVo v = new PositionVo(1d, 0d, 0d, 0d, 0d, 0d, 0d);
+//				canvas.setJoneDoe(v, new Point(0, 0), Direction.NONE);
 				animate.finish();
 			}
 		}
