@@ -1,5 +1,5 @@
 File: README.md\
-This file contains the conditions and instructions required to run this program. \
+This file contains the conditions and instructions required to run this program. 
 
 **Purpose:** \
 This program is written to display the movement of a users’ head, left and right hand’s movement under VR environment by interpreting a user supplied CSV file in a standard format. \
@@ -35,4 +35,4 @@ Leyuan.yu@griffithuni.edu.au  \
 *Repo for the main Java program: \
 https://github.com/AlexNo32/project302 \
 *Repo for the supplementary program: \
-https://github.com/Leyuan-Yu/Project302Python \
+https://github.com/Leyuan-Yu/Project302Python 
